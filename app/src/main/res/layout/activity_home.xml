@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true"
+	tools:context="intl.who.covid19.ui.HomeActivity">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:paddingStart="32dp"
+		android:paddingTop="24dp"
+		android:paddingEnd="32dp"
+		android:paddingBottom="8dp">
+
+		<Button
+			android:id="@+id/button_protect"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			android:background="@drawable/bg_btn_ltblue"
+			android:drawableStart="@drawable/home_protect"
+			android:fontFamily="@font/poppins_light"
+			android:onClick="onButtonProtect"
+			android:text="@string/home_protect"
+			android:textColor="@color/colorPrimaryDark"
+			android:textSize="20sp"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<Button
+			android:id="@+id/button_symptoms"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			android:background="@drawable/bg_btn_ltblue"
+			android:drawableStart="@drawable/home_symptoms"
+			android:fontFamily="@font/poppins_light"
+			android:onClick="onButtonSymptoms"
+			android:text="@string/home_symptoms"
+			android:textColor="@color/colorPrimaryDark"
+			android:textSize="20sp"
+			app:layout_constraintTop_toBottomOf="@+id/button_protect" />
+
+		<LinearLayout
+			android:id="@+id/layout_quarantine"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/poppins_bold"
+				android:text="@string/home_address" />
+
+			<TextView
+				android:id="@+id/textView_address"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="12sp"
+				tools:text="Cabanova 11, Bratislava" />
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:background="#ccc" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/poppins_bold"
+				android:text="@string/home_quarantineRemains" />
+
+			<TextView
+				android:id="@+id/textView_quarantineDaysLeft"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/poppins_bold"
+				android:gravity="center_horizontal"
+				android:textColor="@color/red"
+				android:textSize="40sp"
+				tools:text="14" />
+		</LinearLayout>
+
+		<TextView
+			android:id="@+id/textView_quarantineInfo"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/home_quarantineInfo" />
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" />
+
+		<Button
+			android:id="@+id/button_report"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:background="@drawable/bg_btn_red"
+			android:onClick="onButtonReport"
+			android:text="@string/home_report"
+			android:textColor="#fff"
+			app:layout_constraintBottom_toBottomOf="parent" />
+
+		<Button
+			android:id="@+id/button_hotline"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:background="@drawable/bg_btn_green"
+			android:onClick="onButtonHotline"
+			android:text="@string/home_hotline"
+			android:textColor="#fff"
+			app:layout_constraintBottom_toTopOf="@+id/button_report" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="12dp"
+			android:autoLink="email"
+			android:text="@string/home_support"
+			android:textSize="12sp" />
+	</LinearLayout>
+</ScrollView>

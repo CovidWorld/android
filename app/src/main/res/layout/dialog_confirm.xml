@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="32dp">
+
+	<TextView
+		android:id="@+id/textView_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textColor="#000"
+		android:textSize="20sp"
+		tools:text="@string/home_checkReport" />
+
+	<Button
+		android:id="@+id/button1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:textColor="#fff"
+		android:visibility="gone"
+		tools:background="@drawable/bg_btn_red"
+		tools:text="@string/app_yes"
+		tools:visibility="visible" />
+
+	<Button
+		android:id="@+id/button2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:textColor="#fff"
+		android:visibility="gone"
+		tools:background="@drawable/bg_btn_green"
+		tools:text="@string/app_no"
+		tools:visibility="visible" />
+
+</LinearLayout>

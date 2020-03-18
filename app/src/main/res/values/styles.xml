@@ -1,0 +1,21 @@
+<resources>
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">#000</item>
+		<item name="colorAccent">@color/colorAccent</item>
+		<item name="android:textViewStyle">@style/Poppins.TextViewStyle</item>
+		<item name="android:buttonStyle">@style/Poppins.ButtonStyle</item>
+		<item name="editTextStyle">@style/Poppins.EditTextStyle</item>
+	</style>
+	<style name="Poppins.TextViewStyle" parent="Widget.AppCompat.TextView">
+		<item name="android:fontFamily">@font/poppins_light</item>
+		<item name="android:textColor">#ff393939</item>
+	</style>
+	<style name="Poppins.ButtonStyle" parent="Widget.AppCompat.Button.Borderless">
+		<item name="android:fontFamily">@font/poppins_bold</item>
+		<item name="android:textAllCaps">false</item>
+	</style>
+	<style name="Poppins.EditTextStyle" parent="Widget.AppCompat.EditText">
+		<item name="android:fontFamily">@font/poppins_light</item>
+	</style>
+</resources>

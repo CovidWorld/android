@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".ui.AddressActivity">
+
+	<fragment
+		android:id="@+id/fragment_map"
+		android:name="com.google.android.gms.maps.SupportMapFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+	<ImageButton
+		android:id="@+id/button_search"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:background="@drawable/bg_btn_blue"
+		android:onClick="onButtonSearch"
+		android:padding="8dp"
+		android:src="@drawable/ic_search"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:background="@drawable/bg_gray"
+		android:drawableStart="@drawable/map_drag"
+		android:drawablePadding="8dp"
+		android:text="@string/address_dragToLocate"
+		android:textColor="#fff"
+		android:textSize="12sp"
+		app:layout_constraintEnd_toStartOf="@+id/button_search"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/map_pin"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<Button
+		android:id="@+id/button_pick"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:background="@drawable/bg_btn_blue"
+		android:drawableStart="@drawable/map_button"
+		android:drawablePadding="8dp"
+		android:gravity="start|center_vertical"
+		android:onClick="onButtonPick"
+		android:text="@string/address_pickLocation"
+		android:textColor="#fff"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<TextView
+		android:id="@+id/textView_address"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:ellipsize="end"
+		android:maxLines="2"
+		android:paddingStart="60dp"
+		android:paddingTop="@dimen/button_padding_vert"
+		android:paddingEnd="@dimen/button_padding_horz"
+		android:paddingBottom="@dimen/button_padding_vert"
+		android:textColor="#fff"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		tools:text="\nasdfas" />
+
+	<ProgressBar
+		android:id="@+id/progressBar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:indeterminateTint="@color/red"
+		android:visibility="gone"
+		app:layout_constraintBottom_toBottomOf="@+id/button_pick"
+		app:layout_constraintEnd_toEndOf="@+id/button_pick"
+		app:layout_constraintStart_toStartOf="@+id/button_pick"
+		app:layout_constraintTop_toTopOf="@+id/button_pick"
+		tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+	<entry>
+		<key>minConnectionDuration</key>
+		<value>600</value>
+	</entry>
+	<entry>
+		<key>batchSendingFrequency</key>
+		<value>60</value>
+	</entry>
+	<entry>
+		<key>hotlines</key>
+		<value>{}</value>
+	</entry>
+	<entry>
+		<key>quarantineLocationPeriodMinutes</key>
+		<value>8</value>
+	</entry>
+	<entry>
+		<key>quarantineLocationWaitDurationSeconds</key>
+		<value>120</value>
+	</entry>
+	<entry>
+		<key>quarantineDuration</key>
+		<value>14</value>
+	</entry>
+	<entry>
+		<key>desiredPositionAccuracy</key>
+		<value>250</value>
+	</entry>
+	<entry>
+		<key>quarantineLeftMessage</key>
+		<value>Opustili ste zónu domácej karatnény. Pre ochranu Vášho zdravia a zdravia Vašich blízkych, Vás žiadame o striktné dodržiavanie nariadenej karantény.</value>
+	</entry>
+</defaultsMap>

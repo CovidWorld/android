@@ -1,0 +1,67 @@
+<resources>
+	<string name="app_name">COVID-19 Slovensko</string>
+	<string name="app_ok">OK</string>
+	<string name="app_yes">Áno</string>
+	<string name="app_no">Nie</string>
+	<string name="app_apiFailed">Nepodarilo sa spojiť so serverom (%1$s), prosím skúste neskôr</string>
+
+	<string name="notification_channel_persistent">Scan running notification</string>
+	<string name="notification_channel_alarm">Notifies of potential contagion</string>
+	<string name="notification_scan_title">Covid-19 beží na pozadí</string>
+	<string name="notification_scan_text">Vaše zariadenie zaznamenáva blízkosť okolitých zariadení</string>
+	<string name="notification_scan_problem">Zaznamenávanie nie je aktívne, kliknite sem pre opravu</string>
+	<string name="notification_quarantineLeft_title">Opustili ste karanténu</string>
+
+	<string name="welcome_title">Bojujme\nproti Covid-19\nspoločne</string>
+	<string name="welcome_info">Prosíme užívateľov, aby si aplikáciu nechali nainštalovanú až do odvolania. Na Covid-19 umiera v priemere 3,6% ľudí a viac ako 15% nad 80 rokov. Aplikácia nám všetkým pomôže zvládnuť nákazu a zachrániť množstvo životov ľudí okolo nás.</string>
+	<string name="welcome_agree">Pokračovať</string>
+
+	<string name="home_protect">Ako sa chrániť</string>
+	<string name="home_symptoms">Symptómy</string>
+	<string name="home_address">Vaša domáca adresa</string>
+	<string name="home_changeAddress">Zmeniť adresu</string>
+	<string name="home_quarantineRemains">Povinná karanténa, zostáva dní</string>
+	<string name="home_quarantineInfo">Do 14-dňovej karantény je povinný ísť každý, kto sa vráti na Slovensko zo zahraničia. V opačnom prípade mu hrozí pokuta vo výške 1659 eur.</string>
+	<string name="home_report">Vrátil som sa zo zahraničia alebo musím zostať v karanténe</string>
+	<string name="home_checkReport">Vrátili ste sa zo zahraničia alebo máte zostať v karanténe?</string>
+	<string name="home_hotline">Infolinka</string>
+	<string name="home_support"></string>
+
+	<string name="protect_title">Ako sa chrániť pred koronavírom</string>
+	<string name="protect_text1">Často si umývajte ruky mydlom a vodou, najmenej po dobu 20 sekúnd. Môžete použiť dezinfekčný prostriedok na ruky na báze alkoholu</string>
+	<string name="protect_text2">Zakrývajte si nos a ústa pri kašľaní a kýchaní jednorázovou papierovou vreckovkou a následne ju zahoďte</string>
+	<string name="protect_text3">Nedotýkajte sa očí, nosa a úst neumytými rukami</string>
+	<string name="protect_text4">Vyhýbajte sa blízkemu kontaktu s ľudmi, ktorí javia príznak nádchy alebo chrípky</string>
+	<string name="protect_text5">Noste ochrannú masku v prípade, ze sa u Vás alebo u osôb vo Vašej blízkosti prejavujú respiračné symptómy</string>
+	<string name="protect_text6">Pravidelne čistite a dezinfikujte povrchy a objekty s ktorými ste Vy a Vaše okolie v pravidelnom kontakte</string>
+	<string name="protect_text7">Ak ste chorý, liečte sa doma.</string>
+
+	<string name="symptoms_title">Symptómy</string>
+	<string name="symptoms_subtitle">Rozlišujte príznaky</string>
+	<string name="symptoms_text">COVID-19 zasahuje dolné dýchacie cesty. Prejavuje sa:</string>
+	<string name="symptoms_text1">• suchým, zadúšavým, dráždivým kašľom bez hlienov</string>
+	<string name="symptoms_text2">• bolestami hlavy, kĺbov a svalov</string>
+	<string name="symptoms_text3">• celkovou vyčerpanosťou</string>
+	<string name="symptoms_text4">• pocitom ťažoby a pichaním na hrudníku alebo pocitom tzv. „nedostatočného nádychu“</string>
+	<string name="symptoms_text5">• vysoká teplota na hranici, alebo tesne za hranicou 38 stupňov, ale rovnako aj vysoko za hranicou 38 stupňov, v kombinácii s kašľom a zvyškom uvedených príznakov sú tiež príznakom ochorenia</string>
+	<string name="symptoms_text6">Nádcha, bolesti prínosových dutín, hlieny v nose, aj keď s bolesťou v hrdle, s najväčšou pravdepodobnostou nie je COVID-19.</string>
+
+	<string name="phoneVerification_title">Vaše telefónne číslo</string>
+	<string name="phoneVerification_text">Prosím overte medzinárodnú predvoľbu a zadajte Vaše telefónne číslo</string>
+	<string name="phoneVerification_continue">Pokračovať</string>
+	<string name="phoneVerification_invalidNumber">Telefónne číslo je neplatné, prosím skontrolujte zadané číslo</string>
+	<string name="phoneVerification_confirmTitle">Skontrolujte číslo</string>
+	<string name="phoneVerification_confirmText">%1$s\n\nJe toto telefónne číslo správne?</string>
+	<string name="phoneVerification_enterCode">Na zadané telefónne číslo sme poslali SMS s kódom.\n\nPre dokončenie overenia prosím zadajte nižšie prijatý 6-miestny kód.</string>
+	<string name="phoneVerification_wrongCode">Nesprávny kód, zadajte ho prosím znova.</string>
+	<string name="phoneVerification_leaveProcess">Ste si istý, že chcete opustiť túto obrazovku bez zadania kódu? Bez opätovnej autentifikácie sa sem nebudete môcť vrátiť.</string>
+
+	<string name="address_info">Vyberte prosím miesto, v ktorom sa budete zdržiavať po dobu 14 dní v karanténe. Toto miesto nie je možné následne zmeniť, preto sa ubezpečte, že ste správne zadali adresu karantény.</string>
+	<string name="address_dragToLocate">Pohnutím upresnite polohu</string>
+	<string name="address_pickLocation">Vybrať túto polohu\n</string>
+	<string name="address_confirm">Vybrali ste si adresu:\n%1$s\n\nTáto adresa bude po dobu 14 dní Vašim miestom karantény. Adresu následne nebude možné zmeniť.</string>
+	<string name="address_confirm_confirm">Potvrdiť</string>
+	<string name="address_confirm_change">Zmeniť</string>
+
+	<string name="quarantineStart_text">Zadajte dátum, kedy ste sa vrátili zo zahraničia, alebo deň, v ktorom Vám bola nariadená karanténa.</string>
+</resources>

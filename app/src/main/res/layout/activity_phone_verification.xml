@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="32dp"
+	tools:context="intl.who.covid19.ui.PhoneVerificationActivity">
+
+	<TextView
+		android:id="@+id/textView_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/phoneVerification_title"
+		android:textSize="30sp" />
+
+	<TextView
+		android:id="@+id/textView_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/phoneVerification_text"
+		android:textSize="15sp" />
+
+	<com.github.ialokim.phonefield.PhoneInputLayout
+		android:id="@+id/phoneInput"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:autoFormat="true"
+		app:hint="@string/phoneVerification_title" />
+
+	<EditText
+		android:id="@+id/editText_code"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="16dp"
+		android:ems="3"
+		android:gravity="center_horizontal"
+		android:inputType="number"
+		android:maxLength="6"
+		android:textSize="36sp"
+		android:visibility="gone"
+		tools:text="922226"
+		tools:visibility="visible" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1" />
+
+	<Button
+		android:id="@+id/button_done"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/bg_btn_green"
+		android:onClick="onButtonDone"
+		android:text="@string/phoneVerification_continue"
+		android:textColor="#fff"
+		android:textSize="18sp" />
+
+	<ProgressBar
+		android:id="@+id/progressBar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:visibility="gone"
+		tools:visibility="visible" />
+
+</LinearLayout>

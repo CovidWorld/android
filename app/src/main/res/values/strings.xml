@@ -1,0 +1,67 @@
+<resources>
+	<string name="app_name">COVID-19</string>
+	<string name="app_ok">OK</string>
+	<string name="app_yes">Yes</string>
+	<string name="app_no">No</string>
+	<string name="app_apiFailed">Failed to call server (%1$s), please try again later</string>
+
+	<string name="notification_channel_persistent">Scan running notification</string>
+	<string name="notification_channel_alarm">Notifies of potential contagion</string>
+	<string name="notification_scan_title">COVID-19 is scanning</string>
+	<string name="notification_scan_text">Your device is scanning other devices around you</string>
+	<string name="notification_scan_problem">Scanning cannot be started, click here to resolve</string>
+	<string name="notification_quarantineLeft_title">You left the quarantine!</string>
+
+	<string name="welcome_title">Fight\nCorona Virus\nTogether</string>
+	<string name="welcome_info"></string>
+	<string name="welcome_agree">Continue</string>
+
+	<string name="home_protect">How to protect</string>
+	<string name="home_symptoms">Symptoms</string>
+	<string name="home_address">Your home address</string>
+	<string name="home_changeAddress">Change address</string>
+	<string name="home_quarantineRemains">Mandatory quarantine, days left</string>
+	<string name="home_quarantineInfo"></string>
+	<string name="home_report">I need to stay quarantined</string>
+	<string name="home_checkReport">Do you need to remain in a quarantine?</string>
+	<string name="home_hotline">Hotline</string>
+	<string name="home_support"></string>
+
+	<string name="protect_title">Reduce your risk of coronavirus infection</string>
+	<string name="protect_text1">Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.</string>
+	<string name="protect_text2">Cover your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.</string>
+	<string name="protect_text3">Avoid touching eyes, nose and mouth</string>
+	<string name="protect_text4">Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.</string>
+	<string name="protect_text5">Wear facial protection.</string>
+	<string name="protect_text6">Clean or disinfect the surfaces you\'re frequently in contact with.</string>
+	<string name="protect_text7">Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover.</string>
+
+	<string name="symptoms_title">Symptoms</string>
+	<string name="symptoms_subtitle">Watch for symptoms</string>
+	<string name="symptoms_text">Patients with COVID-19 have experienced mild to severe respiratory illness. Most common symptoms are:</string>
+	<string name="symptoms_text1">• Difficulty breathing or shortness of breath</string>
+	<string name="symptoms_text2">• Persistent pain or pressure in the chest</string>
+	<string name="symptoms_text3">• New confusion or inability to arouse</string>
+	<string name="symptoms_text4">• Bluish lips or face</string>
+	<string name="symptoms_text5"></string>
+	<string name="symptoms_text6">This list is not all inclusive. Please consult your medical provider for any other symptoms that are severe or concerning.</string>
+
+	<string name="phoneVerification_title">Your phone number</string>
+	<string name="phoneVerification_text">Please check your country code and enter your phone number</string>
+	<string name="phoneVerification_continue">Continue</string>
+	<string name="phoneVerification_invalidNumber">Phone number is invalid, please check and correct</string>
+	<string name="phoneVerification_confirmTitle">Confirm your number</string>
+	<string name="phoneVerification_confirmText">%1$s\n\nIs this your correct phone number?</string>
+	<string name="phoneVerification_enterCode">We\'ve sent a confirmation code to you phone.\n\nTo complete the verification process please enter the 6-digit number below.</string>
+	<string name="phoneVerification_wrongCode">Invalid verification code, please try again.</string>
+	<string name="phoneVerification_leaveProcess">Are you sure you want to leave without completing the verification process? You will need to go through the process again later.</string>
+
+	<string name="address_info">Please select the place you\'ll be spending the quarantine in. You won\'t be able to change this place later so make sure it\'s correct.</string>
+	<string name="address_dragToLocate">Drag to move the map</string>
+	<string name="address_pickLocation">Select this location\n</string>
+	<string name="address_confirm">You\'ve selected this address:\n%1$s\n\nThis address will be your quarantine, you can\'t change this address later.</string>
+	<string name="address_confirm_confirm">Confirm</string>
+	<string name="address_confirm_change">Change</string>
+
+	<string name="quarantineStart_text">Please enter the date when you were supposed to enter the quarantine.</string>
+</resources>
