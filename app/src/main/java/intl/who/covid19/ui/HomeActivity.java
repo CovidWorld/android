@@ -31,12 +31,10 @@ public class HomeActivity extends AppCompatActivity {
 	private static final int REQUEST_ADDRESS = 2;
 	private static final int REQUEST_PHONE_VERIFICATION = 3;
 
-
 	private View layout_quarantine;
 	private TextView textView_address;
 	private TextView textView_quarantineDaysLeft;
 	private View layout_info;
-	private TextView textView_quarantineInfo;
 	private TextView textView_statsTotal;
 	private TextView textView_statsRecovered;
 	private TextView textView_statsDeaths;
@@ -52,7 +50,6 @@ public class HomeActivity extends AppCompatActivity {
 		textView_address = findViewById(R.id.textView_address);
 		textView_quarantineDaysLeft = findViewById(R.id.textView_quarantineDaysLeft);
 		layout_info = findViewById(R.id.layout_info);
-		textView_quarantineInfo = findViewById(R.id.textView_quarantineInfo);
 		textView_statsTotal = findViewById(R.id.textView_statsTotal);
 		textView_statsRecovered = findViewById(R.id.textView_statsRecovered);
 		textView_statsDeaths = findViewById(R.id.textView_statsDeaths);
@@ -118,6 +115,10 @@ public class HomeActivity extends AppCompatActivity {
 
 	public void onButtonHotline(View v) {
 		startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + hotline)));
+	}
+
+	public void onPrivacyPolicy(View view) {
+		startActivity(new Intent(this, PrivacyPolicyActivity.class));
 	}
 
 	private void updateUi() {

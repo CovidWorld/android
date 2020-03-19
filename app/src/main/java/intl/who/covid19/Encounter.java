@@ -48,8 +48,8 @@ public class Encounter {
             accuracy = (int) location.getAccuracy();
         } else {
             // round down to roughly 1km precision
-            latitude = BigDecimal.valueOf(location.getLatitude()).setScale(2, RoundingMode.HALF_UP).doubleValue();
-            longitude = BigDecimal.valueOf(location.getLongitude()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+            latitude = BigDecimal.valueOf(location.getLatitude()).setScale(4, RoundingMode.HALF_UP).doubleValue();
+            longitude = BigDecimal.valueOf(location.getLongitude()).setScale(4, RoundingMode.HALF_UP).doubleValue();
             accuracy = null;
         }
     }

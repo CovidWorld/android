@@ -195,11 +195,13 @@
 			app:layout_constraintBottom_toTopOf="@+id/button_report" />
 
 		<TextView
+			android:id="@+id/textView_privacy"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="12dp"
-			android:autoLink="email"
-			android:text="@string/home_support"
+			android:background="?attr/selectableItemBackground"
+			android:onClick="onPrivacyPolicy"
+			android:text="@string/welcome_privacy"
 			android:textSize="12sp" />
 	</LinearLayout>
 </ScrollView>

@@ -24,7 +24,7 @@
 	<string name="home_address">Vaša domáca adresa</string>
 	<string name="home_changeAddress">Zmeniť adresu</string>
 	<string name="home_quarantineRemains">Povinná karanténa, zostáva dní</string>
-	<string name="home_quarantineInfo">Do 14-dňovej karantény je povinný ísť každý, kto sa vráti na Slovensko zo zahraničia. V opačnom prípade mu hrozí pokuta vo výške 1659 eur.</string>
+	<string name="home_quarantineInfo"></string>
 	<string name="home_stats">Štatistiky pre Slovensko</string>
 	<string name="home_statsTotal">Pozitívnych:</string>
 	<string name="home_statsRecovered">Vyliečených:</string>
