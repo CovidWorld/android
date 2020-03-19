@@ -6,7 +6,7 @@ In the basic scenario, the device is emitting an iBeacon signal (Bluetooth low e
 
 Alternatively, the user can flag himself as quarantined in which case the app will regularly check his/her GPS location and warn him/her in case he/she leaves the quarantine.
 
-## Build prerequisities
+## Build prerequisites
 * Rename app/app.properties.example to app/app.properties and fill in the values
 * Register your app in Google Firebase console and copy google-services.json file to app folder
 * Create a flavor in app/build.gradle for your country

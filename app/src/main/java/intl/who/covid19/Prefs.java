@@ -22,7 +22,7 @@ public class Prefs {
 	public static final String HOME_LNG = "homeLng";
 	/** String (address of home) */
 	public static final String HOME_ADDRESS = "homeAddress";
-	/** long (date/time of when the quarantine ends) */
+	/** long (date/time of when the quarantine ends in milliseconds) */
 	public static final String QUARANTINE_ENDS = "quarantineEnds";
 	/** String (JSON object of statistics) */
 	public static final String STATS = "stats";

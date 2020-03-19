@@ -21,20 +21,26 @@
 		android:onClick="onButtonSearch"
 		android:padding="8dp"
 		android:src="@drawable/ic_search"
+		app:layout_constraintBottom_toBottomOf="@+id/textView"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="@+id/textView" />
 
 	<TextView
+		android:id="@+id/textView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_margin="16dp"
+		android:layout_marginEnd="64dp"
+		android:layout_marginStart="64dp"
+		android:layout_marginTop="16dp"
 		android:background="@drawable/bg_gray"
-		android:drawableStart="@drawable/map_drag"
 		android:drawablePadding="8dp"
+		android:drawableStart="@drawable/map_drag"
+		android:maxLines="2"
 		android:text="@string/address_dragToLocate"
 		android:textColor="#fff"
 		android:textSize="12sp"
-		app:layout_constraintEnd_toStartOf="@+id/button_search"
+		app:layout_constrainedWidth="true"
+		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent" />
 

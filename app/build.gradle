@@ -22,7 +22,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName '1.0.0'
-        manifestPlaceholders = [googleApiKey: props['googleApiKey']]
+        manifestPlaceholders.put('googleApiKey', props['googleApiKey'])
         buildConfigField('String', 'GOOGLE_API_KEY', '"' + props['googleApiKey'] + '"')
         buildConfigField('java.util.UUID', 'BEACON_UUID', 'java.util.UUID.fromString("' + props['beaconUuid'] + '")')
         resValue("string", "defaultApiUrl", props['apiUrl'])

@@ -15,7 +15,7 @@
 	<string name="notification_quarantineInfo_text">Zostávajúcich dní v karanténe: %1$d</string>
 
 	<string name="welcome_title">Bojujme\nproti Covid-19\nspoločne</string>
-	<string name="welcome_info">Prosíme užívateľov, aby si aplikáciu nechali nainštalovanú až do odvolania. Na Covid-19 umiera v priemere 3,6% ľudí a viac ako 15% nad 80 rokov. Aplikácia nám všetkým pomôže zvládnuť nákazu a zachrániť množstvo životov ľudí okolo nás.</string>
+	<string name="welcome_info" formatted="false">Prosíme užívateľov, aby si aplikáciu nechali nainštalovanú až do odvolania. Na Covid-19 umiera v priemere 3,6% ľudí a viac ako 15% nad 80 rokov. Aplikácia nám všetkým pomôže zvládnuť nákazu a zachrániť množstvo životov ľudí okolo nás.</string>
 	<string name="welcome_agree">Pokračovať</string>
 	<string name="welcome_privacy">Informácie o spracovaní osobných údajov</string>
 
