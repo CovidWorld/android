@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -14,11 +15,14 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.HashMap;
 
+import intl.who.covid19.Api;
 import intl.who.covid19.App;
 import intl.who.covid19.BeaconService;
+import intl.who.covid19.LocalNotificationReceiver;
 import intl.who.covid19.Prefs;
 import intl.who.covid19.R;
 import intl.who.covid19.UploadService;
+import sk.turn.http.Http;
 
 public class HomeActivity extends AppCompatActivity {
 	/** boolean Whether to ask the user immediately if he's coming from abroad */
@@ -27,12 +31,33 @@ public class HomeActivity extends AppCompatActivity {
 	private static final int REQUEST_ADDRESS = 2;
 	private static final int REQUEST_PHONE_VERIFICATION = 3;
 
+
+	private View layout_quarantine;
+	private TextView textView_address;
+	private TextView textView_quarantineDaysLeft;
+	private View layout_info;
+	private TextView textView_quarantineInfo;
+	private TextView textView_statsTotal;
+	private TextView textView_statsRecovered;
+	private TextView textView_statsDeaths;
+	private Button button_report;
+	private Button button_hotline;
 	private String hotline;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		layout_quarantine = findViewById(R.id.layout_quarantine);
+		textView_address = findViewById(R.id.textView_address);
+		textView_quarantineDaysLeft = findViewById(R.id.textView_quarantineDaysLeft);
+		layout_info = findViewById(R.id.layout_info);
+		textView_quarantineInfo = findViewById(R.id.textView_quarantineInfo);
+		textView_statsTotal = findViewById(R.id.textView_statsTotal);
+		textView_statsRecovered = findViewById(R.id.textView_statsRecovered);
+		textView_statsDeaths = findViewById(R.id.textView_statsDeaths);
+		button_report = findViewById(R.id.button_report);
+		button_hotline = findViewById(R.id.button_hotline);
 		startService(new Intent(this, BeaconService.class));
 		UploadService.start(this);
 		if (savedInstanceState == null && getIntent().getBooleanExtra(EXTRA_ASK_QUARANTINE, false)) {
@@ -72,6 +97,7 @@ public class HomeActivity extends AppCompatActivity {
 								duration * 24 * 3_600_000L).apply();
 				// Restart service to switch to quarantine location tracking
 				startService(new Intent(this, BeaconService.class));
+				LocalNotificationReceiver.scheduleNotification(this);
 			}
 			updateUi();
 		}
@@ -97,21 +123,46 @@ public class HomeActivity extends AppCompatActivity {
 	private void updateUi() {
 		App app = App.get(this);
 		if (app.isInQuarantine()) {
-			findViewById(R.id.layout_quarantine).setVisibility(View.VISIBLE);
-			findViewById(R.id.textView_quarantineInfo).setVisibility(View.GONE);
-			findViewById(R.id.button_report).setVisibility(View.GONE);
-			this.<TextView>findViewById(R.id.textView_address).setText(app.prefs().getString(Prefs.HOME_ADDRESS, ""));
-			this.<TextView>findViewById(R.id.textView_quarantineDaysLeft).setText(String.valueOf((int) Math.ceil(
-					(app.prefs().getLong(Prefs.QUARANTINE_ENDS, 0L) - System.currentTimeMillis()) / (24.0 * 3_600_000L))));
+			layout_quarantine.setVisibility(View.VISIBLE);
+			layout_info.setVisibility(View.GONE);
+			button_report.setVisibility(View.GONE);
+			textView_address.setText(app.prefs().getString(Prefs.HOME_ADDRESS, ""));
+			textView_quarantineDaysLeft.setText(String.valueOf(app.getDaysLeftInQuarantine()));
 		} else {
-			findViewById(R.id.layout_quarantine).setVisibility(View.GONE);
-			findViewById(R.id.textView_quarantineInfo).setVisibility(View.VISIBLE);
-			findViewById(R.id.button_report).setVisibility(View.VISIBLE);
+			layout_quarantine.setVisibility(View.GONE);
+			layout_info.setVisibility(View.VISIBLE);
+			button_report.setVisibility(View.VISIBLE);
+			updateStats();
 		}
 		// Try to load the hotline number for current country
 		String hotlinesJson = app.getRemoteConfig().getString(App.RC_HOTLINES);
 		HashMap<String, String> hotlines = new Gson().fromJson(hotlinesJson, new TypeToken<HashMap<String, String>>() { }.getType());
 		hotline = hotlines.get(app.prefs().getString(Prefs.COUNTRY_CODE, ""));
-		findViewById(R.id.button_hotline).setVisibility(hotline != null && hotline.length() > 0 ? View.VISIBLE : View.GONE);
+		button_hotline.setVisibility(hotline != null && hotline.length() > 0 ? View.VISIBLE : View.GONE);
+	}
+
+	private void updateStats() {
+		Api.Stats stats = Api.Stats.fromJson(App.get(this).prefs().getString(Prefs.STATS, "null"));
+		textView_statsTotal.setText(stats == null ? "..." : String.valueOf(stats.totalCases));
+		textView_statsRecovered.setText(stats == null ? "..." : String.valueOf(stats.totalRecovered));
+		textView_statsDeaths.setText(stats == null ? "..." : String.valueOf(stats.totalDeaths));
+		// Update stats if necessary
+		if (stats == null || System.currentTimeMillis() - stats.lastUpdate > 3_600_000L) {
+			String statsUrl = App.get(this).getRemoteConfig().getString(App.RC_STATS_URL);
+			if (statsUrl.isEmpty()) {
+				return;
+			}
+			new Http(statsUrl, Http.GET).send(http -> {
+				if (isFinishing() || http.getResponseCode() != 200) {
+					return;
+				}
+				Api.Stats newStats = Api.Stats.fromJson(http.getResponseString());
+				newStats.lastUpdate = System.currentTimeMillis();
+				textView_statsTotal.post(() -> {
+					App.get(HomeActivity.this).prefs().edit().putString(Prefs.STATS, newStats.toJson()).apply();
+					updateStats();
+				});
+			});
+		}
 	}
 }

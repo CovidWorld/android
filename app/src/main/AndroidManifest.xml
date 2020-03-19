@@ -33,7 +33,6 @@
 
 		<activity
 			android:name=".ui.WelcomeActivity"
-			android:noHistory="true"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity">
 			<intent-filter>
@@ -42,6 +41,10 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		<activity
+			android:name=".ui.PrivacyPolicyActivity"
+			android:screenOrientation="portrait"
+			tools:ignore="LockedOrientationActivity" />
 		<activity
 			android:name=".ui.HomeActivity"
 			android:screenOrientation="portrait"
@@ -92,6 +95,7 @@
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 			</intent-filter>
 		</receiver>
+		<receiver android:name=".LocalNotificationReceiver" />
 
 		<service
 			android:name=".BeaconService"

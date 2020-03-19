@@ -5,7 +5,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +94,26 @@ public class Api {
             longitude = location.getLongitude();
             accuracy = (int) location.getAccuracy();
             recordTimestamp = location.getTime() / 1000;
+        }
+    }
+    public static class Stats {
+        public static Stats fromJson(String json) {
+            return new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().fromJson(json, Stats.class);
+        }
+
+        public int activeCases;
+        public int newCases;
+        public int newDeaths;
+        public int seriousCritical;
+        public int topCases;
+        public int totalCases;
+        public int totalDeaths;
+        public int totalRecovered;
+        /** Internal field to keep the app from updating too often */
+        public long lastUpdate;
+
+        public String toJson() {
+            return new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().toJson(this);
         }
     }
 

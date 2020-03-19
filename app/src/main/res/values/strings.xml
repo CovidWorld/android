@@ -11,10 +11,13 @@
 	<string name="notification_scan_text">Your device is scanning other devices around you</string>
 	<string name="notification_scan_problem">Scanning cannot be started, click here to resolve</string>
 	<string name="notification_quarantineLeft_title">You left the quarantine!</string>
+	<string name="notification_quarantineInfo_title">Quarantine info</string>
+	<string name="notification_quarantineInfo_text">%1$d day(s) remaining in quarantine</string>
 
 	<string name="welcome_title">Fight\nCorona Virus\nTogether</string>
 	<string name="welcome_info"></string>
 	<string name="welcome_agree">Continue</string>
+	<string name="welcome_privacy">Information about privacy policy</string>
 
 	<string name="home_protect">How to protect</string>
 	<string name="home_symptoms">Symptoms</string>
@@ -22,6 +25,10 @@
 	<string name="home_changeAddress">Change address</string>
 	<string name="home_quarantineRemains">Mandatory quarantine, days left</string>
 	<string name="home_quarantineInfo"></string>
+	<string name="home_stats">Global statistics</string>
+	<string name="home_statsTotal">Positive:</string>
+	<string name="home_statsRecovered">Recovered:</string>
+	<string name="home_statsDeaths">Deaths:</string>
 	<string name="home_report">I need to stay quarantined</string>
 	<string name="home_checkReport">Do you need to remain in a quarantine?</string>
 	<string name="home_hotline">Hotline</string>

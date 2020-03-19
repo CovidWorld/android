@@ -24,4 +24,6 @@ public class Prefs {
 	public static final String HOME_ADDRESS = "homeAddress";
 	/** long (date/time of when the quarantine ends) */
 	public static final String QUARANTINE_ENDS = "quarantineEnds";
+	/** String (JSON object of statistics) */
+	public static final String STATS = "stats";
 }

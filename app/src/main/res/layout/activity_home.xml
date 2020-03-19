@@ -87,11 +87,85 @@
 				tools:text="14" />
 		</LinearLayout>
 
-		<TextView
-			android:id="@+id/textView_quarantineInfo"
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/layout_info"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/home_quarantineInfo" />
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/textView_quarantineInfo"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/home_quarantineInfo"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<TextView
+				android:id="@+id/textView_stats"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:fontFamily="@font/poppins_bold"
+				android:text="@string/home_stats"
+				app:layout_constraintTop_toBottomOf="@+id/textView_quarantineInfo" />
+
+			<TextView
+				android:id="@+id/textView_statsTotalLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/home_statsTotal"
+				app:layout_constraintTop_toBottomOf="@+id/textView_stats" />
+
+			<TextView
+				android:id="@+id/textView_statsRecoveredLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/home_statsRecovered"
+				app:layout_constraintTop_toBottomOf="@+id/textView_statsTotalLabel" />
+
+			<TextView
+				android:id="@+id/textView_statsDeathsLabel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/home_statsDeaths"
+				app:layout_constraintTop_toBottomOf="@+id/textView_statsRecoveredLabel" />
+
+			<androidx.constraintlayout.widget.Barrier
+				android:id="@+id/barrier"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				app:barrierDirection="end"
+				app:constraint_referenced_ids="textView_statsTotalLabel,textView_statsRecoveredLabel,textView_statsDeathsLabel" />
+
+			<TextView
+				android:id="@+id/textView_statsTotal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:fontFamily="@font/poppins_bold"
+				app:layout_constraintStart_toEndOf="@+id/barrier"
+				app:layout_constraintTop_toTopOf="@+id/textView_statsTotalLabel"
+				tools:text="..." />
+
+			<TextView
+				android:id="@+id/textView_statsRecovered"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:fontFamily="@font/poppins_bold"
+				app:layout_constraintStart_toEndOf="@+id/barrier"
+				app:layout_constraintTop_toTopOf="@+id/textView_statsRecoveredLabel"
+				tools:text="..." />
+
+			<TextView
+				android:id="@+id/textView_statsDeaths"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:fontFamily="@font/poppins_bold"
+				app:layout_constraintStart_toEndOf="@+id/barrier"
+				app:layout_constraintTop_toTopOf="@+id/textView_statsDeathsLabel"
+				tools:text="..." />
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
 		<View
 			android:layout_width="match_parent"

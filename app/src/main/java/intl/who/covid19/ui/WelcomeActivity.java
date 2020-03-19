@@ -67,6 +67,10 @@ public class WelcomeActivity extends AppCompatActivity {
 		checkPermissionsAndContinue();
 	}
 
+	public void onPrivacy(View v) {
+		startActivity(new Intent(this, PrivacyPolicyActivity.class));
+	}
+
 	private void checkPermissionsAndContinue() {
 		// Check BT enabled
 		final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -157,6 +161,7 @@ public class WelcomeActivity extends AppCompatActivity {
 	private void navigateNext(boolean newProfile) {
 		startActivity(new Intent(this, HomeActivity.class)
 				.putExtra(HomeActivity.EXTRA_ASK_QUARANTINE, newProfile));
+		finish();
 	}
 
 	@Override
@@ -239,5 +244,4 @@ public class WelcomeActivity extends AppCompatActivity {
 	private void agreeTerms() {
 		App.get(this).prefs().edit().putBoolean(Prefs.TERMS, true).apply();
 	}
-
 }

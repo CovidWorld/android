@@ -58,8 +58,11 @@ public class App extends Application {
     public static final String NOTIFICATION_CHANNEL_ALARM = "alarm";
     public static final int NOTIFICATION_ID_PERSISTENT = 1;
     public static final int NOTIFICATION_ID_QUARANTINE_LEFT = 2;
+    public static final int NOTIFICATION_ID_QUARANTINE_INFO = 3;
     /** Remote config field for api URL */
     private static final String RC_API_URL = "apiUrl";
+    /** Remote config field for statistics URL */
+    public static final String RC_STATS_URL = "statsUrl";
     /** Remote config field for min. encounter duration (in seconds) */
     public static final String RC_MIN_ENCOUNTER_DURATION = "minConnectionDuration";
     /** Remote config field for encounter batch sending frequency (in minutes) */
@@ -150,6 +153,8 @@ public class App extends Application {
         // Create the fused location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         Places.initialize(this, BuildConfig.GOOGLE_API_KEY);
+        // Schedule local quarantine notification
+        LocalNotificationReceiver.scheduleNotification(this);
     }
 
     /**
@@ -165,6 +170,10 @@ public class App extends Application {
 
     public boolean isInQuarantine() {
         return prefs.getLong(Prefs.QUARANTINE_ENDS, 0L) > System.currentTimeMillis();
+    }
+
+    public int getDaysLeftInQuarantine() {
+        return (int) Math.ceil((prefs.getLong(Prefs.QUARANTINE_ENDS, 0L) - System.currentTimeMillis()) / (24.0 * 3_600_000L));
     }
 
     public EncounterQueue getEncounterQueue() {

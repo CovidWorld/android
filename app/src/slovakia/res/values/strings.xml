@@ -11,10 +11,13 @@
 	<string name="notification_scan_text">Vaše zariadenie zaznamenáva blízkosť okolitých zariadení</string>
 	<string name="notification_scan_problem">Zaznamenávanie nie je aktívne, kliknite sem pre opravu</string>
 	<string name="notification_quarantineLeft_title">Opustili ste karanténu</string>
+	<string name="notification_quarantineInfo_title">Karanténa</string>
+	<string name="notification_quarantineInfo_text">Zostávajúcich dní v karanténe: %1$d</string>
 
 	<string name="welcome_title">Bojujme\nproti Covid-19\nspoločne</string>
 	<string name="welcome_info">Prosíme užívateľov, aby si aplikáciu nechali nainštalovanú až do odvolania. Na Covid-19 umiera v priemere 3,6% ľudí a viac ako 15% nad 80 rokov. Aplikácia nám všetkým pomôže zvládnuť nákazu a zachrániť množstvo životov ľudí okolo nás.</string>
 	<string name="welcome_agree">Pokračovať</string>
+	<string name="welcome_privacy">Informácie o spracovaní osobných údajov</string>
 
 	<string name="home_protect">Ako sa chrániť</string>
 	<string name="home_symptoms">Symptómy</string>
@@ -22,6 +25,10 @@
 	<string name="home_changeAddress">Zmeniť adresu</string>
 	<string name="home_quarantineRemains">Povinná karanténa, zostáva dní</string>
 	<string name="home_quarantineInfo">Do 14-dňovej karantény je povinný ísť každý, kto sa vráti na Slovensko zo zahraničia. V opačnom prípade mu hrozí pokuta vo výške 1659 eur.</string>
+	<string name="home_stats">Štatistiky pre Slovensko</string>
+	<string name="home_statsTotal">Pozitívnych:</string>
+	<string name="home_statsRecovered">Vyliečených:</string>
+	<string name="home_statsDeaths">Úmrtí:</string>
 	<string name="home_report">Vrátil som sa zo zahraničia alebo musím zostať v karanténe</string>
 	<string name="home_checkReport">Vrátili ste sa zo zahraničia alebo máte zostať v karanténe?</string>
 	<string name="home_hotline">Infolinka</string>
