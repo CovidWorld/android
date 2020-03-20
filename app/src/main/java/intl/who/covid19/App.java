@@ -152,7 +152,7 @@ public class App extends Application {
         updateCountryCode(null);
         // Create the fused location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        Places.initialize(this, BuildConfig.GOOGLE_API_KEY);
+        Places.initialize(this, getString(R.string.google_api_key));
         // Schedule local quarantine notification
         LocalNotificationReceiver.scheduleNotification(this);
     }
