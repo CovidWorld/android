@@ -39,6 +39,7 @@ public class WelcomeActivity extends AppCompatActivity {
 	private static final int REQUEST_CODE_PERMISSIONS = 1;
 	private static final int REQUEST_CODE_ENABLE_BT = 2;
 	private static final int REQUEST_CODE_ENABLE_GPS = 3;
+	private static final int REQUEST_CODE_PHONE_NUMBER = 4;
 
 	private boolean skipGpsCheck;
 
@@ -153,14 +154,18 @@ public class WelcomeActivity extends AppCompatActivity {
 			} else {
 				Api.ProfileResponse resp = new Gson().fromJson(response, Api.ProfileResponse.class);
 				App.get(this).prefs().edit().putLong(Prefs.DEVICE_ID, resp.profileId).apply();
-				navigateNext(true);
+				verifyPhoneNumber();
 			}
 		});
 	}
 
+	private void verifyPhoneNumber() {
+		startActivityForResult(new Intent(this, PhoneVerificationActivity.class)
+				.putExtra(PhoneVerificationActivity.EXTRA_SHOW_EXPLANATION, true), REQUEST_CODE_PHONE_NUMBER);
+	}
+
 	private void navigateNext(boolean newProfile) {
-		startActivity(new Intent(this, HomeActivity.class)
-				.putExtra(HomeActivity.EXTRA_ASK_QUARANTINE, newProfile));
+		startActivity(new Intent(this, HomeActivity.class).putExtra(HomeActivity.EXTRA_ASK_QUARANTINE, newProfile));
 		finish();
 	}
 
@@ -172,6 +177,9 @@ public class WelcomeActivity extends AppCompatActivity {
 				if (resultCode == RESULT_OK) {
 					checkPermissionsAndContinue();
 				}
+				return;
+			case REQUEST_CODE_PHONE_NUMBER:
+				navigateNext(true);
 				return;
 		}
 		super.onActivityResult(requestCode, resultCode, data);

@@ -32,3 +32,11 @@
     <init>();
     !static <fields>;
 }
+-keepclassmembers class intl.who.covid19.CountryDefaults$* {
+    <init>();
+    !static <fields>;
+}
+-keepclassmembers class intl.who.covid19.ui.MapFragment$* {
+    <init>();
+    !static <fields>;
+}

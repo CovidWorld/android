@@ -63,6 +63,8 @@ public class App extends Application {
     private static final String RC_API_URL = "apiUrl";
     /** Remote config field for statistics URL */
     public static final String RC_STATS_URL = "statsUrl";
+    /** Remote config field for map statistics URL */
+    public static final String RC_MAPSTATS_URL = "mapStatsUrl";
     /** Remote config field for min. encounter duration (in seconds) */
     public static final String RC_MIN_ENCOUNTER_DURATION = "minConnectionDuration";
     /** Remote config field for encounter batch sending frequency (in minutes) */

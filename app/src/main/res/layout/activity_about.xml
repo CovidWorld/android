@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="intl.who.covid19.ui.PrivacyPolicyActivity">
+	tools:context="intl.who.covid19.ui.AboutActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -16,13 +16,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:lineSpacingMultiplier=".8"
-			android:text="@string/welcome_privacy"
+			android:text="@string/home_aboutApp"
 			android:textSize="24sp" />
 
 		<TextView
 			android:id="@+id/textView_text"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="16dp" />
+			android:layout_marginTop="16dp"
+			android:text="@string/about_text"/>
 	</LinearLayout>
 </ScrollView>

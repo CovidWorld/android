@@ -5,9 +5,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,24 +49,22 @@ public class Api {
             this.sourceProfileId = sourceProfileId;
         }
     }
-    public static class AuthTokenRequest {
+    private static class AuthTokenRequest {
         private final String deviceId;
         private final long profileId;
+        private String mfaToken;
+        private String duration;
         public AuthTokenRequest(String deviceId, long profileId) {
             this.deviceId = deviceId;
             this.profileId = profileId;
         }
-    }
-    public static class ConfirmQuarantineRequest {
-        private final String deviceId;
-        private final long profileId;
-        private final String duration;
-        private final String mfaToken;
-        public ConfirmQuarantineRequest(String deviceId, long profileId, int duration, String mfaToken) {
-            this.deviceId = deviceId;
-            this.profileId = profileId;
-            this.duration = String.valueOf(duration);
+        public AuthTokenRequest setMfaToken(String mfaToken) {
             this.mfaToken = mfaToken;
+            return this;
+        }
+        public AuthTokenRequest setDuration(int duration) {
+            this.duration = String.valueOf(duration);
+            return this;
         }
     }
     public static class LocationRequest {
@@ -96,26 +92,6 @@ public class Api {
             recordTimestamp = location.getTime() / 1000;
         }
     }
-    public static class Stats {
-        public static Stats fromJson(String json) {
-            return new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().fromJson(json, Stats.class);
-        }
-
-        public int activeCases;
-        public int newCases;
-        public int newDeaths;
-        public int seriousCritical;
-        public int topCases;
-        public int totalCases;
-        public int totalDeaths;
-        public int totalRecovered;
-        /** Internal field to keep the app from updating too often */
-        public long lastUpdate;
-
-        public String toJson() {
-            return new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().toJson(this);
-        }
-    }
 
     private final App app;
     public Api(Context context) {
@@ -128,11 +104,17 @@ public class Api {
     public void sendContacts(ContactRequest request, Listener listener) {
         send("profile/contacts", Http.POST, request, listener);
     }
-    public void requestAuthToken(AuthTokenRequest request, Listener listener) {
-        send("profile/mfatoken", Http.POST, request, listener);
+    public void requestAuthToken(Listener listener) {
+        send("profile/mfatoken", Http.POST, new AuthTokenRequest(app.prefs().getString(Prefs.DEVICE_UID, null),
+                app.prefs().getLong(Prefs.DEVICE_ID, 0L)), listener);
     }
-    public void confirmQuarantine(ConfirmQuarantineRequest request, Listener listener) {
-        send("profile/quarantine", Http.POST, request, listener);
+    public void confirmAuthToken(String mfaToken, Listener listener) {
+        send("profile/mfatoken", Http.PUT, new AuthTokenRequest(app.prefs().getString(Prefs.DEVICE_UID, null),
+                app.prefs().getLong(Prefs.DEVICE_ID, 0L)).setMfaToken(mfaToken), listener);
+    }
+    public void confirmQuarantine(String mfaToken, int duration, Listener listener) {
+        send("profile/quarantine", Http.POST, new AuthTokenRequest(app.prefs().getString(Prefs.DEVICE_UID, null),
+                app.prefs().getLong(Prefs.DEVICE_ID, 0L)).setMfaToken(mfaToken).setDuration(duration), listener);
     }
     public void sendLocations(LocationRequest request, Listener listener) {
         send("profile/location", Http.POST, request, listener);

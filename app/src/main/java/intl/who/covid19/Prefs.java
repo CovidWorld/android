@@ -16,6 +16,8 @@ public class Prefs {
 	public static final String COUNTRY_CODE = "countryCode";
 	/** String (confirmed phone number) */
 	public static final String PHONE_NUMBER = "phoneNumber";
+	/** String (phone number verification code - may need to be sent later when confirming quarantine or disease) */
+	public static final String PHONE_NUMBER_VERIFICATION_CODE = "phoneNumberVerificationCode";
 	/** double (latitude of home address) */
 	public static final String HOME_LAT = "homeLat";
 	/** double (longitude of home address) */
@@ -24,6 +26,4 @@ public class Prefs {
 	public static final String HOME_ADDRESS = "homeAddress";
 	/** long (date/time of when the quarantine ends in milliseconds) */
 	public static final String QUARANTINE_ENDS = "quarantineEnds";
-	/** String (JSON object of statistics) */
-	public static final String STATS = "stats";
 }

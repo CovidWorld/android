@@ -19,20 +19,24 @@
 	<string name="welcome_agree">Pokračovať</string>
 	<string name="welcome_privacy">Informácie o spracovaní osobných údajov</string>
 
+	<string name="home_info">Dôležité informácie</string>
 	<string name="home_protect">Ako sa chrániť</string>
 	<string name="home_symptoms">Symptómy</string>
+	<string name="home_aboutApp">O aplikácii</string>
 	<string name="home_address">Vaša domáca adresa</string>
 	<string name="home_changeAddress">Zmeniť adresu</string>
 	<string name="home_quarantineRemains">Povinná karanténa, zostáva dní</string>
-	<string name="home_quarantineInfo"></string>
 	<string name="home_stats">Štatistiky pre Slovensko</string>
 	<string name="home_statsTotal">Pozitívnych:</string>
 	<string name="home_statsRecovered">Vyliečených:</string>
 	<string name="home_statsDeaths">Úmrtí:</string>
-	<string name="home_report">Vrátil som sa zo zahraničia alebo musím zostať v karanténe</string>
-	<string name="home_checkReport">Vrátili ste sa zo zahraničia alebo máte zostať v karanténe?</string>
+	<string name="home_diagnosed">Ochorel som na COVID-19</string>
+	<string name="home_quarantine">Bola mi nariadená karanténa</string>
+	<string name="home_checkQuarantine">Vrátili ste sa zo zahraničia alebo máte zostať v karanténe?</string>
 	<string name="home_hotline">Infolinka</string>
-	<string name="home_support"></string>
+	<string name="home_map_list">Zoznam</string>
+	<string name="home_map_map">Mapa</string>
+	<string name="home_profile_identifier">Môj identifikátor pre potreby zdravotníkov a hygienikov:</string>
 
 	<string name="protect_title">Ako sa chrániť pred koronavírom</string>
 	<string name="protect_text1">Často si umývajte ruky mydlom a vodou, najmenej po dobu 20 sekúnd. Môžete použiť dezinfekčný prostriedok na ruky na báze alkoholu</string>
@@ -55,6 +59,7 @@
 
 	<string name="phoneVerification_title">Vaše telefónne číslo</string>
 	<string name="phoneVerification_text">Prosím overte medzinárodnú predvoľbu a zadajte Vaše telefónne číslo</string>
+	<string name="phoneVerification_explanation">Zadajte prosím telefónne číslo, na ktoré Vás budú môcť zdravotníci kontaktovať, v prípade, že ste boli v kontakte s infikovanou osobou.</string>
 	<string name="phoneVerification_continue">Pokračovať</string>
 	<string name="phoneVerification_invalidNumber">Telefónne číslo je neplatné, prosím skontrolujte zadané číslo</string>
 	<string name="phoneVerification_confirmTitle">Skontrolujte číslo</string>
@@ -71,4 +76,99 @@
 	<string name="address_confirm_change">Zmeniť</string>
 
 	<string name="quarantineStart_text">Zadajte dátum, kedy ste sa vrátili zo zahraničia, alebo deň, v ktorom Vám bola nariadená karanténa.</string>
+
+	<string name="diagnosed_warning_title"></string>
+	<string name="diagnosed_warning_text">V prípade, že ste boli pozitívne diagnostikovaný na COVID-19, aplikácia dokáže informovať iných ľudí, ktorí boli vo Vašom blízkom kontakte za poslednú dobu 14-dní ANONYMNE.\n\nUpovedomí ich ANONYMNOU notifikáciou, že mohli byť vystavení riziku nákazy, aby zostali v karanténe a zároveň sa dali otestovať na COVID-19 a predišli tak šíreniu nákazy ďalej medzi svojich blízkych a okolie.</string>
+	<string name="diagnosed_warning_button">Bol som pozitívne diagnostikovaný ochorením COVID-19</string>
+
+	<string name="diagnosed_verify_title">Overenie</string>
+	<string name="diagnosed_verify_text">Aplikácia overí, či ide o Vás, aby sa nešírila náhodne klamlivá informácia medzi ostatných ľudí a nevznikla tak panika.\n\nÚdaje budú služiť len na overenie Vašej idenity s centrálnym systémom zdravtných informácii.</string>
+	<string name="diagnosed_verify_givenName">Vaše meno</string>
+	<string name="diagnosed_verify_surname">Vaše priezvisko</string>
+	<string name="diagnosed_verify_button">Pokračovať</string>
+
+	<string name="about_text">Aplikácia Covid-19 bola vytvorená slovenskými dobrovoľníkmi v rekordne krátkom čase, aby
+pomohli s bojom proti šíreniu pandémie. Bola odovzdaná všetkým štátom zdarma vrátane
+Slovenska, aby pomohla zdravotníckym organizáciam prekonať nákazu Covid-19 rýchlejšie.
+Je vyvinutá tak, aby aj v budúcnosti, pri vzniku akejkoľvek pandémie, mohla byť okamžite
+nasadená a spomaliť šírenie nákazy. Aplikácia bude vylepšovaná každým dňom a jej
+tvorcovia budú náklady s jej ďalším vývojom hradiť sami. Jej kód a know-how má slúžiť
+všetkým ľudom sveta a nesmie byť majetkom žiadnej organizácie.\n\n
+Jednou z najzákernejších prejavov Covid-19 je jej inkubačná doba, kedy pacient chorobu šíri
+až 14-dní bez jej viditeľných symptómov. Tým sa vírus šíri rýchlejšie ako obyčajná chrípka
+a ťažké stavy tak prehltia zdravotnícky systém, ktorý v žiadnej krajine nebol pripravený na
+takýto nárast nákazy. Cieľom aplikácie je výrazne spomaliť nástup a rýchlejšie otestovať
+potenciálne nakazených ľudí a tým predísť šíreniu choroby bez ich vedomia. Tým ochránime
+infikované osoby, ich blízkych a celý zdravotnícky systém, ktorému zostane kapacita pred
+exponenciálnym nárastom prípadov.\n\n
+Aplikácia funguje na nasledovnom princípe.\n\n
+Po inštalácii aplikácie je potrebné povoliť senzory Bluetooth, GPS a notifikácii, ktoré
+informujú pacienta. Bluetooth je technológia na rozoznanie blízkosti kontaktu od 1-20
+metrov a je možné prostredníctvom nej analyzovať presnú vzdialenosť iných zariadení v jej
+okolí. Táto technológia na rozdiel od GPS výborne funguje v bytoch, budovách, obchodných
+domoch, lietadlách, letiskách, autobusoch, električkách a iných uzavretých priestoroch,
+dokonca až na úroveň konkrétnej miestnosti.\n\n
+V prípade, že telefón rozozná iné Bluetooth zariadenie v jeho blízkosti a táto doba prekročí
+určitú dĺžku, zapíše si rozptýlenú GPS pozíciu a anonymný údaj oboch zariadení na server.
+Rozptýlená GPS pozícia je dôležitá pre hygienikov na analýzu šírenia ochorenia. Bluetooth
+informácia iného zariadenia je potrebná na spätné identifikovanie zariadenia a zasielanie
+notifikácii takémuto zariadeniu, ktorého majiteľ mohol byť vstavený ochoreniu.\n\n
+Akonáhle akýkoľvek človek zistí, že bol infikovaný vírusom Covid-19 a mal nainštalovanú
+aplikáciu, zobrazí hygienikovi svoje unikátne kódované číslo. Toto číslo zadá hygienik do
+systému a všetkým zariadeniam, ktorých majitelia boli v kontakte s takto infikovanou
+osobou bude zaslaná notifikácia, alebo SMS. Správa bude obsahovať, že bol človek
+potenciálne vystavený nákaze. Takýmto spôsobom dokážu zdravotní pracovníci trasovať
+možné prenosy za posledných 14-dní aj pri kontaktoch, ktoré človek nedokáže identifikovať.
+V budovách, pri prepážke v obchode, vo verejnej doprave a podobne. Tým budú ľudia
+cielenejšie testovaní, a len Tí, ktorí boli vo veľmi tesnej blízkosti infikovanej osoby po určitú
+dobu.\n\n
+V dnešnej dobe fungujú zdravotníci pýtaním sa, s kým sa človek stretol, a na základe toho
+osobne kontaktujú ľudí, ktorí mohli byť vystavení ochoreniu. Nedokážu ale odhaliť ľudí, ktorí
+boli v kontakte v obchode, alebo verejnej doprave, či vo výťahu. Táto aplikácia tak dokáže
+rýchlejšie nájsť takéto osoby, otestovať ich, výrazne znížiť manuálnu prácu zdravotníkov
+a hygienikov a tým rýchlejšie predísť šíreniu nákazy na ostatných členov rodiny, kolegov, či
+náhodne okoloidúcich.\n\n
+Neoddeliteľnou súčasťou prekonania nákazy Covid-19 je aj izolácia chorých od ostatnej
+populácie. Na tento účel funguje karanténa. V prípade, že človek prišiel zo zahraničia, alebo
+bol potenciálne vystavený infekcii, je vyhláškou prikázané zostať v karanténe po celú dobu
+inkubačnej doby. Pri tejto chorobe 14-dní. Mobilný operátori majú informácie o ľuďoch,
+ktorí prišli zo zahraničia a takýmto ľuďom by mala prísť SMS, aby zostali v karanténe.
+Následne človek v aplikácii oznámi, že mu bola nariadená karanténa a označí si miesto,
+v ktorom sa bude zdržiavať nasledujúcich 14-dní. Zároveň oznámi dátum, od ktorého mu
+bola karanténa nariadená. Po tomto úkone ho aplikácia bude varovať pri každom porušení
+karantény. Akonáhle je človek mimo karantény dlhšie ako určitý čas, aplikácia ho upozorní,
+aby sa vrátil do karantény. Táto funkcionalita sa snaží predísť porušovaniu karantény od
+ľudí, ktorým bola nariadená.\n\n
+Aplikácia zároveň zobrazuje mapu a najnovšie informácie o nákazách v jednotlivých
+okresoch na Slovensku. Jej účelom nieje identifikovať chorých, ani nijako týmito
+informáciami nedisponuje. Mapa zobrazuje len štatistický počet zaznamenaných ľudí
+s ochorením na Covid-19 v danom okrese.\n\n
+Zároveň aplikácia disponuje štatistickými informáciami o počte nakazených, vyliečených
+a počte úmrtí na území Slovenskej republiky. Obsahuje aj dôležité informácie ako sa chrániť,
+ako rozpoznať symptómy a zobrazuje rýchlu infolinku.\n\n
+Aplikáciu budeme neustále zlepšovať a prinášať ďalšie funkcionality, ktoré pomôžu
+rýchlejšie zvládnuť nákazu Covid-19. Všetky dáta sú automaticky mazané po uplynutí 21-dní.
+Táto doba je nevyhnutná na odhalenie možných ohnísk nákaz, ktoré nebolo možné odhaliť
+konvenčným spôsobom.\n\n
+Nikdy nebolo dôležitejšie neochorieť, aby sme zachránili druhých, tak ako dnes. Tým, že
+zostaneme zdraví a nebudeme vírus šíriť, budú mať naši blízky väčšiu šancu na záchranu,
+pretože zdravotníctvo im bude schopné poskytnúť pomoc, ktorú potrebujú. Ak ochorieme,
+svojím šírením zaťažujeme zdravotný systém. Zároveň doktori a zdravotný personál bude
+preťažení a tým náchylnejší na ochorenie. V prípade, že ochorejú nebudú môcť pomáhať aj
+v úplne odlišných prípadoch, ktorý sa tejto nákazy netýka. Tí, ktorí nákazu sami nezvládnu,
+nebudú mať šancu na záchranu. Ak budú chorí doktori, nikto z nás nebude môcť dostať
+akúkoľvek pomoc, či je to obyčajný úraz, operácia, alebo iný vážnejší stav.\n\n
+Veľa z nás nákazu zvládne svojou imunitou. Sú ale takí, ktorí majú iné vážne ochorenia, či
+mladí, či starí a budú potrebovať pomoc zdravotníctva.\n\n
+Preto je nesmierne dôležité prejaviť ľudskosť mladých voči starým, zdravých voči chorým a
+poraziť Covid-19, spoločne.\n\n
+Veľmi pekne ďakujeme za podporu všetkým, ktorí sa svojimi radami, prácou vo dne v noci
+a svojou nezištnou pomocou pričinili ku vzniku tohoto projektu a to najmä: Marek Gogoľ,
+Juraj Karovič, MUDr. Andrej Thurzo PhD., MPH, MHA, kolektív IT dobrovoľníkov okolo Sygic,
+Turn.sk, DigitalLegal, Jozef Benko\n\n
+Širší odborný tím spoluautorov:  doc. JUDr. MUDr. Peter Kováč, PhD. et. PhD, MUDr. Vanda
+Martišková, MUDr. Karolína Bašová, MDDr. Peter Czakó, MUDr. Martin Čaprnda, PhD., prof.
+MUDr. Dušan Meško, PhD., MUDr. Peter Herman, MUDr. Gabriela Ďuricová, PhD., MUDr.
+Igor Krupa, MUDr. Gabriela Ďuricová, PhD., MUDr. Alžbeta Reviczká, MUDr. Andrej Daňo,
+MUDr. Veronika Pružincová, Juraj Novosad, Nicolas Hason, Maroš Lukáč</string>
 </resources>

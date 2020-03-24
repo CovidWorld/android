@@ -19,8 +19,7 @@
 		android:id="@+id/textView_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/phoneVerification_text"
-		android:textSize="15sp" />
+		android:text="@string/phoneVerification_text" />
 
 	<com.github.ialokim.phonefield.PhoneInputLayout
 		android:id="@+id/phoneInput"

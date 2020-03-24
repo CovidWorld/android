@@ -109,7 +109,7 @@ public class AddressActivity extends AppCompatActivity implements OnMapReadyCall
 
     public void onButtonSearch(View v) {
         startActivityForResult(new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG))
-                .setCountry(App.get(this).prefs().getString(Prefs.COUNTRY_CODE, "SK"))
+                .setCountry(App.get(this).prefs().getString(Prefs.COUNTRY_CODE, null))
                 .setTypeFilter(TypeFilter.ADDRESS)
                 .setHint(getString(R.string.home_address))
                 .build(this), REQUEST_AUTOCOMPLETE);

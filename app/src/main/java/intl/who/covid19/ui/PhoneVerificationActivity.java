@@ -24,7 +24,7 @@ import intl.who.covid19.Prefs;
 import intl.who.covid19.R;
 
 public class PhoneVerificationActivity extends AppCompatActivity {
-
+	public static final String EXTRA_SHOW_EXPLANATION = "intl.who.covid19.ui.EXTRA_SHOW_EXPLANATION";
 	private static final int CODE_LENGTH = 6;
 
 	private PhoneInputLayout phoneInput;
@@ -56,6 +56,13 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 				}
 			}
 		});
+		((TextView) findViewById(R.id.textView_text)).setText(getIntent().getBooleanExtra(EXTRA_SHOW_EXPLANATION, false) ?
+				R.string.phoneVerification_explanation : R.string.phoneVerification_text);
+		// Check if we have the phone number and verification code stored and confirm immediately if so
+		String verificationCode = App.get(this).prefs().getString(Prefs.PHONE_NUMBER_VERIFICATION_CODE, null);
+		if (verificationCode != null) {
+			confirmVerificationCode(verificationCode);
+		}
 	}
 
 	@Override
@@ -123,10 +130,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 		progressBar.setVisibility(View.VISIBLE);
 		buttonDone.setVisibility(View.GONE);
 		SharedPreferences prefs = App.get(this).prefs();
-		Api.AuthTokenRequest req = new Api.AuthTokenRequest(
-				prefs.getString(Prefs.DEVICE_UID, null),
-				prefs.getLong(Prefs.DEVICE_ID, 0));
-		new Api(this).requestAuthToken(req, (status, response) -> {
+		new Api(this).requestAuthToken((status, response) -> {
 			if (isFinishing()) {
 				return;
 			}
@@ -150,16 +154,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 	private void confirmVerificationCode(String code) {
 		progressBar.setVisibility(View.VISIBLE);
 		editTextCode.setEnabled(false);
-		SharedPreferences prefs = App.get(this).prefs();
-		long quarantineStarts = getIntent().getLongExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START, System.currentTimeMillis());
-		long daysLeftInQuarantine = (int) App.get(this).getRemoteConfig().getDouble(App.RC_QUARANTINE_DURATION) -
-				Math.round((System.currentTimeMillis() - quarantineStarts) / (24 * 3_600_000.0));
-		Api.ConfirmQuarantineRequest req = new Api.ConfirmQuarantineRequest(
-				prefs.getString(Prefs.DEVICE_UID, null),
-				prefs.getLong(Prefs.DEVICE_ID, 0),
-				(int) daysLeftInQuarantine,
-				code);
-		new Api(this).confirmQuarantine(req, (status, response) -> {
+		Api.Listener apiListener = (status, response) -> {
 			if (isFinishing()) {
 				return;
 			}
@@ -173,10 +168,22 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 						.setPositiveButton(android.R.string.ok, null)
 						.show();
 			} else {
-				setResult(RESULT_OK, new Intent().putExtras(getIntent()).putExtra(Intent.EXTRA_PHONE_NUMBER, phoneInput.getPhoneNumberE164()));
+				App.get(this).prefs().edit()
+						.putString(Prefs.PHONE_NUMBER, phoneInput.getPhoneNumberE164())
+						.putString(Prefs.PHONE_NUMBER_VERIFICATION_CODE, code)
+						.apply();
+				setResult(RESULT_OK, new Intent().putExtras(getIntent()));
 				finish();
 			}
-		});
+		};
+		if (getIntent().hasExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START)) {
+			long quarantineStarts = getIntent().getLongExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START, System.currentTimeMillis());
+			int daysLeftInQuarantine = (int) App.get(this).getRemoteConfig().getDouble(App.RC_QUARANTINE_DURATION) -
+					(int) Math.round((System.currentTimeMillis() - quarantineStarts) / (24 * 3_600_000.0));
+			new Api(this).confirmQuarantine(code, daysLeftInQuarantine, apiListener);
+		} else {
+			new Api(this).confirmAuthToken(code, apiListener);
+		}
 	}
 
 	private void hideKeyboard() {
