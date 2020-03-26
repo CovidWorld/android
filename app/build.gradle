@@ -20,8 +20,8 @@ android {
         applicationId 'covid19'
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
-        versionName '1.0.1'
+        versionCode 1
+        versionName '1.0.0'
         buildConfigField('java.util.UUID', 'BEACON_UUID', 'java.util.UUID.fromString("' + props['beaconUuid'] + '")')
         resValue("string", "defaultApiUrl", props['apiUrl'])
     }

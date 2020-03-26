@@ -17,6 +17,7 @@
 	<string name="welcome_title">Bojujme\nproti Covid-19\nspoločne</string>
 	<string name="welcome_info" formatted="false">Prosíme užívateľov, aby si aplikáciu nechali nainštalovanú až do odvolania. Na Covid-19 umiera v priemere 3,6% ľudí a viac ako 15% nad 80 rokov. Aplikácia nám všetkým pomôže zvládnuť nákazu a zachrániť množstvo životov ľudí okolo nás.</string>
 	<string name="welcome_agree">Pokračovať</string>
+	<string name="welcome_attribution">Tento projekt vznikol ako spojenie dobrovoľnej iniciatívy &lt;b&gt;ZostanZdravy&lt;/b&gt; a &lt;b&gt;Sygic&lt;/b&gt;</string>
 	<string name="welcome_privacy">Informácie o spracovaní osobných údajov</string>
 
 	<string name="home_info">Dôležité informácie</string>
@@ -93,27 +94,27 @@ Slovenska, aby pomohla zdravotníckym organizáciam prekonať nákazu Covid-19 
 Je vyvinutá tak, aby aj v budúcnosti, pri vzniku akejkoľvek pandémie, mohla byť okamžite
 nasadená a spomaliť šírenie nákazy. Aplikácia bude vylepšovaná každým dňom a jej
 tvorcovia budú náklady s jej ďalším vývojom hradiť sami. Jej kód a know-how má slúžiť
-všetkým ľudom sveta a nesmie byť majetkom žiadnej organizácie.\n\n
-Jednou z najzákernejších prejavov Covid-19 je jej inkubačná doba, kedy pacient chorobu šíri
+všetkým ľudom sveta a nesmie byť majetkom žiadnej organizácie.
+\n\nJednou z najzákernejších prejavov Covid-19 je jej inkubačná doba, kedy pacient chorobu šíri
 až 14-dní bez jej viditeľných symptómov. Tým sa vírus šíri rýchlejšie ako obyčajná chrípka
 a ťažké stavy tak prehltia zdravotnícky systém, ktorý v žiadnej krajine nebol pripravený na
 takýto nárast nákazy. Cieľom aplikácie je výrazne spomaliť nástup a rýchlejšie otestovať
 potenciálne nakazených ľudí a tým predísť šíreniu choroby bez ich vedomia. Tým ochránime
 infikované osoby, ich blízkych a celý zdravotnícky systém, ktorému zostane kapacita pred
-exponenciálnym nárastom prípadov.\n\n
-Aplikácia funguje na nasledovnom princípe.\n\n
-Po inštalácii aplikácie je potrebné povoliť senzory Bluetooth, GPS a notifikácii, ktoré
+exponenciálnym nárastom prípadov.
+\n\nAplikácia funguje na nasledovnom princípe.
+\n\nPo inštalácii aplikácie je potrebné povoliť senzory Bluetooth, GPS a notifikácii, ktoré
 informujú pacienta. Bluetooth je technológia na rozoznanie blízkosti kontaktu od 1-20
 metrov a je možné prostredníctvom nej analyzovať presnú vzdialenosť iných zariadení v jej
 okolí. Táto technológia na rozdiel od GPS výborne funguje v bytoch, budovách, obchodných
 domoch, lietadlách, letiskách, autobusoch, električkách a iných uzavretých priestoroch,
-dokonca až na úroveň konkrétnej miestnosti.\n\n
-V prípade, že telefón rozozná iné Bluetooth zariadenie v jeho blízkosti a táto doba prekročí
-určitú dĺžku, zapíše si rozptýlenú GPS pozíciu a anonymný údaj oboch zariadení na server.
+dokonca až na úroveň konkrétnej miestnosti.
+\n\nV prípade, že telefón rozozná iné Bluetooth zariadenie v jeho blízkosti a táto doba prekročí
+určitú dĺžku, zapíše si rozptýlenú GPS pozíciu a údaj oboch zariadení na server.
 Rozptýlená GPS pozícia je dôležitá pre hygienikov na analýzu šírenia ochorenia. Bluetooth
 informácia iného zariadenia je potrebná na spätné identifikovanie zariadenia a zasielanie
-notifikácii takémuto zariadeniu, ktorého majiteľ mohol byť vstavený ochoreniu.\n\n
-Akonáhle akýkoľvek človek zistí, že bol infikovaný vírusom Covid-19 a mal nainštalovanú
+notifikácii takémuto zariadeniu, ktorého majiteľ mohol byť vstavený ochoreniu.
+\n\nAkonáhle akýkoľvek človek zistí, že bol infikovaný vírusom Covid-19 a mal nainštalovanú
 aplikáciu, zobrazí hygienikovi svoje unikátne kódované číslo. Toto číslo zadá hygienik do
 systému a všetkým zariadeniam, ktorých majitelia boli v kontakte s takto infikovanou
 osobou bude zaslaná notifikácia, alebo SMS. Správa bude obsahovať, že bol človek
@@ -121,14 +122,14 @@ potenciálne vystavený nákaze. Takýmto spôsobom dokážu zdravotní pracovn�
 možné prenosy za posledných 14-dní aj pri kontaktoch, ktoré človek nedokáže identifikovať.
 V budovách, pri prepážke v obchode, vo verejnej doprave a podobne. Tým budú ľudia
 cielenejšie testovaní, a len Tí, ktorí boli vo veľmi tesnej blízkosti infikovanej osoby po určitú
-dobu.\n\n
-V dnešnej dobe fungujú zdravotníci pýtaním sa, s kým sa človek stretol, a na základe toho
+dobu.
+\n\nV dnešnej dobe fungujú zdravotníci pýtaním sa, s kým sa človek stretol, a na základe toho
 osobne kontaktujú ľudí, ktorí mohli byť vystavení ochoreniu. Nedokážu ale odhaliť ľudí, ktorí
 boli v kontakte v obchode, alebo verejnej doprave, či vo výťahu. Táto aplikácia tak dokáže
 rýchlejšie nájsť takéto osoby, otestovať ich, výrazne znížiť manuálnu prácu zdravotníkov
 a hygienikov a tým rýchlejšie predísť šíreniu nákazy na ostatných členov rodiny, kolegov, či
-náhodne okoloidúcich.\n\n
-Neoddeliteľnou súčasťou prekonania nákazy Covid-19 je aj izolácia chorých od ostatnej
+náhodne okoloidúcich.
+\n\nNeoddeliteľnou súčasťou prekonania nákazy Covid-19 je aj izolácia chorých od ostatnej
 populácie. Na tento účel funguje karanténa. V prípade, že človek prišiel zo zahraničia, alebo
 bol potenciálne vystavený infekcii, je vyhláškou prikázané zostať v karanténe po celú dobu
 inkubačnej doby. Pri tejto chorobe 14-dní. Mobilný operátori majú informácie o ľuďoch,
@@ -138,37 +139,39 @@ v ktorom sa bude zdržiavať nasledujúcich 14-dní. Zároveň oznámi dátum, 
 bola karanténa nariadená. Po tomto úkone ho aplikácia bude varovať pri každom porušení
 karantény. Akonáhle je človek mimo karantény dlhšie ako určitý čas, aplikácia ho upozorní,
 aby sa vrátil do karantény. Táto funkcionalita sa snaží predísť porušovaniu karantény od
-ľudí, ktorým bola nariadená.\n\n
-Aplikácia zároveň zobrazuje mapu a najnovšie informácie o nákazách v jednotlivých
-okresoch na Slovensku. Jej účelom nieje identifikovať chorých, ani nijako týmito
+ľudí, ktorým bola nariadená.
+\n\nAplikácia zároveň zobrazuje mapu a najnovšie informácie o nákazách v jednotlivých
+okresoch na Slovensku. Jej účelom nie je identifikovať chorých, ani nijako týmito
 informáciami nedisponuje. Mapa zobrazuje len štatistický počet zaznamenaných ľudí
-s ochorením na Covid-19 v danom okrese.\n\n
-Zároveň aplikácia disponuje štatistickými informáciami o počte nakazených, vyliečených
+s ochorením na Covid-19 v danom okrese.
+\n\nZároveň aplikácia disponuje štatistickými informáciami o počte nakazených, vyliečených
 a počte úmrtí na území Slovenskej republiky. Obsahuje aj dôležité informácie ako sa chrániť,
-ako rozpoznať symptómy a zobrazuje rýchlu infolinku.\n\n
-Aplikáciu budeme neustále zlepšovať a prinášať ďalšie funkcionality, ktoré pomôžu
+ako rozpoznať symptómy a zobrazuje rýchlu infolinku.
+\n\nAplikáciu budeme neustále zlepšovať a prinášať ďalšie funkcionality, ktoré pomôžu
 rýchlejšie zvládnuť nákazu Covid-19. Všetky dáta sú automaticky mazané po uplynutí 21-dní.
 Táto doba je nevyhnutná na odhalenie možných ohnísk nákaz, ktoré nebolo možné odhaliť
-konvenčným spôsobom.\n\n
-Nikdy nebolo dôležitejšie neochorieť, aby sme zachránili druhých, tak ako dnes. Tým, že
+konvenčným spôsobom.
+\n\nNikdy nebolo dôležitejšie neochorieť, aby sme zachránili druhých, tak ako dnes. Tým, že
 zostaneme zdraví a nebudeme vírus šíriť, budú mať naši blízky väčšiu šancu na záchranu,
 pretože zdravotníctvo im bude schopné poskytnúť pomoc, ktorú potrebujú. Ak ochorieme,
 svojím šírením zaťažujeme zdravotný systém. Zároveň doktori a zdravotný personál bude
 preťažení a tým náchylnejší na ochorenie. V prípade, že ochorejú nebudú môcť pomáhať aj
 v úplne odlišných prípadoch, ktorý sa tejto nákazy netýka. Tí, ktorí nákazu sami nezvládnu,
 nebudú mať šancu na záchranu. Ak budú chorí doktori, nikto z nás nebude môcť dostať
-akúkoľvek pomoc, či je to obyčajný úraz, operácia, alebo iný vážnejší stav.\n\n
-Veľa z nás nákazu zvládne svojou imunitou. Sú ale takí, ktorí majú iné vážne ochorenia, či
-mladí, či starí a budú potrebovať pomoc zdravotníctva.\n\n
-Preto je nesmierne dôležité prejaviť ľudskosť mladých voči starým, zdravých voči chorým a
-poraziť Covid-19, spoločne.\n\n
-Veľmi pekne ďakujeme za podporu všetkým, ktorí sa svojimi radami, prácou vo dne v noci
+akúkoľvek pomoc, či je to obyčajný úraz, operácia, alebo iný vážnejší stav.
+\n\nVeľa z nás nákazu zvládne svojou imunitou. Sú ale takí, ktorí majú iné vážne ochorenia, či
+mladí, či starí a budú potrebovať pomoc zdravotníctva.
+\n\nPreto je nesmierne dôležité prejaviť ľudskosť mladých voči starým, zdravých voči chorým a
+poraziť Covid-19, spoločne.
+\n\nVeľmi pekne ďakujeme za podporu všetkým, ktorí sa svojimi radami, prácou vo dne v noci
 a svojou nezištnou pomocou pričinili ku vzniku tohoto projektu a to najmä: Marek Gogoľ,
-Juraj Karovič, MUDr. Andrej Thurzo PhD., MPH, MHA, kolektív IT dobrovoľníkov okolo Sygic,
-Turn.sk, DigitalLegal, Jozef Benko\n\n
-Širší odborný tím spoluautorov:  doc. JUDr. MUDr. Peter Kováč, PhD. et. PhD, MUDr. Vanda
+Juraj Karovič, MUDr. Andrej Thurzo PhD., MPH, MHA, kolektív dobrovoľníkov okolo Sygic,
+Boris Kolozsi, Tomáš Benko, Daniel Kožík, Tomáš Michálek, Turn.sk, JozefBenko.com,
+advokátska kancelária Dagital Legal, Slovensko.Digital, Hackvirus.sk
+\n\nŠirší odborný tím spoluautorov:  doc. JUDr. MUDr. Peter Kováč, PhD. et. PhD, MUDr. Vanda
 Martišková, MUDr. Karolína Bašová, MDDr. Peter Czakó, MUDr. Martin Čaprnda, PhD., prof.
 MUDr. Dušan Meško, PhD., MUDr. Peter Herman, MUDr. Gabriela Ďuricová, PhD., MUDr.
 Igor Krupa, MUDr. Gabriela Ďuricová, PhD., MUDr. Alžbeta Reviczká, MUDr. Andrej Daňo,
-MUDr. Veronika Pružincová, Juraj Novosad, Nicolas Hason, Maroš Lukáč</string>
+MUDr. Veronika Pružincová, Juraj Novosad, Nicolas Hason, Maroš Lukáč
+\n\nAplikácia vznikla s podporou projektu ZostaňZdravý a Sygic.</string>
 </resources>

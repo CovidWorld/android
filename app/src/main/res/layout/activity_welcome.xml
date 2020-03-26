@@ -35,12 +35,23 @@
 		app:layout_constraintTop_toBottomOf="@+id/header" />
 
 	<TextView
+		android:id="@+id/textView_attribution"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/welcome_attribution"
+		android:textColor="#fff"
+		app:layout_constraintEnd_toEndOf="@+id/textView_title"
+		app:layout_constraintStart_toStartOf="@+id/textView_title"
+		app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+
+	<TextView
 		android:id="@+id/textView_info"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="16dp"
 		android:text="@string/welcome_info"
 		android:textColor="#fff"
+		android:textSize="13sp"
 		app:layout_constraintBottom_toTopOf="@+id/button_agree"
 		app:layout_constraintEnd_toEndOf="@+id/textView_title"
 		app:layout_constraintStart_toStartOf="@+id/textView_title" />
