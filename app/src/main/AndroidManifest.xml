@@ -50,10 +50,6 @@
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />
 		<activity
-			android:name=".ui.InfoActivity"
-			android:screenOrientation="portrait"
-			tools:ignore="LockedOrientationActivity" />
-		<activity
 			android:name=".ui.ProtectActivity"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />

@@ -15,28 +15,24 @@
 	<string name="notification_quarantineInfo_text">%1$d day(s) remaining in quarantine</string>
 
 	<string name="welcome_title">Fight\nCorona Virus\nTogether</string>
-	<string name="welcome_info"></string>
 	<string name="welcome_agree">Continue</string>
+	<string name="welcome_attribution"></string>
 	<string name="welcome_privacy">Information about privacy policy</string>
 
-	<string name="home_info">Important information</string>
 	<string name="home_protect">How to protect</string>
 	<string name="home_symptoms">Symptoms</string>
-	<string name="home_aboutApp">About application</string>
 	<string name="home_address">Your home address</string>
-	<string name="home_changeAddress">Change address</string>
 	<string name="home_quarantineRemains">Mandatory quarantine, days left</string>
-	<string name="home_stats">Global statistics</string>
-	<string name="home_statsTotal">Positive:</string>
-	<string name="home_statsRecovered">Recovered:</string>
-	<string name="home_statsDeaths">Deaths:</string>
-	<string name="home_diagnosed">I was diagnosed</string>
+	<string name="home_statsTotal">Positive</string>
+	<string name="home_statsRecovered">Recovered</string>
 	<string name="home_quarantine">I need to stay quarantined</string>
 	<string name="home_checkQuarantine">Do you need to remain in a quarantine?</string>
 	<string name="home_hotline">Hotline</string>
 	<string name="home_map_list">List</string>
 	<string name="home_map_map">Map</string>
-	<string name="home_profile_identifier">My unique identifier for the medical personnel:</string>
+
+	<string name="profile_identifier">My unique identifier for the medical personnel:</string>
+	<string name="profile_aboutApp">About application</string>
 
 	<string name="protect_title">Reduce your risk of coronavirus infection</string>
 	<string name="protect_text1">Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.</string>

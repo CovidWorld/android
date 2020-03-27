@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,10 +44,13 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.tabs.TabLayout;
 import com.google.maps.android.ui.IconGenerator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import intl.who.covid19.App;
 import intl.who.covid19.CountryDefaults;
@@ -64,16 +66,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         public int positive;
     }
 
-    private static final int DEFAULT_ZOOM = 12;
-    private static final int MARKER_ZOOM_LEVEL = 10;
+    private static final int DEFAULT_ZOOM = 11;
+    private static final float COUNTY_STATS_ZOOM_LEVEL = 8f;
 
-    private Button button_toggle;
+    private TextView textView_statsTotal;
+    private TextView textView_statsRecovered;
+    private SupportMapFragment fragment_map;
     private RecyclerView recyclerView_counties;
     private GoogleMap map;
     private List<CountyStats> counties;
     private IconGenerator iconGenerator;
-    private boolean markersVisible = true;
-    private final ArrayList<Marker> markers = new ArrayList<>();
+    private TextView textView_bubble;
+    private boolean showCounties = true;
+    private final ArrayList<Marker> markersStats = new ArrayList<>();
 
     @Nullable
     @Override
@@ -84,9 +89,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        button_toggle = view.findViewById(R.id.button_toggle);
-        button_toggle.setOnClickListener(v -> toggleListMap());
-        SupportMapFragment fragment_map = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map);
+        ((TabLayout) view.findViewById(R.id.tabLayout_map)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if ((isInMap() && tab.getPosition() == 1) || (!isInMap() && tab.getPosition() == 0)) {
+                    toggleListMap();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+        textView_statsTotal = view.findViewById(R.id.textView_statsTotal);
+        textView_statsRecovered = view.findViewById(R.id.textView_statsRecovered);
+        fragment_map = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map);
         if (fragment_map != null) {
             fragment_map.getMapAsync(this);
         }
@@ -98,11 +119,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public int getItemCount() {
                 return counties.size();
             }
+
             @NonNull
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new RecyclerView.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_county_stat, parent, false)) { };
+                return new RecyclerView.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_county_stat, parent, false)) {
+                };
             }
+
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
                 CountyStats county = counties.get(position);
@@ -133,17 +157,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
         map.setOnCameraMoveListener(() -> {
-            boolean markersAreToBeVisible = map.getCameraPosition().zoom >= MARKER_ZOOM_LEVEL;
-            if ((markersAreToBeVisible && !markersVisible) || (!markersAreToBeVisible && markersVisible)) {
-                markersVisible = markersAreToBeVisible;
-                for (Marker m : markers) {
-                    m.setVisible(markersVisible);
-                }
+            boolean showCounties = map.getCameraPosition().zoom >= COUNTY_STATS_ZOOM_LEVEL;
+            if (showCounties != this.showCounties) {
+                this.showCounties = showCounties;
+                updateMapCircles();
             }
         });
+        textView_bubble = (TextView) getLayoutInflater().inflate(R.layout.view_map_bubble, null);
         iconGenerator = new IconGenerator(getContext());
         iconGenerator.setBackground(null);
-        iconGenerator.setTextAppearance(getContext(), R.style.Poppins_TextViewStyle);
+        iconGenerator.setContentView(textView_bubble);
         updateMapCircles();
     }
 
@@ -153,15 +176,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private void toggleListMap() {
         if (isInMap()) {
-            button_toggle.setText(R.string.home_map_map);
+            getChildFragmentManager().beginTransaction().hide(fragment_map).commit();
             recyclerView_counties.setVisibility(View.VISIBLE);
         } else {
-            button_toggle.setText(R.string.home_map_list);
+            getChildFragmentManager().beginTransaction().show(fragment_map).commit();
             recyclerView_counties.setVisibility(View.GONE);
         }
     }
 
     private void reloadData() {
+        CountryDefaults.getStats(getContext(), stats -> {
+            if (getActivity() == null || getActivity().isFinishing()) {
+                return;
+            }
+            textView_statsTotal.setText(stats == null ? "..." : String.valueOf(stats.positive));
+            textView_statsRecovered.setText(stats == null ? "..." : String.valueOf(stats.recovered));
+        });
         CountryDefaults.getCountyStats(getContext(), countyStats -> {
             if (getActivity() == null || getActivity().isFinishing()) {
                 return;
@@ -177,7 +207,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             return;
         }
         map.clear();
-        markers.clear();
+        markersStats.clear();
+        List<CountyStats> counties = showCounties ? this.counties : reduceToRegions();
         for (CountyStats county : counties) {
             if (county.positive > 0) {
                 LatLng latLng = new LatLng(county.lat, county.lng);
@@ -186,18 +217,45 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         .radius(1000 + 5000.0 * county.positive / 100)
                         .strokeWidth(3)
                         .strokeColor(ResourcesCompat.getColor(getResources(), R.color.red, null))
-                        .fillColor(ResourcesCompat.getColor(getResources(), R.color.red, null) & 0x66ffffff));
-                markers.add(map.addMarker(new MarkerOptions()
+                        .fillColor(ResourcesCompat.getColor(getResources(), R.color.red, null) & 0x44ffffff));
+                textView_bubble.setText(String.valueOf(county.positive));
+                markersStats.add(map.addMarker(new MarkerOptions()
                         .position(latLng)
-                        .anchor(.5f, .75f)
-                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(county.name)))
-                        .visible(markersVisible)));
-                markers.add(map.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .anchor(.5f, .25f)
-                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(String.valueOf(county.positive))))
-                        .visible(markersVisible)));
+                        .anchor(.5f, .875f)
+                        .icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon()))
+                        .title(county.name)));
             }
         }
+    }
+
+    private ArrayList<CountyStats> reduceToRegions() {
+        HashSet<String> processedRegions = new HashSet<>();
+        ArrayList<CountyStats> regions = new ArrayList<>();
+        for (int i = 0; i < counties.size(); i++) {
+            CountyStats countyStats = counties.get(i);
+            if (processedRegions.contains(countyStats.region)) {
+                continue;
+            }
+            CountyStats regionStats = new CountyStats();
+            regionStats.name = countyStats.region;
+            regionStats.lat = countyStats.lat;
+            regionStats.lng = countyStats.lng;
+            regionStats.positive = countyStats.positive;
+            int count = 1;
+            for (int j = i + 1; j < counties.size(); j++) {
+                CountyStats stats = counties.get(j);
+                if (stats.region.equals(countyStats.region)) {
+                    regionStats.lat += stats.lat;
+                    regionStats.lng += stats.lng;
+                    regionStats.positive += stats.positive;
+                    count++;
+                }
+            }
+            regionStats.lat /= count;
+            regionStats.lng /= count;
+            regions.add(regionStats);
+            processedRegions.add(countyStats.region);
+        }
+        return regions;
     }
 }

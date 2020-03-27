@@ -7,8 +7,7 @@
 	android:background="?attr/selectableItemBackground"
 	android:paddingStart="32dp"
 	android:paddingTop="8dp"
-	android:paddingEnd="32dp"
-	android:paddingBottom="8dp">
+	android:paddingEnd="32dp">
 
 	<TextView
 		android:id="@+id/textView_name"
@@ -30,6 +29,7 @@
 		android:id="@+id/textView_region"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
+		android:layout_marginBottom="8dp"
 		android:textColor="#999"
 		android:textSize="12sp"
 		app:layout_constraintBottom_toBottomOf="parent"
@@ -47,4 +47,10 @@
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
 		tools:text="99" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1px"
+		android:background="#d7dfe2"
+		app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

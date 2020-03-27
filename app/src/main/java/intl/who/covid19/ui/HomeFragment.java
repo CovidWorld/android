@@ -60,12 +60,12 @@ public class HomeFragment extends Fragment {
     private static final int REQUEST_ADDRESS = 2;
     private static final int REQUEST_PHONE_VERIFICATION = 3;
 
+    private View layout_stats;
     private View layout_quarantine;
     private TextView textView_address;
     private TextView textView_quarantineDaysLeft;
     private TextView textView_statsTotal;
     private TextView textView_statsRecovered;
-    private TextView textView_statsDeaths;
     private Button button_quarantine;
     private Button button_hotline;
     private String hotline;
@@ -79,15 +79,16 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        layout_stats = view.findViewById(R.id.layout_stats);
         layout_quarantine = view.findViewById(R.id.layout_quarantine);
         textView_address = view.findViewById(R.id.textView_address);
         textView_quarantineDaysLeft = view.findViewById(R.id.textView_quarantineDaysLeft);
         textView_statsTotal = view.findViewById(R.id.textView_statsTotal);
         textView_statsRecovered = view.findViewById(R.id.textView_statsRecovered);
-        textView_statsDeaths = view.findViewById(R.id.textView_statsDeaths);
         button_quarantine = view.findViewById(R.id.button_quarantine);
         button_hotline = view.findViewById(R.id.button_hotline);
-        view.findViewById(R.id.button_info).setOnClickListener(v -> startActivity(new Intent(view.getContext(), InfoActivity.class)));
+        view.findViewById(R.id.button_protect).setOnClickListener(v -> startActivity(new Intent(view.getContext(), ProtectActivity.class)));
+        view.findViewById(R.id.button_symptoms).setOnClickListener(v -> startActivity(new Intent(view.getContext(), SymptomsActivity.class)));
         button_quarantine.setOnClickListener(v -> onButtonQuarantine());
         button_hotline.setOnClickListener(v -> startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + hotline))));
     }
@@ -139,11 +140,13 @@ public class HomeFragment extends Fragment {
     private void updateUi() {
         App app = App.get(getContext());
         if (app.isInQuarantine()) {
+            layout_stats.setVisibility(View.GONE);
             layout_quarantine.setVisibility(View.VISIBLE);
             textView_address.setText(app.prefs().getString(Prefs.HOME_ADDRESS, ""));
             textView_quarantineDaysLeft.setText(String.valueOf(app.getDaysLeftInQuarantine()));
             button_quarantine.setVisibility(View.GONE);
         } else {
+            layout_stats.setVisibility(View.VISIBLE);
             layout_quarantine.setVisibility(View.GONE);
             button_quarantine.setVisibility(View.VISIBLE);
         }
@@ -162,7 +165,6 @@ public class HomeFragment extends Fragment {
             }
             textView_statsTotal.setText(stats == null ? "..." : String.valueOf(stats.positive));
             textView_statsRecovered.setText(stats == null ? "..." : String.valueOf(stats.recovered));
-            textView_statsDeaths.setText(stats == null ? "..." : String.valueOf(stats.deaths));
         });
     }
 }

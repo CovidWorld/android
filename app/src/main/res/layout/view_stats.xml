@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal">
+
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight=".5"
+		android:background="@drawable/bg_stats"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:text="@string/home_statsTotal"
+			android:textColor="#000" />
+
+		<TextView
+			android:id="@+id/textView_statsTotal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/poppins_bold"
+			android:gravity="center_horizontal"
+			android:textColor="@color/red"
+			android:textSize="18sp"
+			tools:text="216" />
+	</LinearLayout>
+
+	<View
+		android:layout_width="16dp"
+		android:layout_height="0dp" />
+
+	<LinearLayout
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight=".5"
+		android:background="@drawable/bg_stats"
+		android:orientation="vertical">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:text="@string/home_statsRecovered"
+			android:textColor="#000" />
+
+		<TextView
+			android:id="@+id/textView_statsRecovered"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:fontFamily="@font/poppins_bold"
+			android:gravity="center_horizontal"
+			android:textColor="@color/green"
+			android:textSize="18sp"
+			tools:text="216" />
+	</LinearLayout>
+</LinearLayout>

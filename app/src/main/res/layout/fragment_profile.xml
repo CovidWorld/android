@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:padding="48dp">
+	android:orientation="vertical"
+	android:padding="32dp">
 
 	<ImageView
 		android:id="@+id/imageView"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:src="@drawable/profile"
-		app:layout_constraintBottom_toTopOf="@+id/textView_label"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_chainStyle="packed" />
+		android:layout_gravity="center_horizontal"
+		android:src="@drawable/profile" />
 
 	<TextView
 		android:id="@+id/textView_label"
@@ -23,16 +20,14 @@
 		android:layout_height="wrap_content"
 		android:layout_marginTop="16dp"
 		android:gravity="center_horizontal"
-		android:text="@string/home_profile_identifier"
-		android:textSize="18sp"
-		app:layout_constraintBottom_toTopOf="@+id/textView_code"
-		app:layout_constraintTop_toBottomOf="@+id/imageView" />
+		android:text="@string/profile_identifier"
+		android:textSize="18sp" />
 
 	<TextView
 		android:id="@+id/textView_code"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="16dp"
+		android:layout_marginTop="4dp"
 		android:fontFamily="@font/poppins_bold"
 		android:gravity="center_horizontal"
 		android:textSize="24sp"
@@ -40,4 +35,34 @@
 		app:layout_constraintTop_toBottomOf="@+id/textView_label"
 		tools:text="X5AF7" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_marginVertical="16dp"
+		android:background="@color/separator" />
+
+	<TextView
+		android:id="@+id/textView_attribution"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="8dp"
+		android:gravity="center_horizontal"
+		android:text="@string/welcome_attribution"
+		android:textColor="#000" />
+
+	<Button
+		android:id="@+id/button_aboutApp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="8dp"
+		android:background="@drawable/bg_btn_ltblue"
+		android:drawableStart="@drawable/home_about"
+		android:drawableEnd="@drawable/chevron_right"
+		android:drawablePadding="8dp"
+		android:fontFamily="@font/poppins_light"
+		android:gravity="start|center_vertical"
+		android:text="@string/profile_aboutApp"
+		android:textColor="@color/colorPrimaryDark"
+		android:textSize="20sp" />
+
+</LinearLayout>

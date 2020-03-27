@@ -16,7 +16,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:lineSpacingMultiplier=".8"
-			android:text="@string/home_aboutApp"
+			android:text="@string/profile_aboutApp"
 			android:textSize="24sp" />
 
 		<TextView

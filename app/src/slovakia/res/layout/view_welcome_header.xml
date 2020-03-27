@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="80dp"
+	android:layout_height="32dp"
+	android:adjustViewBounds="true"
 	android:background="#fff"
-	android:padding="24dp"
-	android:orientation="horizontal">
-
-	<ImageView
-		android:id="@+id/imageView_mzsr"
-		android:layout_width="0dp"
-		android:layout_height="32dp"
-		android:layout_weight=".5"
-		android:adjustViewBounds="true"
-		android:background="#fff"
-		android:src="@drawable/mzsr" />
-
-	<ImageView
-		android:id="@+id/imageView_mvsr"
-		android:layout_width="0dp"
-		android:layout_height="28dp"
-		android:layout_weight=".5"
-		android:layout_gravity="center_vertical"
-		android:adjustViewBounds="true"
-		android:background="#fff"
-		android:src="@drawable/mvsr" />
-</LinearLayout>
+	android:scaleType="fitStart"
+	android:src="@drawable/mzsr" />

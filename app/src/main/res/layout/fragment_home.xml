@@ -17,37 +17,50 @@
 		android:paddingBottom="8dp">
 
 		<Button
-			android:id="@+id/button_info"
+			android:id="@+id/button_protect"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="16dp"
 			android:background="@drawable/bg_btn_ltblue"
-			android:drawableStart="@drawable/home_info"
-			android:drawableEnd="@drawable/chevron_right"
+			android:drawableTop="@drawable/home_protect"
 			android:drawablePadding="8dp"
 			android:fontFamily="@font/poppins_light"
-			android:gravity="start|center_vertical"
-			android:text="@string/home_info"
+			android:text="@string/home_protect"
 			android:textColor="@color/colorPrimaryDark"
-			android:textSize="16sp"
-			app:layout_constraintTop_toTopOf="parent" />
+			android:textSize="18sp" />
+
+		<Button
+			android:id="@+id/button_symptoms"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="16dp"
+			android:background="@drawable/bg_btn_ltblue"
+			android:drawableTop="@drawable/home_symptoms"
+			android:drawablePadding="8dp"
+			android:fontFamily="@font/poppins_light"
+			android:text="@string/home_symptoms"
+			android:textColor="@color/colorPrimaryDark"
+			android:textSize="18sp" />
 
 		<LinearLayout
 			android:id="@+id/layout_quarantine"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
 			android:orientation="vertical">
 
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/poppins_bold"
+				android:gravity="center_horizontal"
 				android:text="@string/home_address" />
 
 			<TextView
 				android:id="@+id/textView_address"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
 				android:textSize="12sp"
 				tools:text="Cabanova 11, Bratislava" />
 
@@ -56,12 +69,13 @@
 				android:layout_height="1px"
 				android:layout_marginTop="8dp"
 				android:layout_marginBottom="8dp"
-				android:background="#ccc" />
+				android:background="@color/separator" />
 
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:fontFamily="@font/poppins_bold"
+				android:gravity="center_horizontal"
 				android:text="@string/home_quarantineRemains" />
 
 			<TextView
@@ -73,102 +87,16 @@
 				android:textColor="@color/red"
 				android:textSize="40sp"
 				tools:text="14" />
-
-			<View
-				android:layout_width="match_parent"
-				android:layout_height="1px"
-				android:layout_marginTop="8dp"
-				android:layout_marginBottom="8dp"
-				android:background="#ccc" />
 		</LinearLayout>
 
-		<androidx.constraintlayout.widget.ConstraintLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
-
-			<TextView
-				android:id="@+id/textView_stats"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:fontFamily="@font/poppins_bold"
-				android:text="@string/home_stats"
-				app:layout_constraintTop_toTopOf="parent" />
-
-			<TextView
-				android:id="@+id/textView_statsTotalLabel"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/home_statsTotal"
-				app:layout_constraintTop_toBottomOf="@+id/textView_stats" />
-
-			<TextView
-				android:id="@+id/textView_statsRecoveredLabel"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/home_statsRecovered"
-				app:layout_constraintTop_toBottomOf="@+id/textView_statsTotalLabel" />
-
-			<TextView
-				android:id="@+id/textView_statsDeathsLabel"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/home_statsDeaths"
-				app:layout_constraintTop_toBottomOf="@+id/textView_statsRecoveredLabel" />
-
-			<androidx.constraintlayout.widget.Barrier
-				android:id="@+id/barrier"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				app:barrierDirection="end"
-				app:constraint_referenced_ids="textView_statsTotalLabel,textView_statsRecoveredLabel,textView_statsDeathsLabel" />
-
-			<TextView
-				android:id="@+id/textView_statsTotal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="16dp"
-				android:fontFamily="@font/poppins_bold"
-				app:layout_constraintStart_toEndOf="@+id/barrier"
-				app:layout_constraintTop_toTopOf="@+id/textView_statsTotalLabel"
-				tools:text="..." />
-
-			<TextView
-				android:id="@+id/textView_statsRecovered"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="16dp"
-				android:fontFamily="@font/poppins_bold"
-				app:layout_constraintStart_toEndOf="@+id/barrier"
-				app:layout_constraintTop_toTopOf="@+id/textView_statsRecoveredLabel"
-				tools:text="..." />
-
-			<TextView
-				android:id="@+id/textView_statsDeaths"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="16dp"
-				android:fontFamily="@font/poppins_bold"
-				app:layout_constraintStart_toEndOf="@+id/barrier"
-				app:layout_constraintTop_toTopOf="@+id/textView_statsDeathsLabel"
-				tools:text="..." />
-		</androidx.constraintlayout.widget.ConstraintLayout>
+		<include
+			android:id="@+id/layout_stats"
+			layout="@layout/view_stats" />
 
 		<View
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1" />
-
-		<Button
-			android:id="@+id/button_diagnosed"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:background="@drawable/bg_btn_red"
-			android:text="@string/home_diagnosed"
-			android:textColor="#fff"
-			android:visibility="gone"
-			app:layout_constraintBottom_toBottomOf="parent" />
 
 		<Button
 			android:id="@+id/button_quarantine"
@@ -185,6 +113,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="8dp"
+			android:layout_marginBottom="16dp"
 			android:background="@drawable/bg_btn_green"
 			android:text="@string/home_hotline"
 			android:textColor="#fff" />

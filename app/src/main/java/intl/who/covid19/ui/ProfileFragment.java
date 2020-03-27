@@ -22,7 +22,9 @@
 
 package intl.who.covid19.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,5 +53,7 @@ public class ProfileFragment extends Fragment {
         long deviceId = App.get(view.getContext()).prefs().getLong(Prefs.DEVICE_ID, 0L);
         String id = new Hashids("COVID-19 super-secure and unguessable hashids salt", 6, "ABCDEFGHJKLMNPQRSTUVXYZ23456789").encode(deviceId);
         ((TextView) view.findViewById(R.id.textView_code)).setText(id);
+        ((TextView) view.findViewById(R.id.textView_attribution)).setText(Html.fromHtml(getString(R.string.welcome_attribution)));
+        view.findViewById(R.id.button_aboutApp).setOnClickListener(v -> startActivity(new Intent(getContext(), AboutActivity.class)));
     }
 }

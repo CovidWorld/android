@@ -184,8 +184,9 @@ public class WelcomeActivity extends AppCompatActivity {
 	}
 
 	private void verifyPhoneNumber() {
-		startActivityForResult(new Intent(this, PhoneVerificationActivity.class)
-				.putExtra(PhoneVerificationActivity.EXTRA_SHOW_EXPLANATION, true), REQUEST_CODE_PHONE_NUMBER);
+		navigateNext(true); // For now don't ask for phone number here
+//		startActivityForResult(new Intent(this, PhoneVerificationActivity.class)
+//				.putExtra(PhoneVerificationActivity.EXTRA_SHOW_EXPLANATION, true), REQUEST_CODE_PHONE_NUMBER);
 	}
 
 	private void navigateNext(boolean newProfile) {

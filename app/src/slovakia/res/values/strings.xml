@@ -15,29 +15,24 @@
 	<string name="notification_quarantineInfo_text">Zostávajúcich dní v karanténe: %1$d</string>
 
 	<string name="welcome_title">Bojujme\nproti Covid-19\nspoločne</string>
-	<string name="welcome_info" formatted="false">Prosíme užívateľov, aby si aplikáciu nechali nainštalovanú až do odvolania. Na Covid-19 umiera v priemere 3,6% ľudí a viac ako 15% nad 80 rokov. Aplikácia nám všetkým pomôže zvládnuť nákazu a zachrániť množstvo životov ľudí okolo nás.</string>
 	<string name="welcome_agree">Pokračovať</string>
-	<string name="welcome_attribution">Tento projekt vznikol ako spojenie dobrovoľnej iniciatívy &lt;b&gt;ZostanZdravy&lt;/b&gt; a &lt;b&gt;Sygic&lt;/b&gt;</string>
+	<string name="welcome_attribution">Tento projekt vznikol ako\nspojenie dobrovoľnej iniciatívy\n&lt;b&gt;ZostanZdravy&lt;/b&gt; a &lt;b&gt;Sygic&lt;/b&gt;</string>
 	<string name="welcome_privacy">Informácie o spracovaní osobných údajov</string>
 
-	<string name="home_info">Dôležité informácie</string>
 	<string name="home_protect">Ako sa chrániť</string>
 	<string name="home_symptoms">Symptómy</string>
-	<string name="home_aboutApp">O aplikácii</string>
 	<string name="home_address">Vaša domáca adresa</string>
-	<string name="home_changeAddress">Zmeniť adresu</string>
 	<string name="home_quarantineRemains">Povinná karanténa, zostáva dní</string>
-	<string name="home_stats">Štatistiky pre Slovensko</string>
-	<string name="home_statsTotal">Pozitívnych:</string>
-	<string name="home_statsRecovered">Vyliečených:</string>
-	<string name="home_statsDeaths">Úmrtí:</string>
-	<string name="home_diagnosed">Ochorel som na COVID-19</string>
-	<string name="home_quarantine">Bola mi nariadená karanténa</string>
+	<string name="home_statsTotal">Chorí</string>
+	<string name="home_statsRecovered">Uzdravení</string>
+	<string name="home_quarantine">Bola som v zahraničí alebo musím zostať v karanténe</string>
 	<string name="home_checkQuarantine">Vrátili ste sa zo zahraničia alebo máte zostať v karanténe?</string>
 	<string name="home_hotline">Infolinka</string>
 	<string name="home_map_list">Zoznam</string>
 	<string name="home_map_map">Mapa</string>
-	<string name="home_profile_identifier">Môj identifikátor pre potreby zdravotníkov a hygienikov:</string>
+
+	<string name="profile_identifier">Môj identifikátor pre potreby zdravotníkov a hygienikov:</string>
+	<string name="profile_aboutApp">O aplikácii</string>
 
 	<string name="protect_title">Ako sa chrániť pred koronavírom</string>
 	<string name="protect_text1">Často si umývajte ruky mydlom a vodou, najmenej po dobu 20 sekúnd. Môžete použiť dezinfekčný prostriedok na ruky na báze alkoholu</string>
