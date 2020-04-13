@@ -30,16 +30,39 @@ import java.util.List;
 import intl.who.covid19.ui.HomeFragment;
 import intl.who.covid19.ui.MapFragment;
 
-public class CountryDefaults {
-    public static final double CENTER_LAT = 49;
-    public static final double CENTER_LNG = 17;
-    public static final int CENTER_ZOOM = 4;
+public class CountryDefaults implements ICountryDefaults {
+    @Override
+    public boolean verifyPhoneNumberAtStart() { return false; }
+    @Override
+    public boolean showQuarantineStartPicker() { return false; }
+    @Override
+    public boolean useFaceId() { return false; }
+    @Override
+    public String getCountryCode() { return "XX"; }
+    @Override
+    public double getCenterLat() { return 49; }
+    @Override
+    public double getCenterLng() { return 17; }
+    @Override
+    public double getCenterZoom() { return 4; }
 
-    public static void getStats(Context context, App.Callback<HomeFragment.Stats> callback) {
+    @Override
+    public void getStats(Context context, App.Callback<HomeFragment.Stats> callback) {
         callback.onCallback(null);
     }
 
-    public static void getCountyStats(Context context, App.Callback<List<MapFragment.CountyStats>> callback) {
+    @Override
+    public void getCountyStats(Context context, App.Callback<List<MapFragment.CountyStats>> callback) {
         callback.onCallback(new ArrayList<>());
+    }
+
+    @Override
+    public void sendVerificationCodeText(Context context, String phoneNumber, App.Callback<Exception> callback) {
+        callback.onCallback(new UnsupportedOperationException("This operation is not supported or not implemented in this flavor"));
+    }
+
+    @Override
+    public void checkVerificationCode(Context context, String code, App.Callback<Exception> callback) {
+        callback.onCallback(new UnsupportedOperationException("This operation is not supported or not implemented in this flavor"));
     }
 }

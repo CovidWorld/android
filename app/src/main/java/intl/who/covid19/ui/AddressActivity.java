@@ -48,7 +48,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import intl.who.covid19.App;
-import intl.who.covid19.Prefs;
 import intl.who.covid19.R;
 
 public class AddressActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -131,7 +130,7 @@ public class AddressActivity extends AppCompatActivity implements OnMapReadyCall
 
     public void onButtonSearch(View v) {
         startActivityForResult(new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG))
-                .setCountry(App.get(this).prefs().getString(Prefs.COUNTRY_CODE, null))
+                .setCountry(App.get(this).getCountryDefaults().getCountryCode())
                 .setTypeFilter(TypeFilter.ADDRESS)
                 .setHint(getString(R.string.home_address))
                 .build(this), REQUEST_AUTOCOMPLETE);

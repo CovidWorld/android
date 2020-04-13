@@ -32,8 +32,6 @@ import java.util.Locale;
 
 public class Encounter {
 
-    private static final int MAX_ACCURACY = 1000; // 1km
-
     // Do not rename these fields! They are named to match API
     private long seenProfileId;
     private long timestamp;
@@ -57,21 +55,21 @@ public class Encounter {
     public void setDuration(long duration) {
         this.duration = String.format(Locale.ROOT, "%02d:%02d:%02d", duration / 3600, (duration % 3600) / 60, duration % 60);
     }
-    public void setLocation(@Nullable Location location, boolean decreaseAccuracy) {
+    public void setLocation(@Nullable Location location, int forceAccuracy) {
         if (location == null) {
             latitude = null;
             longitude = null;
             accuracy = null;
             return;
         }
-        if (!decreaseAccuracy || location.hasAccuracy() && location.getAccuracy() >= MAX_ACCURACY) {
+        if (forceAccuracy == -1) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             accuracy = (int) location.getAccuracy();
         } else {
-            // round down to roughly 1km precision
-            latitude = BigDecimal.valueOf(location.getLatitude()).setScale(4, RoundingMode.HALF_UP).doubleValue();
-            longitude = BigDecimal.valueOf(location.getLongitude()).setScale(4, RoundingMode.HALF_UP).doubleValue();
+            // round down to specified precision
+            latitude = BigDecimal.valueOf(location.getLatitude()).setScale(forceAccuracy, RoundingMode.HALF_UP).doubleValue();
+            longitude = BigDecimal.valueOf(location.getLongitude()).setScale(forceAccuracy, RoundingMode.HALF_UP).doubleValue();
             accuracy = null;
         }
     }

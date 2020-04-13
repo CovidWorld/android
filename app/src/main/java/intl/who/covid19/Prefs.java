@@ -32,10 +32,10 @@ public class Prefs {
 	public static final String DEVICE_UID = "deviceUid";
 	/** long (server assigned sequential ID) */
 	public static final String DEVICE_ID = "deviceId";
+	/** long (local health authority assigned ID) */
+	public static final String COVID_ID = "covidId";
 	/** String (current Firebase Cloud Messaging token) */
 	public static final String FCM_TOKEN = "fcmToken";
-	/** String (two-letter code of current country) */
-	public static final String COUNTRY_CODE = "countryCode";
 	/** String (confirmed phone number) */
 	public static final String PHONE_NUMBER = "phoneNumber";
 	/** String (phone number verification code - may need to be sent later when confirming quarantine or disease) */
@@ -48,4 +48,10 @@ public class Prefs {
 	public static final String HOME_ADDRESS = "homeAddress";
 	/** long (date/time of when the quarantine ends in milliseconds) */
 	public static final String QUARANTINE_ENDS = "quarantineEnds";
+	/** long (date/time of when the quarantine end has been last checked in milliseconds) */
+	public static final String QUARANTINE_ENDS_LAST_CHECK = "quarantineEndsLastCheck";
+	/** byte[] (face template data) */
+	public static final String FACE_TEMPLATE_DATA = "faceTemplateData";
+	/** boolean (whether face check is required prior to opening an app) */
+	public static final String REQUIRED_FACE_CHECK = "requiredFaceCheck";
 }

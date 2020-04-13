@@ -40,3 +40,11 @@
     <init>();
     !static <fields>;
 }
+
+# Innovatrics rules
+-dontwarn com.sun.jna.**
+-dontwarn com.innovatrics.commons.pc.**
+# JNA
+-keep class com.sun.jna.** { *; }
+# Innovatrics IFace
+-keep class com.innovatrics.iface.** { *; }

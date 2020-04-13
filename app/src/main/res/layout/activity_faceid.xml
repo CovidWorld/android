@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:id="@+id/layout_intro"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:padding="32dp"
+		android:visibility="gone"
+		tools:visibility="gone">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:lineSpacingMultiplier=".8"
+			android:text="@string/faceid_title"
+			android:textSize="24sp" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@string/faceid_text1" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@string/faceid_text2"
+			android:textColor="@color/red" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="@string/faceid_text3" />
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1" />
+
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/bg_btn_blue"
+			android:onClick="onButtonStart"
+			android:text="@string/faceid_start"
+			android:textColor="#fff"
+			android:textSize="18sp" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/layout_result"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:padding="32dp"
+		android:visibility="gone"
+		tools:visibility="visible">
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight=".5" />
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/imageView_result"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:src="@drawable/ic_check_red" />
+
+		<TextView
+			android:id="@+id/textView_result_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:gravity="center_horizontal"
+			android:lineSpacingMultiplier=".8"
+			android:text="@string/faceid_thankYou"
+			android:textSize="24sp" />
+
+		<TextView
+			android:id="@+id/textView_result_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:text="@string/faceid_failCameraPermission" />
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight=".5" />
+
+		<Button
+			android:id="@+id/button_continue"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/bg_btn_green"
+			android:text="@string/phoneVerification_continue"
+			android:textColor="#fff"
+			android:textSize="18sp" />
+	</LinearLayout>
+
+	<FrameLayout
+		android:id="@+id/layout_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+	<ProgressBar
+		android:id="@+id/progressBar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

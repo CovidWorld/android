@@ -11,3 +11,4 @@
 app/app.keystore
 app/app.properties
 google-services.json
+app/src/*/res/raw/innovatrics_license.lic

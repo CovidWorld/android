@@ -25,6 +25,7 @@ package intl.who.covid19.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -42,9 +43,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.HashMap;
 
+import intl.who.covid19.Api;
 import intl.who.covid19.App;
 import intl.who.covid19.BeaconService;
-import intl.who.covid19.CountryDefaults;
 import intl.who.covid19.LocalNotificationReceiver;
 import intl.who.covid19.Prefs;
 import intl.who.covid19.R;
@@ -59,6 +60,7 @@ public class HomeFragment extends Fragment {
     private static final int REQUEST_QUARANTINE_START = 1;
     private static final int REQUEST_ADDRESS = 2;
     private static final int REQUEST_PHONE_VERIFICATION = 3;
+    private static final int REQUEST_FACE_ID = 4;
 
     private View layout_stats;
     private View layout_quarantine;
@@ -97,6 +99,7 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateUi();
+        updateQuarantineEnd();
     }
 
     @Override
@@ -105,36 +108,56 @@ public class HomeFragment extends Fragment {
         if (context == null) {
             return;
         }
-        App app = App.get(context);
         if (requestCode == REQUEST_QUARANTINE_START && resultCode == Activity.RESULT_OK && data != null) {
-            startActivityForResult(new Intent(context, AddressActivity.class)
-                    .putExtras(data), REQUEST_ADDRESS);
+            startActivityForResult(new Intent(context, AddressActivity.class).putExtras(data), REQUEST_ADDRESS);
         } else if (requestCode == REQUEST_ADDRESS && resultCode == Activity.RESULT_OK && data != null) {
-            startActivityForResult(new Intent(context, PhoneVerificationActivity.class)
-                    .putExtras(data), REQUEST_PHONE_VERIFICATION);
+            startActivityForResult(new Intent(context, PhoneVerificationActivity.class).putExtras(data), REQUEST_PHONE_VERIFICATION);
         } else if (requestCode == REQUEST_PHONE_VERIFICATION && resultCode == Activity.RESULT_OK && data != null) {
-            // Save place and phone number
-            app.prefs().edit()
-                    .putString(Prefs.HOME_ADDRESS, data.getStringExtra(AddressActivity.EXTRA_ADDRESS))
-                    .putFloat(Prefs.HOME_LAT, (float) data.getDoubleExtra(AddressActivity.EXTRA_LAT, 0))
-                    .putFloat(Prefs.HOME_LNG, (float) data.getDoubleExtra(AddressActivity.EXTRA_LNG, 0))
-                    .apply();
-            if (!app.isInQuarantine()) {
-                int duration = (int) app.getRemoteConfig().getDouble(App.RC_QUARANTINE_DURATION);
-                app.prefs().edit().putLong(Prefs.QUARANTINE_ENDS,
-                        data.getLongExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START, System.currentTimeMillis()) +
-                                duration * 24 * 3_600_000L).apply();
-                // Restart service to switch to quarantine location tracking
-                context.startService(new Intent(context, BeaconService.class));
-                LocalNotificationReceiver.scheduleNotification(context);
+            if (App.get(getContext()).getCountryDefaults().useFaceId()) {
+                startActivityForResult(new Intent(context, FaceIdActivity.class).putExtras(data), REQUEST_FACE_ID);
+            } else {
+                enterQuarantine(data);
             }
-            updateUi();
+        } else if (requestCode == REQUEST_FACE_ID && resultCode == Activity.RESULT_OK && data != null) {
+            enterQuarantine(data);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     void onButtonQuarantine() {
-        startActivityForResult(new Intent(getContext(), QuarantineStartActivity.class), REQUEST_QUARANTINE_START);
+        if (App.get(getContext()).getCountryDefaults().showQuarantineStartPicker()) {
+            startActivityForResult(new Intent(getContext(), QuarantineStartActivity.class), REQUEST_QUARANTINE_START);
+        } else {
+            startActivityForResult(new Intent(getContext(), AddressActivity.class), REQUEST_ADDRESS);
+        }
+    }
+
+    private void enterQuarantine(Intent data) {
+        Context context = getContext();
+        if (context == null) {
+            return;
+        }
+        App app = App.get(context);
+        // Save place and phone number
+        app.prefs().edit()
+                .putString(Prefs.HOME_ADDRESS, data.getStringExtra(AddressActivity.EXTRA_ADDRESS))
+                .putFloat(Prefs.HOME_LAT, (float) data.getDoubleExtra(AddressActivity.EXTRA_LAT, 0))
+                .putFloat(Prefs.HOME_LNG, (float) data.getDoubleExtra(AddressActivity.EXTRA_LNG, 0))
+                .apply();
+        if (!app.isInQuarantine()) {
+            int duration = (int) app.getRemoteConfig().getDouble(App.RC_QUARANTINE_DURATION);
+            SharedPreferences.Editor editor = app.prefs().edit();
+            if (data.hasExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START)) {
+                editor.putLong(Prefs.QUARANTINE_ENDS, data.getLongExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START, System.currentTimeMillis()) + duration * 24 * 3_600_000L);
+            }
+            editor.putLong(Prefs.QUARANTINE_ENDS_LAST_CHECK, 0L)
+                    .apply();
+            updateQuarantineEnd();
+            // Restart service to switch to quarantine location tracking
+            context.startService(new Intent(context, BeaconService.class));
+            LocalNotificationReceiver.scheduleNotification(context);
+        }
+        updateUi();
     }
 
     private void updateUi() {
@@ -154,17 +177,41 @@ public class HomeFragment extends Fragment {
         // Try to load the hotline number for current country
         String hotlinesJson = app.getRemoteConfig().getString(App.RC_HOTLINES);
         HashMap<String, String> hotlines = new Gson().fromJson(hotlinesJson, new TypeToken<HashMap<String, String>>() { }.getType());
-        hotline = hotlines.get(app.prefs().getString(Prefs.COUNTRY_CODE, ""));
+        hotline = hotlines.get(app.getCountryDefaults().getCountryCode());
         button_hotline.setVisibility(hotline != null && hotline.length() > 0 ? View.VISIBLE : View.GONE);
     }
 
     private void reloadStats() {
-        CountryDefaults.getStats(getContext(), stats -> {
+        App.get(getContext()).getCountryDefaults().getStats(getContext(), stats -> {
             if (getActivity() == null || getActivity().isFinishing()) {
                 return;
             }
             textView_statsTotal.setText(stats == null ? "..." : String.valueOf(stats.positive));
             textView_statsRecovered.setText(stats == null ? "..." : String.valueOf(stats.recovered));
+        });
+    }
+
+    private void updateQuarantineEnd() {
+        Context context = getContext();
+        if (context == null || !App.get(context).isInQuarantine() || System.currentTimeMillis() - App.get(context).prefs().getLong(Prefs.QUARANTINE_ENDS_LAST_CHECK, 0L) < 8 * 3_600_000L) {
+            return;
+        }
+        new Api(context).getQuarantineInfo((status, response) -> {
+            // Read and set the quarantine end date/time
+            // {"isInQuarantine":true,"quarantineBeginning":"2020-04-09T00:00:00","quarantineEnd":"2020-04-23T00:00:00"}
+            if (status == 200) {
+                Api.QuarantineInfoResponse resp = new Gson().fromJson(response, Api.QuarantineInfoResponse.class);
+                String qEnd = resp.quarantineEnd;
+                if (qEnd.contains("T")) {
+                    qEnd = qEnd.substring(0, qEnd.indexOf("T"));
+                }
+                long endTime = App.setEndOfDay(App.parseIsoDate(qEnd));
+                App.get(context).prefs().edit()
+                        .putLong(Prefs.QUARANTINE_ENDS, endTime)
+                        .putLong(Prefs.QUARANTINE_ENDS_LAST_CHECK, System.currentTimeMillis())
+                        .apply();
+                updateUi();
+            }
         });
     }
 }

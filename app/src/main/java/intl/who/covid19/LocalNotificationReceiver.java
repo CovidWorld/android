@@ -81,6 +81,7 @@ public class LocalNotificationReceiver extends BroadcastReceiver {
         // Show the notification
         String text = context.getString(R.string.notification_quarantineInfo_text, App.get(context).getDaysLeftInQuarantine());
         Notification notification = new NotificationCompat.Builder(context, App.NOTIFICATION_CHANNEL_ALARM)
+                .setAutoCancel(true)
                 .setColor(ResourcesCompat.getColor(context.getResources(), R.color.red, null))
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(context.getString(R.string.notification_quarantineInfo_title))

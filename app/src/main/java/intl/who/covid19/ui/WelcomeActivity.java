@@ -50,6 +50,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.gson.Gson;
 
+import org.hashids.Hashids;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,35 +122,8 @@ public class WelcomeActivity extends AppCompatActivity {
 			checkPermissions();
 			return;
 		}
-
 		// Go to information screen
-		checkCountryCode();
-	}
-
-	private void checkCountryCode() {
-		if (App.get(this).prefs().getString(Prefs.COUNTRY_CODE, null) != null) {
-			checkDeviceId();
-			return;
-		}
-		findViewById(R.id.button_agree).setVisibility(View.INVISIBLE);
-		findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
-		App.get(this).updateCountryCode(code -> {
-			if (isFinishing()) {
-				return;
-			}
-			findViewById(R.id.button_agree).setVisibility(View.VISIBLE);
-			findViewById(R.id.progressBar).setVisibility(View.GONE);
-			if (code == null) {
-				// Show error
-				new AlertDialog.Builder(this)
-						.setTitle(R.string.app_name)
-						.setMessage(getString(R.string.app_apiFailed, ""))
-						.setPositiveButton(android.R.string.ok, null)
-						.show();
-			} else {
-				checkDeviceId();
-			}
-		});
+		checkDeviceId();
 	}
 
 	private void checkDeviceId() {
@@ -177,16 +152,22 @@ public class WelcomeActivity extends AppCompatActivity {
 						.show();
 			} else {
 				Api.ProfileResponse resp = new Gson().fromJson(response, Api.ProfileResponse.class);
-				App.get(this).prefs().edit().putLong(Prefs.DEVICE_ID, resp.profileId).apply();
+				App.get(this).prefs().edit()
+						.putLong(Prefs.DEVICE_ID, resp.profileId)
+						.putString(Prefs.COVID_ID, new Hashids("COVID-19 super-secure and unguessable hashids salt", 6, "ABCDEFGHJKLMNPQRSTUVXYZ23456789").encode(resp.profileId))
+						.apply();
 				verifyPhoneNumber();
 			}
 		});
 	}
 
 	private void verifyPhoneNumber() {
-		navigateNext(true); // For now don't ask for phone number here
-//		startActivityForResult(new Intent(this, PhoneVerificationActivity.class)
-//				.putExtra(PhoneVerificationActivity.EXTRA_SHOW_EXPLANATION, true), REQUEST_CODE_PHONE_NUMBER);
+		if (App.get(this).getCountryDefaults().verifyPhoneNumberAtStart()) {
+			startActivityForResult(new Intent(this, PhoneVerificationActivity.class)
+					.putExtra(PhoneVerificationActivity.EXTRA_SHOW_EXPLANATION, true), REQUEST_CODE_PHONE_NUMBER);
+		} else {
+			navigateNext(true);
+		}
 	}
 
 	private void navigateNext(boolean newProfile) {
@@ -246,7 +227,7 @@ public class WelcomeActivity extends AppCompatActivity {
 		}
 		if (toAcquire.isEmpty()) {
 			// all permissions granted
-			checkCountryCode();
+			checkDeviceId();
 			return;
 		}
 		requestPermissions(toAcquire.toArray(new String[0]), REQUEST_CODE_PERMISSIONS);
@@ -263,7 +244,7 @@ public class WelcomeActivity extends AppCompatActivity {
 				}
 			}
 			// all permissions granted
-			checkCountryCode();
+			checkDeviceId();
 			return;
 		}
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);

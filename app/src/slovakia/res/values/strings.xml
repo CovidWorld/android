@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">COVID-19 Slovensko</string>
+	<string name="app_name">Covid19 ZostanZdravy</string>
 	<string name="app_ok">OK</string>
 	<string name="app_yes">Áno</string>
 	<string name="app_no">Nie</string>
@@ -73,22 +73,27 @@
 
 	<string name="quarantineStart_text">Zadajte dátum, kedy ste sa vrátili zo zahraničia, alebo deň, v ktorom Vám bola nariadená karanténa.</string>
 
-	<string name="diagnosed_warning_title"></string>
-	<string name="diagnosed_warning_text">V prípade, že ste boli pozitívne diagnostikovaný na COVID-19, aplikácia dokáže informovať iných ľudí, ktorí boli vo Vašom blízkom kontakte za poslednú dobu 14-dní ANONYMNE.\n\nUpovedomí ich ANONYMNOU notifikáciou, že mohli byť vystavení riziku nákazy, aby zostali v karanténe a zároveň sa dali otestovať na COVID-19 a predišli tak šíreniu nákazy ďalej medzi svojich blízkych a okolie.</string>
-	<string name="diagnosed_warning_button">Bol som pozitívne diagnostikovaný ochorením COVID-19</string>
+	<string name="faceid_title">Sledovanie tváre pre karanténu</string>
+	<string name="faceid_text1">Prosím naskenujte Vašu tvár pre prípadnú verifikáciu pri dodržiavaní povinnej karantény.</string>
+	<string name="faceid_text2">Tento krok je povinný.</string>
+	<string name="faceid_text3">Dáta sú uložené výhradne na Vašom zariadení.</string>
+	<string name="faceid_start">Štart</string>
+	<string name="faceid_thankYou">Ďakujeme</string>
+	<string name="faceid_success">Dodržiavajte dôsledne domácu karanténu. Zabránite tak šíreniu vírusu COVID-19.</string>
+	<string name="faceid_sorry">Ľutujeme</string>
+	<string name="faceid_failLicense">Neplatná licencia softvéru na overenie tváre, kontaktujte prosím dodávateľa aplikácie.</string>
+	<string name="faceid_failCameraInit">Nepodarilo sa nainicializovať kameru, skúste to prosím znova.</string>
+	<string name="faceid_failCameraAccess">Aplikácia nedostala prístup ku kamere, skúste to prosím znova.</string>
+	<string name="faceid_failCameraPermission">Aplikácia nemá povolenie na prístup ku kamere, povoľte prosím tento prístup.</string>
+	<string name="faceid_failCapture">Nepodarilo sa zachytiť tvár, skúste to prosím znova.</string>
+	<string name="faceid_failVerify">Nepodarilo sa overiť uložené charakteristiky tváre, skúste to prosím znova.</string>
 
-	<string name="diagnosed_verify_title">Overenie</string>
-	<string name="diagnosed_verify_text">Aplikácia overí, či ide o Vás, aby sa nešírila náhodne klamlivá informácia medzi ostatných ľudí a nevznikla tak panika.\n\nÚdaje budú služiť len na overenie Vašej idenity s centrálnym systémom zdravtných informácii.</string>
-	<string name="diagnosed_verify_givenName">Vaše meno</string>
-	<string name="diagnosed_verify_surname">Vaše priezvisko</string>
-	<string name="diagnosed_verify_button">Pokračovať</string>
-
-	<string name="about_text">Aplikácia Covid-19 bola vytvorená slovenskými dobrovoľníkmi v rekordne krátkom čase, aby
-pomohli s bojom proti šíreniu pandémie. Bola odovzdaná všetkým štátom zdarma vrátane
-Slovenska, aby pomohla zdravotníckym organizáciam prekonať nákazu Covid-19 rýchlejšie.
-Je vyvinutá tak, aby aj v budúcnosti, pri vzniku akejkoľvek pandémie, mohla byť okamžite
-nasadená a spomaliť šírenie nákazy. Aplikácia bude vylepšovaná každým dňom a jej
-tvorcovia budú náklady s jej ďalším vývojom hradiť sami. Jej kód a know-how má slúžiť
+	<string name="about_text">Táto aplikácia bola vytvorená slovenskými dobrovoľníkmi a odborníkmi v rekordne krátkom
+čase, aby pomohli s bojom proti šíreniu pandémie. Bola odovzdaná všetkým štátom zdarma
+vrátane Slovenska, aby pomohla zdravotníckym organizáciám prekonať nákazu Covid-19
+rýchlejšie. Je vyvinutá tak, aby aj v budúcnosti, pri vzniku akejkoľvek pandémie, mohla byť
+okamžite nasadená a spomaliť šírenie nákazy. Aplikácia bude vylepšovaná každým dňom
+a jej tvorcovia budú náklady s jej ďalším vývojom hradiť sami. Jej kód a know-how má slúžiť
 všetkým ľudom sveta a nesmie byť majetkom žiadnej organizácie.
 \n\nJednou z najzákernejších prejavov Covid-19 je jej inkubačná doba, kedy pacient chorobu šíri
 až 14-dní bez jej viditeľných symptómov. Tým sa vírus šíri rýchlejšie ako obyčajná chrípka
@@ -98,54 +103,64 @@ potenciálne nakazených ľudí a tým predísť šíreniu choroby bez ich vedo
 infikované osoby, ich blízkych a celý zdravotnícky systém, ktorému zostane kapacita pred
 exponenciálnym nárastom prípadov.
 \n\nAplikácia funguje na nasledovnom princípe.
-\n\nPo inštalácii aplikácie je potrebné povoliť senzory Bluetooth, GPS a notifikácii, ktoré
-informujú pacienta. Bluetooth je technológia na rozoznanie blízkosti kontaktu od 1-20
-metrov a je možné prostredníctvom nej analyzovať presnú vzdialenosť iných zariadení v jej
-okolí. Táto technológia na rozdiel od GPS výborne funguje v bytoch, budovách, obchodných
-domoch, lietadlách, letiskách, autobusoch, električkách a iných uzavretých priestoroch,
-dokonca až na úroveň konkrétnej miestnosti.
+\n\nPo inštalácii aplikácie je potrebné povoliť senzory Bluetooth a notifikácii, ktoré informujú
+pacienta. Bluetooth je technológia na rozoznanie blízkosti kontaktu od 1-10 metrov a je
+možné prostredníctvom nej analyzovať presnú vzdialenosť iných zariadení v jej okolí. Táto
+technológia výborne funguje v bytoch, budovách, obchodných domoch, lietadlách, letiskách,
+autobusoch, električkách a iných uzavretých priestoroch, dokonca až na úroveň konkrétnej
+miestnosti. Jej spotreba je pritom mimoriadne úsporná.
 \n\nV prípade, že telefón rozozná iné Bluetooth zariadenie v jeho blízkosti a táto doba prekročí
-určitú dĺžku, zapíše si rozptýlenú GPS pozíciu a údaj oboch zariadení na server.
-Rozptýlená GPS pozícia je dôležitá pre hygienikov na analýzu šírenia ochorenia. Bluetooth
-informácia iného zariadenia je potrebná na spätné identifikovanie zariadenia a zasielanie
-notifikácii takémuto zariadeniu, ktorého majiteľ mohol byť vstavený ochoreniu.
-\n\nAkonáhle akýkoľvek človek zistí, že bol infikovaný vírusom Covid-19 a mal nainštalovanú
-aplikáciu, zobrazí hygienikovi svoje unikátne kódované číslo. Toto číslo zadá hygienik do
-systému a všetkým zariadeniam, ktorých majitelia boli v kontakte s takto infikovanou
-osobou bude zaslaná notifikácia, alebo SMS. Správa bude obsahovať, že bol človek
-potenciálne vystavený nákaze. Takýmto spôsobom dokážu zdravotní pracovníci trasovať
-možné prenosy za posledných 14-dní aj pri kontaktoch, ktoré človek nedokáže identifikovať.
-V budovách, pri prepážke v obchode, vo verejnej doprave a podobne. Tým budú ľudia
-cielenejšie testovaní, a len Tí, ktorí boli vo veľmi tesnej blízkosti infikovanej osoby po určitú
-dobu.
+určitú dĺžku, zapíše si anonymný údaj tzv. AppID, ktoré je anonymné číslo vygenerované pri
+každej inštalácii aplikácie. Toto identifikačné číslo je úplne anonymné. Bluetooth informácia
+iného zariadenia je potrebná na spätné identifikovanie zariadenia a zasielanie notifikácii
+takémuto zariadeniu, ktorého majiteľ mohol byť vstavený ochoreniu. Na zasielanie sa práve
+použije AppID. To znamená, že ak si človek aplikáciu vymaže z telefónu, toto číslo stratí
+akýkoľvek význam. Jeho hodnota existuje, len v prípade, že aplikácia je nainštalovaná na
+telefóne a dá sa na túto aplikáciu poslať notifikácia, ak bolo iné AppID infikované, s ktorým
+bola aplikácia v kontakte cez Bluetooth. Týmto spôsobom nieje možné identifikovať
+chorého, ani zdravého. Je možné len zaslať správu do inštancie takejto aplikácie.
+\n\nAkonáhle akýkoľvek človek zistí, že bol infikovaný vírusom Covid-19, zadá do aplikácie svoje
+CovidID, prípadne ukáže hygienikovi svoje číslo. Následne sa Covid číslo overí z NCZI
+systémom. Následne sa informujú iní užívatelia, ktorí boli v kontakte s jeho AppID na úplne
+anonymnej báze, aby sa dali otestovať. Správa bude obsahovať, že bol človek potenciálne
+vystavený nákaze. Takýmto spôsobom dokáže aplikácia trasovať možné prenosy za
+posledných 14-dní aj pri kontaktoch, ktoré človek nedokáže identifikovať. V budovách, pri
+prepážke v obchode, vo verejnej doprave a podobne. Tým budú ľudia cielenejšie testovaní, a
+len Tí, ktorí boli vo veľmi tesnej blízkosti infikovanej osoby po určitú dobu. Každý pozitívne
+testovaný tak pomôže rodinám ľudí, ktorí o svojej nákaze ešte nemusia vedieť a predíde tak
+ďalšiemu rozneseniu nákazy. Všetko na anonymnej báze.
 \n\nV dnešnej dobe fungujú zdravotníci pýtaním sa, s kým sa človek stretol, a na základe toho
 osobne kontaktujú ľudí, ktorí mohli byť vystavení ochoreniu. Nedokážu ale odhaliť ľudí, ktorí
-boli v kontakte v obchode, alebo verejnej doprave, či vo výťahu. Táto aplikácia tak dokáže
-rýchlejšie nájsť takéto osoby, otestovať ich, výrazne znížiť manuálnu prácu zdravotníkov
-a hygienikov a tým rýchlejšie predísť šíreniu nákazy na ostatných členov rodiny, kolegov, či
-náhodne okoloidúcich.
+boli v kontakte v obchode, alebo verejnej doprave. Táto aplikácia tak dokáže rýchlejšie nájsť
+takéto AppIDs, poslať aplikácii informáciu aby sa dali otestovať, výrazne zníži manuálnu
+prácu zdravotníkov a hygienikov a tým rýchlejšie predíde šíreniu nákazy na ostatných členov
+rodiny, kolegov, či iných ľudí v blízkom kontakte.
 \n\nNeoddeliteľnou súčasťou prekonania nákazy Covid-19 je aj izolácia chorých od ostatnej
 populácie. Na tento účel funguje karanténa. V prípade, že človek prišiel zo zahraničia, alebo
-bol potenciálne vystavený infekcii, je vyhláškou prikázané zostať v karanténe po celú dobu
-inkubačnej doby. Pri tejto chorobe 14-dní. Mobilný operátori majú informácie o ľuďoch,
-ktorí prišli zo zahraničia a takýmto ľuďom by mala prísť SMS, aby zostali v karanténe.
-Následne človek v aplikácii oznámi, že mu bola nariadená karanténa a označí si miesto,
-v ktorom sa bude zdržiavať nasledujúcich 14-dní. Zároveň oznámi dátum, od ktorého mu
-bola karanténa nariadená. Po tomto úkone ho aplikácia bude varovať pri každom porušení
-karantény. Akonáhle je človek mimo karantény dlhšie ako určitý čas, aplikácia ho upozorní,
-aby sa vrátil do karantény. Táto funkcionalita sa snaží predísť porušovaniu karantény od
-ľudí, ktorým bola nariadená.
+bol potenciálne vystavený infekcii, alebo mu bola nariadená karanténa, je vyhláškou
+prikázané zostať na jednom mieste po celú dobu, pokiaľ systém neoznámi opak. Pri tejto
+chorobe aj 14-dní a je možné na základe testov, či diagnózy samotnú dobu predĺžiť.
+Každému, komu bola nariadená karanténa príde informácia, ktorá ho bude informovať
+o ďalších krokoch. Človek v aplikácii oznámi, ak mu bola nariadená karanténa a označí si
+miesto, v ktorom sa bude zdržiavať nasledujúce dni. Informácia o mieste zostáva výlučne
+v aplikácii. Aplikácia si overí telefónnym číslom, či takémuto užívateľovi bola skutočne
+nariadená karanténa a ak áno, informuje užívateľa o dobe v ktorej by mal zostať na ním
+určenom mieste.
+\n\nPo tomto úkone ho aplikácia bude varovať pri každom porušení karantény. Akonáhle je
+človek mimo karantény dlhšie ako určitý čas, aplikácia ho upozorní, aby sa vrátil do
+karantény. Táto funkcionalita sa snaží upozorniť ľudí v karanténe, ktorým bola nariadená.
+Dáta o pohybe sa nikde neukladajú a používajú sa výlučne na upozornenie užívateľa.
 \n\nAplikácia zároveň zobrazuje mapu a najnovšie informácie o nákazách v jednotlivých
-okresoch na Slovensku. Jej účelom nie je identifikovať chorých, ani nijako týmito
+okresoch na Slovensku. Jej účelom nieje identifikovať chorých, ani nijako týmito
 informáciami nedisponuje. Mapa zobrazuje len štatistický počet zaznamenaných ľudí
 s ochorením na Covid-19 v danom okrese.
 \n\nZároveň aplikácia disponuje štatistickými informáciami o počte nakazených, vyliečených
 a počte úmrtí na území Slovenskej republiky. Obsahuje aj dôležité informácie ako sa chrániť,
 ako rozpoznať symptómy a zobrazuje rýchlu infolinku.
 \n\nAplikáciu budeme neustále zlepšovať a prinášať ďalšie funkcionality, ktoré pomôžu
-rýchlejšie zvládnuť nákazu Covid-19. Všetky dáta sú automaticky mazané po uplynutí 21-dní.
-Táto doba je nevyhnutná na odhalenie možných ohnísk nákaz, ktoré nebolo možné odhaliť
-konvenčným spôsobom.
+rýchlejšie zvládnuť nákazu Covid-19. Všetky dáta sú anonymné a zároveň sú automaticky
+mazané po uplynutí 21-dní. Táto doba je nevyhnutná na odhalenie možných ohnísk nákaz,
+ktoré nebolo možné odhaliť konvenčným spôsobom.
 \n\nNikdy nebolo dôležitejšie neochorieť, aby sme zachránili druhých, tak ako dnes. Tým, že
 zostaneme zdraví a nebudeme vírus šíriť, budú mať naši blízky väčšiu šancu na záchranu,
 pretože zdravotníctvo im bude schopné poskytnúť pomoc, ktorú potrebujú. Ak ochorieme,
@@ -161,7 +176,7 @@ poraziť Covid-19, spoločne.
 \n\nVeľmi pekne ďakujeme za podporu všetkým, ktorí sa svojimi radami, prácou vo dne v noci
 a svojou nezištnou pomocou pričinili ku vzniku tohoto projektu a to najmä: Marek Gogoľ,
 Juraj Karovič, MUDr. Andrej Thurzo PhD., MPH, MHA, kolektív dobrovoľníkov okolo Sygic,
-Boris Kolozsi, Tomáš Benko, Daniel Kožík, Tomáš Michálek, Turn.sk, JozefBenko.com,
+Štefan Marinčák, Boris Kolozsi, Tomáš Benko, Daniel Kožík, Tomáš Michálek, Turn.sk, JozefBenko.com,
 advokátska kancelária Dagital Legal, Slovensko.Digital, Hackvirus.sk
 \n\nŠirší odborný tím spoluautorov:  doc. JUDr. MUDr. Peter Kováč, PhD. et. PhD, MUDr. Vanda
 Martišková, MUDr. Karolína Bašová, MDDr. Peter Czakó, MUDr. Martin Čaprnda, PhD., prof.
@@ -169,4 +184,20 @@ MUDr. Dušan Meško, PhD., MUDr. Peter Herman, MUDr. Gabriela Ďuricová, PhD., 
 Igor Krupa, MUDr. Gabriela Ďuricová, PhD., MUDr. Alžbeta Reviczká, MUDr. Andrej Daňo,
 MUDr. Veronika Pružincová, Juraj Novosad, Nicolas Hason, Maroš Lukáč
 \n\nAplikácia vznikla s podporou projektu ZostaňZdravý a Sygic.</string>
+
+	<!-- Face Capture -->
+	<string name="dot_face_capture_instruction_step_position_centering">Dajte tvár do stredu</string>
+	<string name="dot_face_capture_instruction_step_position_centering2">Dajte svoju tvár do stredu kruhu</string>
+	<string name="dot_face_capture_instruction_step_position_too_close">Ustúpte ďalej</string>
+	<string name="dot_face_capture_instruction_step_position_too_close2">Dajte telefón ďalej od tváre</string>
+	<string name="dot_face_capture_instruction_step_position_too_far">Pristúpte bližšie</string>
+	<string name="dot_face_capture_instruction_step_position_too_far2">Dajte telefón bližšie k tvári</string>
+	<string name="dot_face_capture_instruction_step_lighting">Dajte sa k svetlu</string>
+	<string name="dot_face_capture_instruction_step_lighting2">Otočte svoju tvár na svetlo</string>
+	<string name="dot_face_capture_instruction_step_capture">Nehýbte sa prosím&#8230;</string>
+	<!-- Liveness Check -->
+	<string name="dot_liveness_check_instruction_watch_object">Sledujte objekt</string>
+	<string name="dot_liveness_check_instruction_watch_object_no_eyes">Nie je vidno Vaše oči, sledujte objekt.</string>
+	<string name="dot_liveness_check_instruction_look_straight">Dívajte sa rovno</string>
+	<string name="dot_liveness_check_instruction_low_quality_face">Otočte svoju tvár na svetlo</string>
 </resources>

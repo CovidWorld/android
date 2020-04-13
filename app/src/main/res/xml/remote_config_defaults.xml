@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <defaultsMap>
 	<entry>
-		<key>statsUrl</key>
-		<value></value>
-	</entry>
-	<entry>
-		<key>mapStatsUrl</key>
-		<value></value>
-	</entry>
-	<entry>
 		<key>minConnectionDuration</key>
 		<value>600</value>
 	</entry>
@@ -39,5 +31,17 @@
 	<entry>
 		<key>quarantineLeftMessage</key>
 		<value>Opustili ste zónu domácej karatnény. Pre ochranu Vášho zdravia a zdravia Vašich blízkych, Vás žiadame o striktné dodržiavanie nariadenej karantény.</value>
+	</entry>
+	<entry>
+		<key>ibeaconLocationAccuracy</key>
+		<value>3</value>
+	</entry>
+	<entry>
+		<key>faceIDConfidenceThreshold</key>
+		<value>600</value>
+	</entry>
+	<entry>
+		<key>faceIDMatchThreshold</key>
+		<value>85</value>
 	</entry>
 </defaultsMap>

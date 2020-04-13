@@ -26,6 +26,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.auth0.android.jwt.JWT;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,14 +38,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import intl.who.covid19.ui.HomeFragment;
 import intl.who.covid19.ui.MapFragment;
+import intl.who.covid19.ui.PhoneVerificationActivity;
 import sk.turn.http.Http;
 
-public class CountryDefaults {
+public class CountryDefaults implements ICountryDefaults {
     public static class Stats {
         public static Stats fromJson(String json) {
             return new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create().fromJson(json, Stats.class);
@@ -57,7 +60,7 @@ public class CountryDefaults {
         public int topCases;
         public int totalCases;
         public int totalDeaths;
-        public int totalRecovered;
+        public int recovered;
         /** Internal field to keep the app from updating too often */
         public long lastUpdate;
 
@@ -67,7 +70,7 @@ public class CountryDefaults {
         public HomeFragment.Stats toHomeStats() {
             HomeFragment.Stats stats = new HomeFragment.Stats();
             stats.positive = totalCases;
-            stats.recovered = totalRecovered;
+            stats.recovered = recovered;
             stats.deaths = totalDeaths;
             return stats;
         }
@@ -108,18 +111,34 @@ public class CountryDefaults {
         @SerializedName("MRTVI")
         public int deaths;
     }
+    public static class ValidateOtpResp {
+        HashMap<String, String> payload;
+    }
 
-    public static final double CENTER_LAT = 48.82;
-    public static final double CENTER_LNG = 19.62;
-    public static final int CENTER_ZOOM = 8;
-    private static List<County> counties;
+    private List<County> counties;
 
-    public static void getStats(Context context, App.Callback<HomeFragment.Stats> callback) {
+    @Override
+    public boolean verifyPhoneNumberAtStart() { return false; }
+    @Override
+    public boolean showQuarantineStartPicker() { return false; }
+    @Override
+    public boolean useFaceId() { return false; }
+    @Override
+    public String getCountryCode() { return "SK"; }
+    @Override
+    public double getCenterLat() { return 48.82; }
+    @Override
+    public double getCenterLng() { return 19.62; }
+    @Override
+    public double getCenterZoom() { return 8; }
+
+    @Override
+    public void getStats(Context context, App.Callback<HomeFragment.Stats> callback) {
         Stats stats = Stats.fromJson(App.get(context).prefs().getString("stats", "null"));
         callback.onCallback(stats == null ? null : stats.toHomeStats());
         // Update stats if necessary
         if (stats == null || System.currentTimeMillis() - stats.lastUpdate > 3_600_000L) {
-            String statsUrl = App.get(context).getRemoteConfig().getString(App.RC_STATS_URL);
+            String statsUrl = App.get(context).getRemoteConfig().getString("statsUrl");
             if (statsUrl.isEmpty()) {
                 return;
             }
@@ -137,7 +156,8 @@ public class CountryDefaults {
         }
     }
 
-    public static void getCountyStats(Context context, App.Callback<List<MapFragment.CountyStats>> callback) {
+    @Override
+    public void getCountyStats(Context context, App.Callback<List<MapFragment.CountyStats>> callback) {
         if (counties == null) {
             try (InputStream inputStream = context.getResources().openRawResource(R.raw.counties)) {
                 counties = new Gson().fromJson(new InputStreamReader(inputStream), new TypeToken<List<County>>() { }.getType());
@@ -152,7 +172,7 @@ public class CountryDefaults {
         }
         // Update stats if necessary
         if (stats == null || System.currentTimeMillis() - stats.lastUpdate > 3_600_000L) {
-            String statsUrl = App.get(context).getRemoteConfig().getString(App.RC_MAPSTATS_URL);
+            String statsUrl = App.get(context).getRemoteConfig().getString("mapStatsUrl");
             if (statsUrl.isEmpty()) {
                 return;
             }
@@ -170,7 +190,7 @@ public class CountryDefaults {
         }
     }
 
-    private static void onCountyStats(CountyStats stats, App.Callback<List<MapFragment.CountyStats>> callback) {
+    private void onCountyStats(CountyStats stats, App.Callback<List<MapFragment.CountyStats>> callback) {
         ArrayList<MapFragment.CountyStats> css = new ArrayList<>();
         for (County county : counties) {
             MapFragment.CountyStats cs = new MapFragment.CountyStats();
@@ -189,5 +209,58 @@ public class CountryDefaults {
             css.add(cs);
         }
         callback.onCallback(css);
+    }
+
+    @Override
+    public void sendVerificationCodeText(Context context, String phoneNumber, App.Callback<Exception> callback) {
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("vPhoneNumber", phoneNumber);
+        Handler handler = new Handler();
+        new Http(getPhoneVerificationUrlBase(context) + "send-otp", Http.POST)
+                .setData(new Gson().toJson(data))
+                .send(http -> {
+                    handler.post(() -> callback.onCallback(http.getResponseCode() == 200 ? null :
+                            new Exception(http.getResponseCode() + " " + http.getResponseMessage() + "\n" + http.getResponseString())));
+                });
+    }
+
+    @Override
+    public int getVerificationCodeLength() { return 6; }
+
+    @Override
+    public void checkVerificationCode(Context context, String phoneNumber, String code, App.Callback<PhoneVerificationActivity.QuarantineDetails> callback) {
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("vPhoneNumber", phoneNumber);
+        data.put("nOtp", Long.parseLong(code));
+        Handler handler = new Handler();
+        new Http(getPhoneVerificationUrlBase(context) + "validate-otp", Http.POST)
+                .setData(new Gson().toJson(data))
+                .send(http -> {
+                    ValidateOtpResp resp = http.getResponseCode() == 200 ? new Gson().fromJson(http.getResponseString(), ValidateOtpResp.class) : null;
+                    handler.post(() -> {
+                        PhoneVerificationActivity.QuarantineDetails qd = null;
+                        if (resp != null && resp.payload != null) {
+                            try {
+                                JWT jwt = new JWT(resp.payload.get("vAccessToken"));
+                                qd = new PhoneVerificationActivity.QuarantineDetails();
+                                qd.covidId = jwt.getSubject();
+                                qd.quarantineStart = jwt.getClaim("qs").asString();
+                                qd.quarantineEnd = jwt.getClaim("qe").asString();
+                            } catch (Exception e) {
+                                App.log("CountryDefaults.checkVerificationCode " + e);
+                            }
+                        }
+                        callback.onCallback(qd);
+                    });
+                });
+    }
+
+    private String getPhoneVerificationUrlBase(Context context) {
+        String urlBase = BuildConfig.PHONE_VERIFICATION_API_URL;
+        String remoteConfigHost = App.get(context).getRemoteConfig().getString("ncziApiHost");
+        if (!remoteConfigHost.isEmpty()) {
+            urlBase = remoteConfigHost + "/api/v1/sygic/";
+        }
+        return urlBase;
     }
 }

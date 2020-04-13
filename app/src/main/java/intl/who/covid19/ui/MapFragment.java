@@ -50,10 +50,9 @@ import com.google.maps.android.ui.IconGenerator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import intl.who.covid19.App;
-import intl.who.covid19.CountryDefaults;
+import intl.who.covid19.ICountryDefaults;
 import intl.who.covid19.R;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -89,21 +88,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((TabLayout) view.findViewById(R.id.tabLayout_map)).addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        TabLayout tabLayout = view.findViewById(R.id.tabLayout_map);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if ((isInMap() && tab.getPosition() == 1) || (!isInMap() && tab.getPosition() == 0)) {
                     toggleListMap();
                 }
             }
-
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
+            public void onTabUnselected(TabLayout.Tab tab) { }
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
+            public void onTabReselected(TabLayout.Tab tab) { }
         });
         textView_statsTotal = view.findViewById(R.id.textView_statsTotal);
         textView_statsRecovered = view.findViewById(R.id.textView_statsRecovered);
@@ -119,14 +115,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public int getItemCount() {
                 return counties.size();
             }
-
             @NonNull
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 return new RecyclerView.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_county_stat, parent, false)) {
                 };
             }
-
             @Override
             public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
                 CountyStats county = counties.get(position);
@@ -134,7 +128,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 ((TextView) holder.itemView.findViewById(R.id.textView_region)).setText(county.region);
                 ((TextView) holder.itemView.findViewById(R.id.textView_number)).setText(String.valueOf(county.positive));
                 holder.itemView.setOnClickListener(v -> {
-                    toggleListMap();
+                    //toggleListMap();
+                    tabLayout.selectTab(tabLayout.getTabAt(0));
                     map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(county.lat, county.lng), DEFAULT_ZOOM));
                 });
             }
@@ -150,7 +145,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(CountryDefaults.CENTER_LAT, CountryDefaults.CENTER_LNG), CountryDefaults.CENTER_ZOOM));
+        ICountryDefaults cd = App.get(getContext()).getCountryDefaults();
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(cd.getCenterLat(), cd.getCenterLng()), (float) cd.getCenterZoom()));
         App.get(getContext()).getFusedLocationClient().getLastLocation().addOnSuccessListener(result -> {
             if (result != null) {
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(result.getLatitude(), result.getLongitude()), DEFAULT_ZOOM));
@@ -185,14 +181,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void reloadData() {
-        CountryDefaults.getStats(getContext(), stats -> {
+        App.get(getContext()).getCountryDefaults().getStats(getContext(), stats -> {
             if (getActivity() == null || getActivity().isFinishing()) {
                 return;
             }
             textView_statsTotal.setText(stats == null ? "..." : String.valueOf(stats.positive));
             textView_statsRecovered.setText(stats == null ? "..." : String.valueOf(stats.recovered));
         });
-        CountryDefaults.getCountyStats(getContext(), countyStats -> {
+        App.get(getContext()).getCountryDefaults().getCountyStats(getContext(), countyStats -> {
             if (getActivity() == null || getActivity().isFinishing()) {
                 return;
             }

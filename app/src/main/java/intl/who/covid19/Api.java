@@ -74,19 +74,15 @@ public class Api {
     private static class AuthTokenRequest {
         private final String deviceId;
         private final long profileId;
-        private String mfaToken;
-        private String duration;
-        public AuthTokenRequest(String deviceId, long profileId) {
+        private String startDate;
+        private String endDate;
+        private String covidPass;
+        public AuthTokenRequest(String deviceId, long profileId, String startDate, String endDate, String covidPass) {
             this.deviceId = deviceId;
             this.profileId = profileId;
-        }
-        public AuthTokenRequest setMfaToken(String mfaToken) {
-            this.mfaToken = mfaToken;
-            return this;
-        }
-        public AuthTokenRequest setDuration(int duration) {
-            this.duration = String.valueOf(duration);
-            return this;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.covidPass = covidPass;
         }
     }
     public static class LocationRequest {
@@ -114,6 +110,11 @@ public class Api {
             recordTimestamp = location.getTime() / 1000;
         }
     }
+    public static class QuarantineInfoResponse {
+        public boolean isInQuarantine;
+        public String quarantineBeginning;
+        public String quarantineEnd;
+    }
 
     private final App app;
     public Api(Context context) {
@@ -126,23 +127,20 @@ public class Api {
     public void sendContacts(ContactRequest request, Listener listener) {
         send("profile/contacts", Http.POST, request, listener);
     }
-    public void requestAuthToken(Listener listener) {
-        send("profile/mfatoken", Http.POST, new AuthTokenRequest(app.prefs().getString(Prefs.DEVICE_UID, null),
-                app.prefs().getLong(Prefs.DEVICE_ID, 0L)), listener);
-    }
-    public void confirmAuthToken(String mfaToken, Listener listener) {
-        send("profile/mfatoken", Http.PUT, new AuthTokenRequest(app.prefs().getString(Prefs.DEVICE_UID, null),
-                app.prefs().getLong(Prefs.DEVICE_ID, 0L)).setMfaToken(mfaToken), listener);
-    }
-    public void confirmQuarantine(String mfaToken, int duration, Listener listener) {
+    public void confirmQuarantine(String covidId, String startDate, String endDate, Listener listener) {
         send("profile/quarantine", Http.POST, new AuthTokenRequest(app.prefs().getString(Prefs.DEVICE_UID, null),
-                app.prefs().getLong(Prefs.DEVICE_ID, 0L)).setMfaToken(mfaToken).setDuration(duration), listener);
+                app.prefs().getLong(Prefs.DEVICE_ID, 0L), startDate, endDate, covidId), listener);
     }
     public void sendLocations(LocationRequest request, Listener listener) {
         send("profile/location", Http.POST, request, listener);
     }
     public void quarantineLeft(QuarantineLeftRequest request, Listener listener) {
         send("profile/areaexit", Http.POST, request, listener);
+    }
+    public void getQuarantineInfo(Listener listener) {
+        send("profile/quarantine" +
+                "?profileId=" + Http.urlEncode(String.valueOf(app.prefs().getLong(Prefs.DEVICE_ID, 0L))) +
+                "&deviceId=" + Http.urlEncode(app.prefs().getString(Prefs.DEVICE_UID, "")), Http.GET, null, listener);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -155,10 +153,11 @@ public class Api {
                     App.log("API > " + method + " " + action + " " + data);
                     Uri uri = Uri.withAppendedPath(app.apiUri(), action);
                     Http http = new Http(uri.toString(), method)
-                            .addHeader("Content-Type", "application/json")
-                            .setData(data)
-                            .send();
-                    int code = http.getResponseCode();
+                            .addHeader("Content-Type", "application/json");
+                    if (request != null) {
+                        http.setData(data);
+                    }
+                    int code = http.send().getResponseCode();
                     String response = http.getResponseString();
                     App.log("API < " + code + " " + response + (code == 200 ? "" : " " + http.getResponseMessage()));
                     return new Response(http.getResponseCode(), response);

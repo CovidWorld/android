@@ -194,7 +194,7 @@ public class BeaconService extends Service {
         if (!justRestartLocation && termsAgreed && bleSupported && btEnabled && permissionsGranted) {
             startBtlUpdates();
         }
-        if (termsAgreed && permissionsGranted) {
+        if (isLocationRequested() && termsAgreed && permissionsGranted) {
             startLocationUpdates();
         }
         return super.onStartCommand(intent, flags, startId);
@@ -239,7 +239,9 @@ public class BeaconService extends Service {
                     synchronized (liveEncounters) {
                         if (liveEncounters.get(deviceId) == null) {
                             Encounter enc = new Encounter(deviceId);
-                            enc.setLocation(App.get(BeaconService.this).getLastLocation(), !inQuarantine);
+                            if (isLocationRequested()) {
+                                enc.setLocation(App.get(BeaconService.this).getLastLocation(), inQuarantine ? -1 : (int) App.get(BeaconService.this).getRemoteConfig().getLong(App.RC_IBEACON_LOCATION_ACCURACY));
+                            }
                             liveEncounters.put(deviceId, enc);
                             updateNotificationSubtext();
                         }
@@ -307,7 +309,9 @@ public class BeaconService extends Service {
                     app.getEncounterQueue().add(enc);
                     // continue to track the encounter
                     Encounter newEnc = new Encounter(enc.getSeenProfileId());
-                    newEnc.setLocation(location, !inQuarantine);
+                    if (isLocationRequested()) {
+                        newEnc.setLocation(location, inQuarantine ? -1 : (int) App.get(this).getRemoteConfig().getLong(App.RC_IBEACON_LOCATION_ACCURACY));
+                    }
                     liveEncounters.setValueAt(i, newEnc);
                 }
             }
@@ -423,6 +427,11 @@ public class BeaconService extends Service {
 
     private void cancelQuarantineLeftNotification() {
         NotificationManagerCompat.from(this).cancel(App.NOTIFICATION_ID_QUARANTINE_LEFT);
+    }
+
+    private boolean isLocationRequested() {
+        App app = App.get(this);
+        return app.getRemoteConfig().getLong(App.RC_IBEACON_LOCATION_ACCURACY) >= 0 || app.isInQuarantine();
     }
 
     private class BtStateReceiver extends BroadcastReceiver {

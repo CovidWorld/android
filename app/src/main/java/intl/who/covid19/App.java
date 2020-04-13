@@ -53,6 +53,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,10 +84,6 @@ public class App extends Application {
     public static final int NOTIFICATION_ID_QUARANTINE_INFO = 3;
     /** Remote config field for api URL */
     private static final String RC_API_URL = "apiUrl";
-    /** Remote config field for statistics URL */
-    public static final String RC_STATS_URL = "statsUrl";
-    /** Remote config field for map statistics URL */
-    public static final String RC_MAPSTATS_URL = "mapStatsUrl";
     /** Remote config field for min. encounter duration (in seconds) */
     public static final String RC_MIN_ENCOUNTER_DURATION = "minConnectionDuration";
     /** Remote config field for encounter batch sending frequency (in minutes) */
@@ -103,6 +100,12 @@ public class App extends Application {
     public static final String RC_QUARANTINE_RADIUS = "desiredPositionAccuracy";
     /** Remote config field for notification message when user leaves quarantine */
     public static final String RC_QUARANTINE_LEFT_MESSAGE = "quarantineLeftMessage";
+    /** Remote config field for location accuracy in iBeacon mode (number of decimal places to round the lat/lng or -1 to disable) */
+    public static final String RC_IBEACON_LOCATION_ACCURACY = "ibeaconLocationAccuracy";
+    /** Remote config field for face ID confidence threshold (long) */
+    public static final String RC_FACEID_CONFIDENCE_THRESHOLD = "faceIDConfidenceThreshold";
+    /** Remote config field for face ID match threshold (long) */
+    public static final String RC_FACEID_MATCH_THRESHOLD = "faceIDMatchThreshold";
 
     public static final String[] PERMISSIONS;
     static {
@@ -131,7 +134,34 @@ public class App extends Application {
         }
     }
 
+    public static long parseIsoDate(String date) {
+        String[] quarantineEnds = date.split("-");
+        if (quarantineEnds.length < 3) {
+            return 0;
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, Integer.parseInt(quarantineEnds[0]));
+        cal.set(Calendar.MONTH, Integer.parseInt(quarantineEnds[1]) - 1);
+        cal.set(Calendar.DATE, Integer.parseInt(quarantineEnds[2]));
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTimeInMillis();
+    }
+
+    public static long setEndOfDay(long timeInMillis) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(timeInMillis);
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.MILLISECOND, 999);
+        return cal.getTimeInMillis();
+    }
+
     private SharedPreferences prefs;
+    private ICountryDefaults countryDefaults;
     private EncounterQueue encounterQueue;
     private LocationQueue locationQueue;
     private FirebaseRemoteConfig remoteConfig;
@@ -172,8 +202,6 @@ public class App extends Application {
         defaults.put(RC_API_URL, getString(R.string.defaultApiUrl));
         remoteConfig.setDefaultsAsync(new HashMap<>(defaults));
         remoteConfig.fetchAndActivate();
-        // Update the country code
-        updateCountryCode(null);
         // Create the fused location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         Places.initialize(this, getString(R.string.google_api_key));
@@ -186,6 +214,13 @@ public class App extends Application {
      */
     public SharedPreferences prefs() {
         return prefs;
+    }
+
+    public ICountryDefaults getCountryDefaults() {
+        if (countryDefaults == null) {
+            countryDefaults = new CountryDefaults();
+        }
+        return countryDefaults;
     }
 
     public Uri apiUri() {
@@ -214,23 +249,6 @@ public class App extends Application {
 
     public FusedLocationProviderClient getFusedLocationClient() {
         return fusedLocationClient;
-    }
-
-    public void updateCountryCode(@Nullable Callback<String> callback) {
-        Handler handler = (callback != null ? new Handler() : null);
-        // Any better solution than this?
-        new Http("http://ip-api.com/json?fields=countryCode", Http.GET)
-                .send(http -> {
-                    HashMap<String, String> resp = new Gson().fromJson(http.getResponseString(), new TypeToken<HashMap<String, String>>() { }.getType());
-                    String code = resp != null ? resp.get("countryCode") : null;
-                    if (code != null && code.length() > 0) {
-                        App.log("Current country code " + code);
-                        prefs.edit().putString(Prefs.COUNTRY_CODE, code).apply();
-                    }
-                    if (handler != null) {
-                        handler.post(() -> callback.onCallback(code));
-                    }
-                });
     }
 
     public Location getLastLocation() {

@@ -75,10 +75,6 @@ public class UploadService extends JobService {
 	@Override
 	public boolean onStartJob(JobParameters params) {
 		App.log("UploadService: onStartJob, id = " + params.getJobId());
-		if (params.getJobId() == JOB_ID_ENCOUNTERS) {
-			// TODO: this isn't quite right, we don't wait for this request to finish
-			App.get(this).updateCountryCode(null);
-		}
 		switch (params.getJobId()) {
 			case JOB_ID_ENCOUNTERS:
 				currentEncJob = params;

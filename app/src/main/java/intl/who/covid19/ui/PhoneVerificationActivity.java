@@ -46,8 +46,13 @@ import intl.who.covid19.Prefs;
 import intl.who.covid19.R;
 
 public class PhoneVerificationActivity extends AppCompatActivity {
+	public static class QuarantineDetails {
+		public String covidId;
+		public String quarantineStart;
+		public String quarantineEnd;
+	}
+
 	public static final String EXTRA_SHOW_EXPLANATION = "intl.who.covid19.ui.EXTRA_SHOW_EXPLANATION";
-	private static final int CODE_LENGTH = 6;
 
 	private PhoneInputLayout phoneInput;
 	private EditText editTextCode;
@@ -64,7 +69,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 		buttonDone = findViewById(R.id.button_done);
 		progressBar = findViewById(R.id.progressBar);
 
-		phoneInput.setDefaultCountry(App.get(this).prefs().getString(Prefs.COUNTRY_CODE, ""));
+		phoneInput.setDefaultCountry(App.get(this).getCountryDefaults().getCountryCode());
 		editTextCode.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -72,7 +77,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 			public void onTextChanged(CharSequence s, int start, int before, int count) { }
 			@Override
 			public void afterTextChanged(Editable s) {
-				if (s.length() == CODE_LENGTH) {
+				if (s.length() == App.get(PhoneVerificationActivity.this).getCountryDefaults().getVerificationCodeLength()) {
 					hideKeyboard();
 					confirmVerificationCode(s.toString());
 				}
@@ -117,51 +122,25 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 		new AlertDialog.Builder(this)
 				.setTitle(R.string.phoneVerification_confirmTitle)
 				.setMessage(getString(R.string.phoneVerification_confirmText, phoneNumber))
-				.setPositiveButton(R.string.app_yes, (dialog, which) -> savePhoneNumber(phoneNumber))
+				.setPositiveButton(R.string.app_yes, (dialog, which) -> requestVerificationCode(phoneNumber))
 				.setNegativeButton(R.string.app_no, (dialog, which) -> phoneInput.getEditText().selectAll())
 				.show();
 	}
 
-	private void savePhoneNumber(String phoneNumber) {
+	private void requestVerificationCode(String phoneNumber) {
 		progressBar.setVisibility(View.VISIBLE);
 		buttonDone.setVisibility(View.GONE);
 		SharedPreferences prefs = App.get(this).prefs();
-		Api.ProfileRequest req = new Api.ProfileRequest(
-				prefs.getString(Prefs.DEVICE_UID, null),
-				prefs.getString(Prefs.FCM_TOKEN, null),
-				phoneNumber);
-		new Api(this).createProfile(req, (status, response) -> {
+		App.get(this).getCountryDefaults().sendVerificationCodeText(this, phoneNumber, exception -> {
 			if (isFinishing()) {
 				return;
 			}
 			progressBar.setVisibility(View.GONE);
-			if (status != 200) {
+			if (exception != null) {
 				buttonDone.setVisibility(View.VISIBLE);
 				new AlertDialog.Builder(this)
 						.setTitle(R.string.app_name)
-						.setMessage(getString(R.string.app_apiFailed, (status + " " + response).trim()))
-						.setPositiveButton(android.R.string.ok, null)
-						.show();
-			} else {
-				requestVerificationCode();
-			}
-		});
-	}
-
-	private void requestVerificationCode() {
-		progressBar.setVisibility(View.VISIBLE);
-		buttonDone.setVisibility(View.GONE);
-		SharedPreferences prefs = App.get(this).prefs();
-		new Api(this).requestAuthToken((status, response) -> {
-			if (isFinishing()) {
-				return;
-			}
-			progressBar.setVisibility(View.GONE);
-			if (status != 200) {
-				buttonDone.setVisibility(View.VISIBLE);
-				new AlertDialog.Builder(this)
-						.setTitle(R.string.app_name)
-						.setMessage(getString(R.string.app_apiFailed, (status + " " + response).trim()))
+						.setMessage(getString(R.string.app_apiFailed, exception.getMessage()))
 						.setPositiveButton(android.R.string.ok, null)
 						.show();
 			} else {
@@ -176,11 +155,11 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 	private void confirmVerificationCode(String code) {
 		progressBar.setVisibility(View.VISIBLE);
 		editTextCode.setEnabled(false);
-		Api.Listener apiListener = (status, response) -> {
+		App.get(this).getCountryDefaults().checkVerificationCode(this, phoneInput.getPhoneNumberE164(), code, quarantineDetails -> {
 			if (isFinishing()) {
 				return;
 			}
-			if (status != 200) {
+			if (quarantineDetails == null) {
 				editTextCode.setText("");
 				progressBar.setVisibility(View.GONE);
 				editTextCode.setEnabled(true);
@@ -190,22 +169,22 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 						.setPositiveButton(android.R.string.ok, null)
 						.show();
 			} else {
+				long qEnd = App.setEndOfDay(App.parseIsoDate(quarantineDetails.quarantineEnd));
 				App.get(this).prefs().edit()
 						.putString(Prefs.PHONE_NUMBER, phoneInput.getPhoneNumberE164())
 						.putString(Prefs.PHONE_NUMBER_VERIFICATION_CODE, code)
+						.putString(Prefs.COVID_ID, quarantineDetails.covidId)
+						.putLong(Prefs.QUARANTINE_ENDS, qEnd)
 						.apply();
-				setResult(RESULT_OK, new Intent().putExtras(getIntent()));
-				finish();
+				// Send the data to our API
+				new Api(PhoneVerificationActivity.this).confirmQuarantine(quarantineDetails.covidId, quarantineDetails.quarantineStart,
+						quarantineDetails.quarantineEnd, (status, response) -> {
+							// Do we really care if this fails?
+							setResult(RESULT_OK, new Intent().putExtras(getIntent()));
+							finish();
+						});
 			}
-		};
-		if (getIntent().hasExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START)) {
-			long quarantineStarts = getIntent().getLongExtra(QuarantineStartActivity.EXTRA_QUARANTINE_START, System.currentTimeMillis());
-			int daysLeftInQuarantine = (int) App.get(this).getRemoteConfig().getDouble(App.RC_QUARANTINE_DURATION) -
-					(int) Math.round((System.currentTimeMillis() - quarantineStarts) / (24 * 3_600_000.0));
-			new Api(this).confirmQuarantine(code, daysLeftInQuarantine, apiListener);
-		} else {
-			new Api(this).confirmAuthToken(code, apiListener);
-		}
+		});
 	}
 
 	private void hideKeyboard() {
