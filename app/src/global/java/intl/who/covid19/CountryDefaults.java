@@ -29,6 +29,7 @@ import java.util.List;
 
 import intl.who.covid19.ui.HomeFragment;
 import intl.who.covid19.ui.MapFragment;
+import intl.who.covid19.ui.PhoneVerificationActivity;
 
 public class CountryDefaults implements ICountryDefaults {
     @Override
@@ -62,7 +63,10 @@ public class CountryDefaults implements ICountryDefaults {
     }
 
     @Override
-    public void checkVerificationCode(Context context, String code, App.Callback<Exception> callback) {
-        callback.onCallback(new UnsupportedOperationException("This operation is not supported or not implemented in this flavor"));
+    public int getVerificationCodeLength() { return 4; }
+
+    @Override
+    public void checkVerificationCode(Context context, String phoneNumber, String code, App.Callback<PhoneVerificationActivity.QuarantineDetails> callback) {
+        callback.onCallback(null);
     }
 }
