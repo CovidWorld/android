@@ -64,10 +64,10 @@
 	<string name="phoneVerification_wrongCode">Nesprávny kód, zadajte ho prosím znova.</string>
 	<string name="phoneVerification_leaveProcess">Ste si istý, že chcete opustiť túto obrazovku bez zadania kódu? Bez opätovnej autentifikácie sa sem nebudete môcť vrátiť.</string>
 
-	<string name="address_info">Vyberte prosím miesto, v ktorom sa budete zdržiavať po dobu 14 dní v karanténe. Toto miesto nie je možné následne zmeniť, preto sa ubezpečte, že ste správne zadali adresu karantény.</string>
+	<string name="address_info">Vyberte prosím miesto, v ktorom sa budete zdržiavať v karanténe. Toto miesto nie je možné následne zmeniť, preto sa ubezpečte, že ste správne zadali adresu karantény.</string>
 	<string name="address_dragToLocate">Pohnutím upresnite polohu</string>
 	<string name="address_pickLocation">Vybrať túto polohu\n</string>
-	<string name="address_confirm">Vybrali ste si adresu:\n%1$s\n\nTáto adresa bude po dobu 14 dní Vašim miestom karantény. Adresu následne nebude možné zmeniť.</string>
+	<string name="address_confirm">Vybrali ste si adresu:\n%1$s\n\nTáto adresa bude Vašim miestom karantény. Adresu následne nebude možné zmeniť.</string>
 	<string name="address_confirm_confirm">Potvrdiť</string>
 	<string name="address_confirm_change">Zmeniť</string>
 
