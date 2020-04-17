@@ -31,6 +31,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -58,6 +59,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 
 	private PhoneInputLayout phoneInput;
 	private EditText editTextCode;
+	private CheckBox checkBoxPrivacyConsent;
 	private Button buttonDone;
 	private ProgressBar progressBar;
 
@@ -68,6 +70,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 
 		phoneInput = findViewById(R.id.phoneInput);
 		editTextCode = findViewById(R.id.editText_code);
+		checkBoxPrivacyConsent = findViewById(R.id.checkBox_privacyConsent);
 		buttonDone = findViewById(R.id.button_done);
 		progressBar = findViewById(R.id.progressBar);
 
@@ -114,12 +117,19 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 
 	public void onButtonDone(View view) {
 		// checks if the field is valid
-		if (phoneInput.isValid()) {
+		if (!phoneInput.isValid()) {
+			phoneInput.setError(getString(R.string.phoneVerification_invalidNumber));
+		} else if (!checkBoxPrivacyConsent.isChecked()) {
+			phoneInput.setError(null);
+			new AlertDialog.Builder(this)
+					.setTitle(R.string.app_name)
+					.setMessage(R.string.phoneVerification_notAgreed)
+					.setPositiveButton(R.string.app_ok, null)
+					.show();
+		} else {
 			phoneInput.setError(null);
 			hideKeyboard();
 			showVerificationDialog(phoneInput.getPhoneNumberE164());
-		} else {
-			phoneInput.setError(getString(R.string.phoneVerification_invalidNumber));
 		}
 	}
 
@@ -153,6 +163,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 				// Update the text and show code input instead of phone number input
 				this.<TextView>findViewById(R.id.textView_text).setText(R.string.phoneVerification_enterCode);
 				phoneInput.setVisibility(View.GONE);
+				checkBoxPrivacyConsent.setVisibility(View.GONE);
 				editTextCode.setVisibility(View.VISIBLE);
 			}
 		});

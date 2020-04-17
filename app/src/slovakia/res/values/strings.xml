@@ -59,6 +59,7 @@
 	<string name="phoneVerification_privacyConsent">Pokračovaním súhlasím so spracúvaním údajov o mojom zdraví na účely ochrany života a zdravia v súvislosti so šírením vírusu COVID-19</string>
 	<string name="phoneVerification_continue">Pokračovať</string>
 	<string name="phoneVerification_invalidNumber">Telefónne číslo je neplatné, prosím skontrolujte zadané číslo</string>
+	<string name="phoneVerification_notAgreed">Musíte súhlasiť so spracovaním údajov</string>
 	<string name="phoneVerification_confirmTitle">Skontrolujte číslo</string>
 	<string name="phoneVerification_confirmText">%1$s\n\nJe toto telefónne číslo správne?</string>
 	<string name="phoneVerification_enterCode">Na zadané telefónne číslo sme poslali SMS s kódom.\n\nPre dokončenie overenia prosím zadajte nižšie prijatý 6-miestny kód.</string>

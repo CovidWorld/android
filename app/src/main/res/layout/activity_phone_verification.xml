@@ -48,11 +48,12 @@
 		android:layout_height="0dp"
 		android:layout_weight="1" />
 
-	<TextView
+	<CheckBox
+		android:id="@+id/checkBox_privacyConsent"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="8dp"
-		android:gravity="center_horizontal"
+		android:gravity="top|left"
 		android:text="@string/phoneVerification_privacyConsent" />
 
 	<TextView

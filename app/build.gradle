@@ -45,6 +45,8 @@ android {
         slovakia {
             dimension 'country'
             applicationId 'sk.nczi.covid19'
+            versionCode 3
+            versionName '1.0.2'
             versionNameSuffix '-sk'
             buildConfigField('String', 'PHONE_VERIFICATION_API_URL', '"' + props['phoneVerificationApiUrl'] + '"')
         }
