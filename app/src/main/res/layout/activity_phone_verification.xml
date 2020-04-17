@@ -48,6 +48,24 @@
 		android:layout_height="0dp"
 		android:layout_weight="1" />
 
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="8dp"
+		android:gravity="center_horizontal"
+		android:text="@string/phoneVerification_privacyConsent" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="8dp"
+		android:background="?attr/selectableItemBackground"
+		android:gravity="center_horizontal"
+		android:onClick="onPrivacy"
+		android:text="@string/welcome_privacy"
+		android:textColor="#999"
+		android:textSize="12sp" />
+
 	<Button
 		android:id="@+id/button_done"
 		android:layout_width="match_parent"

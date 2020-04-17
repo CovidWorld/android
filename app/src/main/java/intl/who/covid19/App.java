@@ -36,10 +36,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.crashlytics.android.Crashlytics;
@@ -49,8 +47,6 @@ import com.google.android.libraries.places.api.Places;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.remoteconfig.internal.DefaultsXmlParser;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,8 +54,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-import sk.turn.http.Http;
 
 import static android.Manifest.permission.ACCESS_BACKGROUND_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -218,7 +212,7 @@ public class App extends Application {
 
     public ICountryDefaults getCountryDefaults() {
         if (countryDefaults == null) {
-            countryDefaults = new CountryDefaults();
+            countryDefaults = new CountryDefaults(this);
         }
         return countryDefaults;
     }

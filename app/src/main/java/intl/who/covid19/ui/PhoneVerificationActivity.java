@@ -40,6 +40,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.ialokim.phonefield.PhoneInputLayout;
 
+import java.io.IOException;
+
 import intl.who.covid19.Api;
 import intl.who.covid19.App;
 import intl.who.covid19.Prefs;
@@ -106,6 +108,10 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 		}
 	}
 
+	public void onPrivacy(View v) {
+		startActivity(new Intent(this, PrivacyPolicyActivity.class));
+	}
+
 	public void onButtonDone(View view) {
 		// checks if the field is valid
 		if (phoneInput.isValid()) {
@@ -140,7 +146,7 @@ public class PhoneVerificationActivity extends AppCompatActivity {
 				buttonDone.setVisibility(View.VISIBLE);
 				new AlertDialog.Builder(this)
 						.setTitle(R.string.app_name)
-						.setMessage(getString(R.string.app_apiFailed, exception.getMessage()))
+						.setMessage(exception instanceof IOException ? getString(R.string.app_apiFailed, exception.getMessage()) : exception.getMessage())
 						.setPositiveButton(android.R.string.ok, null)
 						.show();
 			} else {

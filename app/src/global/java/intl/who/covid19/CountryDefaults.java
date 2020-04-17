@@ -32,12 +32,17 @@ import intl.who.covid19.ui.MapFragment;
 import intl.who.covid19.ui.PhoneVerificationActivity;
 
 public class CountryDefaults implements ICountryDefaults {
+    public CountryDefaults(Context context) { }
     @Override
     public boolean verifyPhoneNumberAtStart() { return false; }
     @Override
     public boolean showQuarantineStartPicker() { return false; }
     @Override
     public boolean useFaceId() { return false; }
+    @Override
+    public boolean sendLocationInQuarantine() { return false; }
+    @Override
+    public boolean sendQuarantineLeft() { return false; }
     @Override
     public String getCountryCode() { return "XX"; }
     @Override

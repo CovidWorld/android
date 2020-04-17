@@ -113,9 +113,15 @@ public class CountryDefaults implements ICountryDefaults {
     }
     public static class ValidateOtpResp {
         HashMap<String, String> payload;
+        ArrayList<HashMap<String, String>> errors;
     }
 
+    private Context context;
     private List<County> counties;
+
+    public CountryDefaults(Context context) {
+        this.context = context;
+    }
 
     @Override
     public boolean verifyPhoneNumberAtStart() { return false; }
@@ -123,6 +129,14 @@ public class CountryDefaults implements ICountryDefaults {
     public boolean showQuarantineStartPicker() { return false; }
     @Override
     public boolean useFaceId() { return false; }
+    @Override
+    public boolean sendLocationInQuarantine() {
+        return App.get(context).getRemoteConfig().getLong("reportQuarantineLocation") != 0;
+    }
+    @Override
+    public boolean sendQuarantineLeft() {
+        return App.get(context).getRemoteConfig().getLong("reportQuarantineExit") != 0;
+    }
     @Override
     public String getCountryCode() { return "SK"; }
     @Override
@@ -219,8 +233,10 @@ public class CountryDefaults implements ICountryDefaults {
         new Http(getPhoneVerificationUrlBase(context) + "send-otp", Http.POST)
                 .setData(new Gson().toJson(data))
                 .send(http -> {
+                    ValidateOtpResp resp = http.getResponseCode() / 100 == 2 ? new Gson().fromJson(http.getResponseString(), ValidateOtpResp.class) : null;
                     handler.post(() -> callback.onCallback(http.getResponseCode() == 200 ? null :
-                            new Exception(http.getResponseCode() + " " + http.getResponseMessage() + "\n" + http.getResponseString())));
+                            resp != null && resp.errors.size() >= 1 ? new Exception(resp.errors.get(0).get("description")) :
+                                    new IOException(http.getResponseCode() + " " + http.getResponseMessage())));
                 });
     }
 

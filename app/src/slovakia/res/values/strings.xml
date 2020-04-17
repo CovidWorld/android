@@ -34,7 +34,7 @@
 	<string name="profile_identifier">Môj identifikátor pre potreby zdravotníkov a hygienikov:</string>
 	<string name="profile_aboutApp">O aplikácii</string>
 
-	<string name="protect_title">Ako sa chrániť pred koronavírom</string>
+	<string name="protect_title">Ako sa chrániť pred koronavírusom</string>
 	<string name="protect_text1">Často si umývajte ruky mydlom a vodou, najmenej po dobu 20 sekúnd. Môžete použiť dezinfekčný prostriedok na ruky na báze alkoholu</string>
 	<string name="protect_text2">Zakrývajte si nos a ústa pri kašľaní a kýchaní jednorázovou papierovou vreckovkou a následne ju zahoďte</string>
 	<string name="protect_text3">Nedotýkajte sa očí, nosa a úst neumytými rukami</string>
@@ -56,6 +56,7 @@
 	<string name="phoneVerification_title">Vaše telefónne číslo</string>
 	<string name="phoneVerification_text">Prosím overte medzinárodnú predvoľbu a zadajte Vaše telefónne číslo</string>
 	<string name="phoneVerification_explanation">Zadajte prosím telefónne číslo, na ktoré Vás budú môcť zdravotníci kontaktovať, v prípade, že ste boli v kontakte s infikovanou osobou.</string>
+	<string name="phoneVerification_privacyConsent">Pokračovaním súhlasím so spracúvaním údajov o mojom zdraví na účely ochrany života a zdravia v súvislosti so šírením vírusu COVID-19</string>
 	<string name="phoneVerification_continue">Pokračovať</string>
 	<string name="phoneVerification_invalidNumber">Telefónne číslo je neplatné, prosím skontrolujte zadané číslo</string>
 	<string name="phoneVerification_confirmTitle">Skontrolujte číslo</string>
@@ -183,7 +184,12 @@ Martišková, MUDr. Karolína Bašová, MDDr. Peter Czakó, MUDr. Martin Čaprnd
 MUDr. Dušan Meško, PhD., MUDr. Peter Herman, MUDr. Gabriela Ďuricová, PhD., MUDr.
 Igor Krupa, MUDr. Gabriela Ďuricová, PhD., MUDr. Alžbeta Reviczká, MUDr. Andrej Daňo,
 MUDr. Veronika Pružincová, Juraj Novosad, Nicolas Hason, Maroš Lukáč
-\n\nAplikácia vznikla s podporou projektu ZostaňZdravý a Sygic.</string>
+\n\nAplikácia vznikla s podporou projektu ZostaňZdravý a Sygic.
+\n\nAplikácia Covid 19 ZostaňZdravý je podľa zákona č. 362/2011 Z.z. o liekoch a zdravotníckych
+pomôckach a o zmene a doplnení niektorých zákonov a podľa nariadenia vlády č.582/2008
+Z.z. ktorým sa ustanovujú podrobnosti o technických požiadavkách a postupoch
+posudzovania zhody zdravotníckych pomôcok zdravotníckou pomôckou triedy I. 
+\n\nVýrobca: Úrad verejného zdravotníctva SR</string>
 
 	<!-- Face Capture -->
 	<string name="dot_face_capture_instruction_step_position_centering">Dajte tvár do stredu</string>

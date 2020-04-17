@@ -385,8 +385,9 @@ public class BeaconService extends Service {
     /** Called only if in quarantine */
     private void onQuarantineLocation(Location location) {
         App.log("onQuarantineLocation: " + location);
-        App.get(this).getLocationQueue().add(new intl.who.covid19.Location(location));
-
+        if (App.get(this).getCountryDefaults().sendLocationInQuarantine()) {
+            App.get(this).getLocationQueue().add(new intl.who.covid19.Location(location));
+        }
         // Calculate distance to home address
         Location homeLocation = new Location("");
         homeLocation.setLatitude(App.get(this).prefs().getFloat(Prefs.HOME_LAT, 0f));
@@ -397,11 +398,13 @@ public class BeaconService extends Service {
         if (locatedAtHome && !atHome) {
             // Left home
             showQuarantineLeftNotification();
-            new Api(this).quarantineLeft(new Api.QuarantineLeftRequest(
-                    App.get(this).prefs().getString(Prefs.DEVICE_UID, null),
-                    App.get(this).prefs().getLong(Prefs.DEVICE_ID, 0), location), (status, response) -> {
-                // Nothing much to do here
-            });
+            if (App.get(this).getCountryDefaults().sendQuarantineLeft()) {
+                new Api(this).quarantineLeft(new Api.QuarantineLeftRequest(
+                        App.get(this).prefs().getString(Prefs.DEVICE_UID, null),
+                        App.get(this).prefs().getLong(Prefs.DEVICE_ID, 0), location), (status, response) -> {
+                    // Nothing much to do here
+                });
+            }
         } else if (!locatedAtHome && atHome) {
             // Entered home
            cancelQuarantineLeftNotification();

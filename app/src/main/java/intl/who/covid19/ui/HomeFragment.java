@@ -193,12 +193,11 @@ public class HomeFragment extends Fragment {
 
     private void updateQuarantineEnd() {
         Context context = getContext();
-        if (context == null || !App.get(context).isInQuarantine() || System.currentTimeMillis() - App.get(context).prefs().getLong(Prefs.QUARANTINE_ENDS_LAST_CHECK, 0L) < 8 * 3_600_000L) {
+        if (context == null || !App.get(context).isInQuarantine() || System.currentTimeMillis() - App.get(context).prefs().getLong(Prefs.QUARANTINE_ENDS_LAST_CHECK, 0L) < 60_000L/*8 * 3_600_000L*/) {
             return;
         }
         new Api(context).getQuarantineInfo((status, response) -> {
             // Read and set the quarantine end date/time
-            // {"isInQuarantine":true,"quarantineBeginning":"2020-04-09T00:00:00","quarantineEnd":"2020-04-23T00:00:00"}
             if (status == 200) {
                 Api.QuarantineInfoResponse resp = new Gson().fromJson(response, Api.QuarantineInfoResponse.class);
                 String qEnd = resp.quarantineEnd;

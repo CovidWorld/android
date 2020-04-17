@@ -26,6 +26,16 @@ public interface ICountryDefaults {
     boolean useFaceId();
 
     /**
+     * Whether to send location information while in quarantine.
+     */
+    boolean sendLocationInQuarantine();
+
+    /**
+     * Whether to notify API when user left the quarantine.
+     */
+    boolean sendQuarantineLeft();
+
+    /**
      * Two-letter code of current country (uppercase)
      */
     String getCountryCode();

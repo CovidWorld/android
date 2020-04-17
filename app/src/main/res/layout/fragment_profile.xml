@@ -65,4 +65,19 @@
 		android:textColor="@color/colorPrimaryDark"
 		android:textSize="20sp" />
 
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1" />
+
+	<TextView
+		android:id="@+id/textView_privacy"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="?attr/selectableItemBackground"
+		android:gravity="center_horizontal"
+		android:text="@string/welcome_privacy"
+		android:textColor="#999"
+		android:textSize="12sp" />
+
 </LinearLayout>

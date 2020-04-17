@@ -51,5 +51,6 @@ public class ProfileFragment extends Fragment {
         ((TextView) view.findViewById(R.id.textView_code)).setText(App.get(view.getContext()).prefs().getString(Prefs.COVID_ID, ""));
         ((TextView) view.findViewById(R.id.textView_attribution)).setText(Html.fromHtml(getString(R.string.welcome_attribution)));
         view.findViewById(R.id.button_aboutApp).setOnClickListener(v -> startActivity(new Intent(getContext(), AboutActivity.class)));
+        view.findViewById(R.id.textView_privacy).setOnClickListener(v -> startActivity(new Intent(getContext(), PrivacyPolicyActivity.class)));
     }
 }
