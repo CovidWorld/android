@@ -8,6 +8,15 @@ Alternatively, the user can flag themselves as quarantined in which case the app
 
 ## Country-specific customisation steps
 * Rename app/app.properties.example to app/app.properties and fill in your local-specific values
-* Register your app in Google Firebase console and copy google-services.json file to app folder
+* Create a keystore and place it in the app folder. More infos can be found here: https://developer.android.com/studio/publish/app-signing#sign-apk
+* Open the app/app.properties and fill in the required informations: 
+- apiUrl: 
+- keystoreFile: The name of your keystore file (.jks). You need to place it inside the app folder
+- keystorePassword: The password of the keystore you created
+- keyAlias: The alias of one of the key, default name is *key0*
+- keyPassword: The key password you provided in the keystore creation process
+
+* Register your app in Google Firebase console and copy the google-services.json file to app folder
 * Create a flavor in app/build.gradle for your country
 * Copy CountryDefaults.java from the global flavour into yours and implement your specifics
+* Build the app and test it.
