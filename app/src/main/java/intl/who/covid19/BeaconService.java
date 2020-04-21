@@ -290,7 +290,7 @@ public class BeaconService extends Service {
 
     private long getDeviceId(Message msg) {
         byte[] content = msg.getContent();
-        return content.length >= 20 ? content[16] << 24 | content[17] << 16 | content[18] << 8 | content[19] : -1L;
+        return content.length >= 20 ? ((long) content[16] & 0xff) << 24 | ((long) content[17] & 0xff) << 16 | ((long) content[18] & 0xff) << 8 | ((long) content[19] & 0xff) : -1L;
     }
 
     private void cutLiveEncounters() {

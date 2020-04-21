@@ -25,7 +25,7 @@
 	<string name="home_quarantineRemains">Povinná karanténa, zostáva dní</string>
 	<string name="home_statsTotal">Chorí</string>
 	<string name="home_statsRecovered">Uzdravení</string>
-	<string name="home_quarantine">Bola som v zahraničí alebo musím zostať v karanténe</string>
+	<string name="home_quarantine">Bola/Bol som v zahraničí alebo musím zostať v karanténe</string>
 	<string name="home_checkQuarantine">Vrátili ste sa zo zahraničia alebo máte zostať v karanténe?</string>
 	<string name="home_hotline">Infolinka</string>
 	<string name="home_map_list">Zoznam</string>
@@ -90,91 +90,96 @@
 	<string name="faceid_failCapture">Nepodarilo sa zachytiť tvár, skúste to prosím znova.</string>
 	<string name="faceid_failVerify">Nepodarilo sa overiť uložené charakteristiky tváre, skúste to prosím znova.</string>
 
-	<string name="about_text">Táto aplikácia bola vytvorená slovenskými dobrovoľníkmi a odborníkmi v rekordne krátkom
-čase, aby pomohli s bojom proti šíreniu pandémie. Bola odovzdaná všetkým štátom zdarma
-vrátane Slovenska, aby pomohla zdravotníckym organizáciám prekonať nákazu Covid-19
-rýchlejšie. Je vyvinutá tak, aby aj v budúcnosti, pri vzniku akejkoľvek pandémie, mohla byť
-okamžite nasadená a spomaliť šírenie nákazy. Aplikácia bude vylepšovaná každým dňom
-a jej tvorcovia budú náklady s jej ďalším vývojom hradiť sami. Jej kód a know-how má slúžiť
-všetkým ľudom sveta a nesmie byť majetkom žiadnej organizácie.
-\n\nJednou z najzákernejších prejavov Covid-19 je jej inkubačná doba, kedy pacient chorobu šíri
-až 14-dní bez jej viditeľných symptómov. Tým sa vírus šíri rýchlejšie ako obyčajná chrípka
-a ťažké stavy tak prehltia zdravotnícky systém, ktorý v žiadnej krajine nebol pripravený na
-takýto nárast nákazy. Cieľom aplikácie je výrazne spomaliť nástup a rýchlejšie otestovať
-potenciálne nakazených ľudí a tým predísť šíreniu choroby bez ich vedomia. Tým ochránime
-infikované osoby, ich blízkych a celý zdravotnícky systém, ktorému zostane kapacita pred
-exponenciálnym nárastom prípadov.
-\n\nAplikácia funguje na nasledovnom princípe.
-\n\nPo inštalácii aplikácie je potrebné povoliť senzory Bluetooth a notifikácii, ktoré informujú
-pacienta. Bluetooth je technológia na rozoznanie blízkosti kontaktu od 1-10 metrov a je
-možné prostredníctvom nej analyzovať presnú vzdialenosť iných zariadení v jej okolí. Táto
-technológia výborne funguje v bytoch, budovách, obchodných domoch, lietadlách, letiskách,
-autobusoch, električkách a iných uzavretých priestoroch, dokonca až na úroveň konkrétnej
-miestnosti. Jej spotreba je pritom mimoriadne úsporná.
-\n\nV prípade, že telefón rozozná iné Bluetooth zariadenie v jeho blízkosti a táto doba prekročí
-určitú dĺžku, zapíše si anonymný údaj tzv. AppID, ktoré je anonymné číslo vygenerované pri
-každej inštalácii aplikácie. Toto identifikačné číslo je úplne anonymné. Bluetooth informácia
-iného zariadenia je potrebná na spätné identifikovanie zariadenia a zasielanie notifikácii
-takémuto zariadeniu, ktorého majiteľ mohol byť vstavený ochoreniu. Na zasielanie sa práve
-použije AppID. To znamená, že ak si človek aplikáciu vymaže z telefónu, toto číslo stratí
-akýkoľvek význam. Jeho hodnota existuje, len v prípade, že aplikácia je nainštalovaná na
-telefóne a dá sa na túto aplikáciu poslať notifikácia, ak bolo iné AppID infikované, s ktorým
-bola aplikácia v kontakte cez Bluetooth. Týmto spôsobom nieje možné identifikovať
-chorého, ani zdravého. Je možné len zaslať správu do inštancie takejto aplikácie.
-\n\nAkonáhle akýkoľvek človek zistí, že bol infikovaný vírusom Covid-19, zadá do aplikácie svoje
-CovidID, prípadne ukáže hygienikovi svoje číslo. Následne sa Covid číslo overí z NCZI
-systémom. Následne sa informujú iní užívatelia, ktorí boli v kontakte s jeho AppID na úplne
-anonymnej báze, aby sa dali otestovať. Správa bude obsahovať, že bol človek potenciálne
-vystavený nákaze. Takýmto spôsobom dokáže aplikácia trasovať možné prenosy za
-posledných 14-dní aj pri kontaktoch, ktoré človek nedokáže identifikovať. V budovách, pri
-prepážke v obchode, vo verejnej doprave a podobne. Tým budú ľudia cielenejšie testovaní, a
-len Tí, ktorí boli vo veľmi tesnej blízkosti infikovanej osoby po určitú dobu. Každý pozitívne
-testovaný tak pomôže rodinám ľudí, ktorí o svojej nákaze ešte nemusia vedieť a predíde tak
-ďalšiemu rozneseniu nákazy. Všetko na anonymnej báze.
-\n\nV dnešnej dobe fungujú zdravotníci pýtaním sa, s kým sa človek stretol, a na základe toho
-osobne kontaktujú ľudí, ktorí mohli byť vystavení ochoreniu. Nedokážu ale odhaliť ľudí, ktorí
-boli v kontakte v obchode, alebo verejnej doprave. Táto aplikácia tak dokáže rýchlejšie nájsť
-takéto AppIDs, poslať aplikácii informáciu aby sa dali otestovať, výrazne zníži manuálnu
-prácu zdravotníkov a hygienikov a tým rýchlejšie predíde šíreniu nákazy na ostatných členov
-rodiny, kolegov, či iných ľudí v blízkom kontakte.
-\n\nNeoddeliteľnou súčasťou prekonania nákazy Covid-19 je aj izolácia chorých od ostatnej
-populácie. Na tento účel funguje karanténa. V prípade, že človek prišiel zo zahraničia, alebo
-bol potenciálne vystavený infekcii, alebo mu bola nariadená karanténa, je vyhláškou
-prikázané zostať na jednom mieste po celú dobu, pokiaľ systém neoznámi opak. Pri tejto
-chorobe aj 14-dní a je možné na základe testov, či diagnózy samotnú dobu predĺžiť.
-Každému, komu bola nariadená karanténa príde informácia, ktorá ho bude informovať
-o ďalších krokoch. Človek v aplikácii oznámi, ak mu bola nariadená karanténa a označí si
-miesto, v ktorom sa bude zdržiavať nasledujúce dni. Informácia o mieste zostáva výlučne
-v aplikácii. Aplikácia si overí telefónnym číslom, či takémuto užívateľovi bola skutočne
-nariadená karanténa a ak áno, informuje užívateľa o dobe v ktorej by mal zostať na ním
-určenom mieste.
-\n\nPo tomto úkone ho aplikácia bude varovať pri každom porušení karantény. Akonáhle je
-človek mimo karantény dlhšie ako určitý čas, aplikácia ho upozorní, aby sa vrátil do
-karantény. Táto funkcionalita sa snaží upozorniť ľudí v karanténe, ktorým bola nariadená.
-Dáta o pohybe sa nikde neukladajú a používajú sa výlučne na upozornenie užívateľa.
-\n\nAplikácia zároveň zobrazuje mapu a najnovšie informácie o nákazách v jednotlivých
-okresoch na Slovensku. Jej účelom nieje identifikovať chorých, ani nijako týmito
-informáciami nedisponuje. Mapa zobrazuje len štatistický počet zaznamenaných ľudí
-s ochorením na Covid-19 v danom okrese.
-\n\nZároveň aplikácia disponuje štatistickými informáciami o počte nakazených, vyliečených
-a počte úmrtí na území Slovenskej republiky. Obsahuje aj dôležité informácie ako sa chrániť,
-ako rozpoznať symptómy a zobrazuje rýchlu infolinku.
-\n\nAplikáciu budeme neustále zlepšovať a prinášať ďalšie funkcionality, ktoré pomôžu
-rýchlejšie zvládnuť nákazu Covid-19. Všetky dáta sú anonymné a zároveň sú automaticky
-mazané po uplynutí 21-dní. Táto doba je nevyhnutná na odhalenie možných ohnísk nákaz,
-ktoré nebolo možné odhaliť konvenčným spôsobom.
-\n\nNikdy nebolo dôležitejšie neochorieť, aby sme zachránili druhých, tak ako dnes. Tým, že
-zostaneme zdraví a nebudeme vírus šíriť, budú mať naši blízky väčšiu šancu na záchranu,
-pretože zdravotníctvo im bude schopné poskytnúť pomoc, ktorú potrebujú. Ak ochorieme,
-svojím šírením zaťažujeme zdravotný systém. Zároveň doktori a zdravotný personál bude
-preťažení a tým náchylnejší na ochorenie. V prípade, že ochorejú nebudú môcť pomáhať aj
-v úplne odlišných prípadoch, ktorý sa tejto nákazy netýka. Tí, ktorí nákazu sami nezvládnu,
-nebudú mať šancu na záchranu. Ak budú chorí doktori, nikto z nás nebude môcť dostať
-akúkoľvek pomoc, či je to obyčajný úraz, operácia, alebo iný vážnejší stav.
-\n\nVeľa z nás nákazu zvládne svojou imunitou. Sú ale takí, ktorí majú iné vážne ochorenia, či
-mladí, či starí a budú potrebovať pomoc zdravotníctva.
-\n\nPreto je nesmierne dôležité prejaviť ľudskosť mladých voči starým, zdravých voči chorým a
-poraziť Covid-19, spoločne.
+	<string name="about_text">Táto aplikácia bola vytvorená slovenskými odborníkmi-dobrovoľníkmi v rekordne krátkom čase, s cieľom
+pomôcť v boji proti šíreniu pandémie COVID-19. Bola odovzdaná všetkým krajinám vrátane Slovenskej
+republiky zdarma, aby pomohla ich zdravotníckym organizáciám urýchliť zvládnutie tejto ničivej nákazy.
+\n\nJe vyvinutá tak, aby aj v budúcnosti v prípade vzniku akejkoľvek novej pandémie, mohla byť okamžite
+nasadená do používania a pomohla spomaliť šírenie nákazy. Aplikácia bude priebežne vylepšovaná s
+cieľom operatívne zabezpečovať vznikajúce potreby protiepidemickej praxe. Tvorcovia budú na aplikácii
+naďalej pracovať bezodplatne a náklady s jej ďalším vývojom budú hradiť sami. Jej kód a know-how
+tvorcov má slúžiť všetkým ľuďom sveta a nesmie byť majetkom žiadnej organizácie.
+\n\nPrečo aplikácia vznikla?
+\n\nJednou zo zákerných vlastností ochorenia COVID-19 je jeho nákazlivosť počas dlhej inkubačnej doby,
+kedy pacient chorobu šíri priemerne 14 dní (v niektorých prípadoch až 29 dní) pred vypuknutím
+viditeľných príznakov. Toto umožňuje nepozorované a masívnejšie šírenie nákazy v porovnaní s inými
+respiračnými virózami (ako napr. chrípka). Náhly výskyt vysokého počtu pacientov, ktorí si vyžadujú
+nemocničnú starostlivosť, vedie k preťaženiu a kolapsu zdravotníckych systémov naprieč krajinami, čo
+prispieva okrem samotných obetí COVID-19, k ďalším zbytočným a odvrátiteľným úmrtiam.
+\n\nCieľom aplikácie je výrazne spomaliť šírenie nákazy tým, že zjednoduší a spresní dohľadanie a testovanie
+jednotlivcov, ktorí prišli do kontaktu s nakazeným. Zároveň svojho používateľa informuje o jeho
+potenciálnom vystavení sa riziku nákazy, uľahčuje mu prístup k testovaniu na prítomnosť vírusu v jeho
+organizme a podporuje dodržiavania karantény nakazených jedincov v populácii. Poskytuje mu taktiež
+informácie o príznakoch ochorenia a návod na bezpečné správanie sa počas pandémie. Týmto spôsobom
+aplikácia chráni svojho používateľa, jeho okolie, ako aj celý systém zdravotníctva. Vďaka nižšiemu počtu
+pacientov v danom čase zostane zdravotníctvu prestor pre plnohodnotnú zdravotnú starostlivosť pre
+všetkých pacientov, ktorí ju potrebujú.
+\n\nČím aplikácia pomôže zdravotníkom a ako spomalí šírenie nákazy?
+\n\nV súčasnosti sa kontakty nakazených dohľadávajú pomocou hygienikov a zdravotníkov, ktorí sa
+nakazených pacientov pýtajú, kde a s kým prišli počas posledných 14 dní do kontaktu. Tento spôsob je
+zdĺhavý, veľmi nepresný a nezachytáva neznámych ľudí, ktorí sa s nakazeným dostali do kontaktu
+napríklad v obchode, na úrade či vo verejnej doprave. Táto aplikácia dokáže okamžite identifikovať
+VŠETKÝCH potenciálne ohrozených jedincov, ktorí s nakazeným prišli počas posledných 14 dni do
+kontaktu a poslať im informáciu, aby sa dali otestovať, čím výrazne zníži manuálnu prácu zdravotníkov a
+hygienikov. Čím rýchlejšie a čím väčší počet takto potenciálne nakazených ľudí sa o svojom ohrození
+dozvie, tým rýchlejšie sa predíde šíreniu nákazy na ich členov rodiny, kolegov, či iných ľudí v ich blízkom
+okolí.
+\n\nNa akom princípe aplikácia funguje?
+\n\nPo inštalácii aplikácie je potrebné povoliť funkciu Bluetooth a notifikácie, ktoré budú informovať
+pacienta. Bluetooth je technológia na rozoznanie blízkosti kontaktu od 1-10 metrov a prostredníctvom
+nej je možné analyzovať presnú vzdialenosť iných zariadení v jej okolí. Táto technológia výborne funguje
+v bytoch, budovách, obchodných domoch, lietadlách, letiskách, autobusoch, električkách a iných
+uzavretých priestoroch, dokonca až na úroveň konkrétnej miestnosti. Jej spotreba batérie telefónu je
+pritom mimoriadne nízka.
+\n\nV prípade, že telefón rozozná iné Bluetooth zariadenie v jeho blízkosti a trvanie tohto „stretnutia“
+prekročí určitú dĺžku, aplikácia si zapíše tzv. AppID tohto zariadenia - náhodné a kompletne anonymné
+číslo vygenerované pri každej inštalácii aplikácie.
+\n\nPomocou AppID nie je možné identifikovať chorého ani zdravého jedinca, slúži len ako „adresa“ na ktorú
+vie systém zasielať informácie. To je obzvlášť dôležité v prípade, že sa vo Vašej blízkosti dlhodobo
+pohyboval niekto, kto mohol byť potenciálnym zdrojom nákazy.
+\n\nAppID sa okamžite vymaže, ak sa rozhodnete aplikáciu zo svojho telefónu odstrániť.
+\n\nAkonáhle človek zistí, že bol infikovaný vírusom SARS-CoV-2, zadá do aplikácie svoje CovidID, prípadne
+ukáže hygienikovi svoje vygenerované číslo. Toto číslo sa overí s NCZI systémom. Následne sa informujú
+iní užívatelia, ktorí boli v kontakte s jeho AppID, aby sa dali otestovať. Celý proces je kompletne
+anonymný. Správa používateľom bude obsahovať len informáciu, že používateľ bol potenciálne
+vystavený nákaze. Aplikácia dokáže spätne kontrolovať aj možné prenosy za posledných 14 dní – a to aj
+pri náhodných stretnutiach s ľuďmi, ktorých používateľ nepozná, alebo ani nevedel, že sa s nimi stretol -
+v budovách, pri okienku v banke, v obchode, vo verejnej doprave a podobne. Spresní sa tak testovanie a
+testovaní tak budú hlavne ľudia, ktorí mali vyššiu šancu sa nakaziť – keďže boli na istý čas vystavení
+infikovanej osobe. Každý pozitívne testovaný tak pomôže rodinám ľudí, ktorí o svojej nákaze ešte
+nemusia vedieť a predíde tak ďalšiemu rozneseniu nákazy. Všetko na anonymnej báze.
+\n\nAplikácia zároveň zobrazuje mapu a najnovšie informácie o nákazách v jednotlivých okresoch na
+Slovensku. Jej účelom nie je identifikovať chorých jedincov, a týmito informáciami ani nedisponuje.
+Mapa zobrazuje len štatistický počet zaznamenaných ľudí s ochorením na COVID-19 v danom
+okrese/mestskom obvode.
+\n\nZároveň aplikácia disponuje štatistickými informáciami o počte nakazených, vyliečených a počte úmrtí
+na území Slovenskej republiky. Obsahuje aj dôležité informácie ako sa chrániť, ako rozpoznať symptómy
+a zobrazuje číslo na infolinku.
+\n\nAplikáciu budeme neustále zlepšovať a prinášať ďalšie funkcionality, ktoré pomôžu rýchlejšie zvládnuť
+nákazu COVID-19. Všetky dáta sú anonymné a zároveň sú automaticky mazané po uplynutí 21-dní. Táto
+doba je nevyhnutná na odhalenie možných ohnísk nákaz, ktoré nebolo možné odhaliť konvenčným
+spôsobom.
+\n\nCieľom je, aby všetci potenciálne chorí nešírili ochorenie ďalej. Preto je neoddeliteľnou súčasťou
+prekonania nákazy COVID-19 aj izolácia chorých od ostatnej populácie. Na tento účel slúži karanténa. V
+prípade, že človek prišiel zo zahraničia, bol potenciálne vystavený infekcii, alebo mu z iného dôvodu bola
+nariadená karanténa, je vyhláškou prikázané zdržiavať sa na jednom mieste po celú predpísanú dobu,
+pokiaľ systém neoznámi opak. Karanténa pri tomto ochorení je oficiálne stanovená na 14 dní a je možné
+ju na základe testov či príznakov ochorenia predĺžiť. Človek v aplikácii oznámi, ak mu bola nariadená a
+označí si miesto, v ktorom sa bude počas tohto obdobia zdržiavať. Informácia o mieste zostáva výlučne v
+aplikácii. Aplikácia si prostredníctvom telefónneho čísla overí, či bola používateľovi skutočne nariadená
+karanténa a ak áno, informuje používateľa o dobe, počas ktorej by mal zostať na ním určenom mieste.
+Každému, komu bola nariadená karanténa príde informácia, ktorá ho bude informovať o ďalších
+krokoch.
+\n\nPo tomto úkone bude aplikácia používateľa varovať pri každom porušení karantény. Akonáhle je človek
+mimo karantény dlhšie ako určitý stanovený čas, aplikácia ho upozorní, aby sa vrátil do karantény. Dáta
+o pohybe sa nikde neukladajú a používajú sa výlučne na upozornenie užívateľa.
+\n\nPrečo je dôležité, aby ste aplikácii netajili, že ste nakazený?
+\n\nKomunitná nákaza nie je len o jednotlivcovi a jeho zdraví ale aj o zdraví celého jeho okolia. Ak ste chorý a
+vystavíte nákaze iných, títo ľudia môžu o niekoľko dní svojim pohybom a nevedomým šírením infekcie
+nakaziť Vašich blízkych. Zároveň veľký počet chorých preťažuje zdravotníctvo. A zdravotníctvo preťažené
+pacientami s COVID-19 nemá priestor ošetrovať aj iných pacientov. Zomierať tak budú aj ľudia, ktorých
+by za iných okolností dokázali lekári zachrániť, napr. po prasknutí slepého čreva, pri alergickej reakcii po
+poštípaní včelou alebo na systémovú infekciu po úraze na záhrade.
+\n\nPoďakovanie autorom
 \n\nVeľmi pekne ďakujeme za podporu všetkým, ktorí sa svojimi radami, prácou vo dne v noci
 a svojou nezištnou pomocou pričinili ku vzniku tohoto projektu a to najmä: Marek Gogoľ,
 Juraj Karovič, MUDr. Andrej Thurzo PhD., MPH, MHA, kolektív dobrovoľníkov okolo Sygic,
@@ -186,10 +191,10 @@ MUDr. Dušan Meško, PhD., MUDr. Peter Herman, MUDr. Gabriela Ďuricová, PhD., 
 Igor Krupa, MUDr. Gabriela Ďuricová, PhD., MUDr. Alžbeta Reviczká, MUDr. Andrej Daňo,
 MUDr. Veronika Pružincová, Juraj Novosad, Nicolas Hason, Maroš Lukáč
 \n\nAplikácia vznikla s podporou projektu ZostaňZdravý a Sygic.
-\n\nAplikácia Covid 19 ZostaňZdravý je podľa zákona č. 362/2011 Z.z. o liekoch a zdravotníckych
-pomôckach a o zmene a doplnení niektorých zákonov a podľa nariadenia vlády č.582/2008
-Z.z. ktorým sa ustanovujú podrobnosti o technických požiadavkách a postupoch
-posudzovania zhody zdravotníckych pomôcok zdravotníckou pomôckou triedy I. 
+\n\nAplikácia Covid19 ZostaňZdravý je podľa zákona č. 362/2011 Z.z. o liekoch a zdravotníckych pomôckach
+a o zmene a doplnení niektorých zákonov a podľa nariadenia vlády č.582/2008 Z.z. ktorým sa ustanovujú
+podrobnosti o technických požiadavkách a postupoch posudzovania zhody zdravotníckych pomôcok
+zdravotníckou pomôckou triedy I.
 \n\nVýrobca: Úrad verejného zdravotníctva SR</string>
 
 	<!-- Face Capture -->

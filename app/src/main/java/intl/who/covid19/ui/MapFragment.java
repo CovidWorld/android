@@ -113,7 +113,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         recyclerView_counties.setAdapter(new RecyclerView.Adapter() {
             @Override
             public int getItemCount() {
-                return counties.size();
+                return (counties != null ? counties.size() : 0);
             }
             @NonNull
             @Override
