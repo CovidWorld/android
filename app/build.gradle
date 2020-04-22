@@ -71,7 +71,7 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:1.0.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'com.github.ialokim:android-phone-field:0.2.3'
-    implementation 'sk.turn:beacons-android:1.5.3'
+    implementation 'sk.turn:beacons-android:1.5.4'
     implementation 'sk.turn:http:1.7.0'
     implementation 'org.hashids:hashids:1.0.3'
     compileOnly 'com.innovatrics.android:dot:2.15.1'
