@@ -70,10 +70,14 @@ import java.util.List;
         this.context = context;
         this.filename = filename;
         // Load from file
-        List<T> data;
+        File dataFile = new File(context.getFilesDir(), filename);
+        List<T> data = null;
         try {
-            data = new Gson().fromJson(new FileReader(new File(context.getFilesDir(), filename)), getListType());
+            data = new Gson().fromJson(new FileReader(dataFile), getListType());
         } catch (Exception e) {
+            App.log("Can't load data from " + getClass().getSimpleName() + " file: " + dataFile + "; " + e);
+        }
+        if (data == null) {
             data = new ArrayList<>();
         }
         this.data = data;

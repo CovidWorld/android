@@ -13,12 +13,14 @@
 #}
 
 # Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# debugging stack traces. (Like Crashlytics)
+-keepattributes SourceFile,LineNumberTable
+# Keep Crashlytics annotations
+-keepattributes *Annotation*
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
-#-renamesourcefileattribute SourceFile
+-renamesourcefileattribute SourceFile
 
 -keepclassmembers class intl.who.covid19.Encounter {
     <init>();
