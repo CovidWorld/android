@@ -16,56 +16,32 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
 			android:lineSpacingMultiplier=".8"
 			android:text="@string/symptoms_title"
 			android:textSize="30sp" />
 
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="32dp"
+			android:src="@drawable/doctor"/>
+
 		<TextView
+			android:id="@+id/textView_text"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="16dp"
-			android:fontFamily="@font/poppins_bold"
-			android:text="@string/symptoms_subtitle"
-			android:textSize="16sp" />
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
+			android:gravity="center_horizontal"
 			android:text="@string/symptoms_text" />
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/symptoms_text1" />
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/symptoms_text2" />
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/symptoms_text3" />
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/symptoms_text4" />
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/symptoms_text5" />
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:fontFamily="@font/poppins_bold"
-			android:text="@string/symptoms_text6" />
-
+			android:layout_marginTop="16dp"
+			android:gravity="center_horizontal"
+			android:text="@string/symptoms_symptoms"
+			android:textColor="@color/red" />
 	</LinearLayout>
 </ScrollView>

@@ -17,7 +17,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId 'covid19'
+        applicationId 'int.covid19'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -45,8 +45,8 @@ android {
         slovakia {
             dimension 'country'
             applicationId 'sk.nczi.covid19'
-            versionCode 3
-            versionName '1.0.2'
+            versionCode 4
+            versionName '1.1.0'
             versionNameSuffix '-sk'
             buildConfigField('String', 'PHONE_VERIFICATION_API_URL', '"' + props['phoneVerificationApiUrl'] + '"')
         }

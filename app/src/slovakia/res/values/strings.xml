@@ -8,8 +8,8 @@
 	<string name="notification_channel_persistent">Scan running notification</string>
 	<string name="notification_channel_alarm">Notifies of potential contagion</string>
 	<string name="notification_scan_title">Covid-19 beží na pozadí</string>
-	<string name="notification_scan_text">Vaše zariadenie zaznamenáva blízkosť okolitých zariadení</string>
-	<string name="notification_scan_problem">Zaznamenávanie nie je aktívne, kliknite sem pre opravu</string>
+	<string name="notification_scan_text">Skenovanie okolia aktívne</string>
+	<string name="notification_scan_problem">Objavil sa problém</string>
 	<string name="notification_quarantineLeft_title">Opustili ste karanténu</string>
 	<string name="notification_quarantineInfo_title">Karanténa</string>
 	<string name="notification_quarantineInfo_text">Zostávajúcich dní v karanténe: %1$d</string>
@@ -34,6 +34,16 @@
 	<string name="profile_identifier">Môj identifikátor pre potreby zdravotníkov a hygienikov:</string>
 	<string name="profile_aboutApp">O aplikácii</string>
 
+	<string name="status_text">Aplikácia môže mať aktuálne problém s fungovaním. Prosím skontrolujte nastavenia Vášho telefónu a uistite sa že:</string>
+	<string name="status_bluetooth">Služba &lt;b>Bluetooth&lt;/b> je zapnutá</string>
+	<string name="status_location">Aplikácia má povolenie na získavanie &lt;b>aktuálnej pozície&lt;/b> – potrebné výhradne pre korektné fungovanie bluetooth, dáta o polohe nikdy neopustia Vaše zariadenie</string>
+	<string name="status_internet">Máte prístup k internetu - aspoň občasne napr. &lt;b>WiFi&lt;/b> alebo &lt;b>mobilné dáta&lt;/b></string>
+	<string name="status_unsupported">Nepodporované</string>
+	<string name="status_enabled">Povolené</string>
+	<string name="status_enable">Povoliť</string>
+	<string name="status_active">Aktívne</string>
+	<string name="status_activate">Aktivovať</string>
+
 	<string name="protect_title">Ako sa chrániť pred koronavírusom</string>
 	<string name="protect_text1">Často si umývajte ruky mydlom a vodou, najmenej po dobu 20 sekúnd. Môžete použiť dezinfekčný prostriedok na ruky na báze alkoholu</string>
 	<string name="protect_text2">Zakrývajte si nos a ústa pri kašľaní a kýchaní jednorázovou papierovou vreckovkou a následne ju zahoďte</string>
@@ -44,14 +54,8 @@
 	<string name="protect_text7">Ak ste chorý, liečte sa doma.</string>
 
 	<string name="symptoms_title">Symptómy</string>
-	<string name="symptoms_subtitle">Rozlišujte príznaky</string>
-	<string name="symptoms_text">COVID-19 zasahuje dolné dýchacie cesty. Prejavuje sa:</string>
-	<string name="symptoms_text1">• suchým, zadúšavým, dráždivým kašľom bez hlienov</string>
-	<string name="symptoms_text2">• bolestami hlavy, kĺbov a svalov</string>
-	<string name="symptoms_text3">• celkovou vyčerpanosťou</string>
-	<string name="symptoms_text4">• pocitom ťažoby a pichaním na hrudníku alebo pocitom tzv. „nedostatočného nádychu“</string>
-	<string name="symptoms_text5">• vysoká teplota na hranici, alebo tesne za hranicou 38 stupňov, ale rovnako aj vysoko za hranicou 38 stupňov, v kombinácii s kašľom a zvyškom uvedených príznakov sú tiež príznakom ochorenia</string>
-	<string name="symptoms_text6">Nádcha, bolesti prínosových dutín, hlieny v nose, aj keď s bolesťou v hrdle, s najväčšou pravdepodobnostou nie je COVID-19.</string>
+	<string name="symptoms_text">Ľudia nakazení COVID-19 udávajú široké spektrum prejavov, od miernych až po závažné.&lt;br/>&lt;br/>Prejavy sa zvyčajne objavujú &lt;b>2-14 dní po vystavení sa nákaze&lt;/b> a môžu zahŕňať:</string>
+	<string name="symptoms_symptoms">horúčka nad 38 °C\n\nsuchý dusivý kašeľ\n\nťažkosti s dýchaním alebo dýchavičnosť\n\núnava alebo schvátenosť\n\nzimnica alebo triaška\n\nbolesť svalov\n\nbolesť hlavy\n\nbolesť hrdla\n\nnáhla strata čuchu a chuti\n\nhnačka\n\nzvracanie</string>
 
 	<string name="phoneVerification_title">Vaše telefónne číslo</string>
 	<string name="phoneVerification_text">Prosím overte medzinárodnú predvoľbu a zadajte Vaše telefónne číslo</string>

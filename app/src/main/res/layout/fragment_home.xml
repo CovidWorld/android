@@ -16,15 +16,27 @@
 		android:paddingEnd="32dp"
 		android:paddingBottom="8dp">
 
+		<TextView
+			android:id="@+id/textView_status"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="12dp"
+			android:background="@drawable/bg_status"
+			android:drawableStart="@drawable/ic_bluetooth"
+			android:gravity="center"
+			android:text="@string/notification_scan_text" />
+
 		<Button
 			android:id="@+id/button_protect"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="16dp"
 			android:background="@drawable/bg_btn_ltblue"
-			android:drawableTop="@drawable/home_protect"
+			android:drawableStart="@drawable/home_protect"
+			android:drawableEnd="@drawable/chevron_right"
 			android:drawablePadding="8dp"
 			android:fontFamily="@font/poppins_light"
+			android:gravity="start|center_vertical"
 			android:text="@string/home_protect"
 			android:textColor="@color/colorPrimaryDark"
 			android:textSize="18sp" />
@@ -35,9 +47,11 @@
 			android:layout_height="wrap_content"
 			android:layout_marginBottom="16dp"
 			android:background="@drawable/bg_btn_ltblue"
-			android:drawableTop="@drawable/home_symptoms"
+			android:drawableStart="@drawable/home_symptoms"
+			android:drawableEnd="@drawable/chevron_right"
 			android:drawablePadding="8dp"
 			android:fontFamily="@font/poppins_light"
+			android:gravity="start|center_vertical"
 			android:text="@string/home_symptoms"
 			android:textColor="@color/colorPrimaryDark"
 			android:textSize="18sp" />

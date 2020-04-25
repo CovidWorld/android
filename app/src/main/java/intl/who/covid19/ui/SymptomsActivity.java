@@ -23,6 +23,8 @@
 package intl.who.covid19.ui;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,5 +36,7 @@ public class SymptomsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptoms);
+        TextView textViewText = findViewById(R.id.textView_text);
+        textViewText.setText(Html.fromHtml(getString(R.string.symptoms_text)));
     }
 }

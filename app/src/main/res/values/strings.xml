@@ -34,6 +34,16 @@
 	<string name="profile_identifier">My unique identifier for the medical personnel:</string>
 	<string name="profile_aboutApp">About application</string>
 
+	<string name="status_text">Application may have an issue. Please check your phone settings and make sure that:</string>
+	<string name="status_bluetooth">&lt;b>Bluetooth&lt;/b> is turned ON</string>
+	<string name="status_location">Application has permission for &lt;b>current location&lt;/b> – necessary for bluetooth to work</string>
+	<string name="status_internet">You have access to internet either &lt;b>WiFi&lt;/b> or &lt;b>mobile data&lt;/b></string>
+	<string name="status_unsupported">Unsupported</string>
+	<string name="status_enabled">Enabled</string>
+	<string name="status_enable">Enable</string>
+	<string name="status_active">Active</string>
+	<string name="status_activate">Activate</string>
+
 	<string name="protect_title">Reduce your risk of coronavirus infection</string>
 	<string name="protect_text1">Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.</string>
 	<string name="protect_text2">Cover your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.</string>
@@ -44,20 +54,16 @@
 	<string name="protect_text7">Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover.</string>
 
 	<string name="symptoms_title">Symptoms</string>
-	<string name="symptoms_subtitle">Watch for symptoms</string>
-	<string name="symptoms_text">Patients with COVID-19 have experienced mild to severe respiratory illness. Most common symptoms are:</string>
-	<string name="symptoms_text1">• Difficulty breathing or shortness of breath</string>
-	<string name="symptoms_text2">• Persistent pain or pressure in the chest</string>
-	<string name="symptoms_text3">• New confusion or inability to arouse</string>
-	<string name="symptoms_text4">• Bluish lips or face</string>
-	<string name="symptoms_text5"></string>
-	<string name="symptoms_text6">This list is not all inclusive. Please consult your medical provider for any other symptoms that are severe or concerning.</string>
+	<string name="symptoms_text">Watch for symptoms&lt;br/>&lt;br/>Patients with COVID-19 have experienced mild to severe respiratory illness. Most common symptoms are:</string>
+	<string name="symptoms_symptoms">Difficulty breathing or shortness of breath\n\nPersistent pain or pressure in the chest\n\nNew confusion or inability to arouse\n\nBluish lips or face</string>
 
 	<string name="phoneVerification_title">Your phone number</string>
 	<string name="phoneVerification_text">Please check your country code and enter your phone number</string>
 	<string name="phoneVerification_explanation">Please enter your phone number that the medical personnel can contact you at in case you were exposed to an infected person.</string>
+	<string name="phoneVerification_privacyConsent">I agree with processing of my potentially health-related data</string>
 	<string name="phoneVerification_continue">Continue</string>
 	<string name="phoneVerification_invalidNumber">Phone number is invalid, please check and correct</string>
+	<string name="phoneVerification_notAgreed">You have to agree with data processing</string>
 	<string name="phoneVerification_confirmTitle">Confirm your number</string>
 	<string name="phoneVerification_confirmText">%1$s\n\nIs this your correct phone number?</string>
 	<string name="phoneVerification_enterCode">We\'ve sent a confirmation code to you phone.\n\nTo complete the verification process please enter the 6-digit number below.</string>
@@ -72,6 +78,21 @@
 	<string name="address_confirm_change">Change</string>
 
 	<string name="quarantineStart_text">Please enter the date when you were supposed to enter the quarantine.</string>
+
+	<string name="faceid_title">Face identification for quarantine</string>
+	<string name="faceid_text1">Please scan your face for future verification of your quarantine.</string>
+	<string name="faceid_text2">This step is necessary.</string>
+	<string name="faceid_text3">Collected data is stored solely on this device.</string>
+	<string name="faceid_start">Start</string>
+	<string name="faceid_thankYou">Thank you</string>
+	<string name="faceid_success">By remaining in quarantine you help prevent the spread of COVID-19 disease.</string>
+	<string name="faceid_sorry">Sorry</string>
+	<string name="faceid_failLicense">Invalid software license for face recognition, please contact the application publisher.</string>
+	<string name="faceid_failCameraInit">Failed to initialize the camera, please try again.</string>
+	<string name="faceid_failCameraAccess">Application failed to get access to camera, please try again.</string>
+	<string name="faceid_failCameraPermission">Application hasn\'t got permission to access camera, please confirm this permission.</string>
+	<string name="faceid_failCapture">Failed to recognize your face, please try again.</string>
+	<string name="faceid_failVerify">Failed to verify your face, please try again.</string>
 
 	<string name="about_text">TODO Add your about app text here</string>
 </resources>

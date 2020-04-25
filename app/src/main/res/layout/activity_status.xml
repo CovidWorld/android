@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true"
+	tools:context="intl.who.covid19.ui.ProtectActivity">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:padding="32dp">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:src="@drawable/status" />
+
+		<TextView
+			android:id="@+id/textView_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:gravity="center_horizontal"
+			android:text="@string/status_text"
+			android:textSize="16sp" />
+
+		<TextView
+			android:id="@+id/textView_bluetooth"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:gravity="center_horizontal"
+			android:text="@string/status_bluetooth"
+			android:textColor="#6e6e6e" />
+
+		<Button
+			android:id="@+id/button_bluetooth"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="4dp"
+			android:background="@drawable/bg_btn_green"
+			android:drawableStart="@drawable/status_bluetooth"
+			android:drawablePadding="4dp"
+			android:fontFamily="@font/poppins_light"
+			android:minWidth="0dp"
+			android:minHeight="0dp"
+			android:paddingHorizontal="8dp"
+			android:paddingVertical="4dp"
+			android:text="Povoliť"
+			android:textColor="#fff" />
+
+		<TextView
+			android:id="@+id/textView_location"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:gravity="center_horizontal"
+			android:text="@string/status_location"
+			android:textColor="#6e6e6e" />
+
+		<Button
+			android:id="@+id/button_location"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="4dp"
+			android:background="@drawable/bg_btn_green"
+			android:drawableStart="@drawable/status_location"
+			android:drawablePadding="4dp"
+			android:fontFamily="@font/poppins_light"
+			android:minWidth="0dp"
+			android:minHeight="0dp"
+			android:paddingHorizontal="8dp"
+			android:paddingVertical="4dp"
+			android:text="Povoliť"
+			android:textColor="#fff" />
+
+		<TextView
+			android:id="@+id/textView_internet"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:gravity="center_horizontal"
+			android:text="@string/status_internet"
+			android:textColor="#6e6e6e" />
+
+		<Button
+			android:id="@+id/button_internet"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="4dp"
+			android:background="@drawable/bg_btn_green"
+			android:drawableStart="@drawable/status_wifi"
+			android:drawablePadding="4dp"
+			android:fontFamily="@font/poppins_light"
+			android:minWidth="0dp"
+			android:minHeight="0dp"
+			android:paddingHorizontal="8dp"
+			android:paddingVertical="4dp"
+			android:text="Povoliť"
+			android:textColor="#fff" />
+	</LinearLayout>
+</ScrollView>

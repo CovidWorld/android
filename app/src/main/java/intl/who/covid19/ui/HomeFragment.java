@@ -36,6 +36,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.gson.Gson;
@@ -62,6 +63,7 @@ public class HomeFragment extends Fragment {
     private static final int REQUEST_PHONE_VERIFICATION = 3;
     private static final int REQUEST_FACE_ID = 4;
 
+    private TextView textView_status;
     private View layout_stats;
     private View layout_quarantine;
     private TextView textView_address;
@@ -81,6 +83,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        textView_status = view.findViewById(R.id.textView_status);
         layout_stats = view.findViewById(R.id.layout_stats);
         layout_quarantine = view.findViewById(R.id.layout_quarantine);
         textView_address = view.findViewById(R.id.textView_address);
@@ -161,6 +164,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void updateUi() {
+        boolean status = BeaconService.checkStatus(getContext());
+        textView_status.setText(status ? R.string.notification_scan_text : R.string.notification_scan_problem);
+        textView_status.getCompoundDrawablesRelative()[0].setTint(ResourcesCompat.getColor(getResources(), status ? R.color.green : R.color.red, null));
+        textView_status.setOnClickListener(v -> {
+            if (!status) {
+                startActivity(new Intent(v.getContext(), StatusActivity.class));
+            }
+        });
         App app = App.get(getContext());
         if (app.isInQuarantine()) {
             layout_stats.setVisibility(View.GONE);

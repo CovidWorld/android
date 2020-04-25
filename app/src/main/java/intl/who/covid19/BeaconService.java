@@ -74,6 +74,32 @@ public class BeaconService extends Service {
 
     private static final String ACTION_RESTART_LOCATION = "intl.who.covid19.ACTION_RESTART_LOCATION";
 
+    public static boolean checkStatus(Context context) {
+        final boolean termsAgreed = App.get(context).prefs().getBoolean(Prefs.TERMS, false);
+        // Check BLE support / BT enabled
+        final boolean bleSupported = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
+        BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(BLUETOOTH_SERVICE);
+        BluetoothAdapter bluetoothAdapter = bluetoothManager == null ? null : bluetoothManager.getAdapter();
+        final boolean btEnabled = bluetoothAdapter != null && bluetoothAdapter.isEnabled();
+        // Check GPS support / enabled
+        final boolean inQuarantine = App.get(context).isInQuarantine();
+        final boolean gpsSupported = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
+        LocationManager locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
+        final boolean gpsEnabled = locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        // In case that GPS is not supported or not in quarantine, don't consider it an error
+        final boolean gpsOk = !inQuarantine || !gpsSupported || gpsEnabled;
+        // Check permissions
+        boolean permissionsGranted = true;
+        for (String permission : App.PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                permissionsGranted = false;
+                break;
+            }
+        }
+        // In case that BLE is not supported, don't consider it an error
+        return termsAgreed && permissionsGranted && (!bleSupported || btEnabled) && gpsOk;
+    }
+
     @SuppressWarnings({"WeakerAccess", "unused"})
     public class Binder extends android.os.Binder {
         public boolean isStarted() {
@@ -165,36 +191,14 @@ public class BeaconService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        final boolean termsAgreed = App.get(this).prefs().getBoolean(Prefs.TERMS, false);
-        // Check BLE support / BT enabled
+        final boolean status = checkStatus(this);
         final boolean bleSupported = getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE);
-        BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
-        BluetoothAdapter bluetoothAdapter = bluetoothManager == null ? null : bluetoothManager.getAdapter();
-        final boolean btEnabled = bluetoothAdapter != null && bluetoothAdapter.isEnabled();
-        // Check GPS support / enabled
-        final boolean inQuarantine = App.get(BeaconService.this).isInQuarantine();
-        final boolean gpsSupported = getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        final boolean gpsEnabled = locationManager != null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        // In case that GPS is not supported or not in quarantine, don't consider it an error
-        final boolean gpsOk = !inQuarantine || !gpsSupported || gpsEnabled;
-        // Check permissions
-        boolean permissionsGranted = true;
-        for (String permission : App.PERMISSIONS) {
-            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                permissionsGranted = false;
-                break;
-            }
-        }
-        // In case that BLE is not supported, don't consider it an error
-        final boolean showOk = termsAgreed && permissionsGranted && (!bleSupported || btEnabled) && gpsOk;
-        updateNotification(showOk);
-
+        updateNotification(status);
         boolean justRestartLocation = intent != null && ACTION_RESTART_LOCATION.equals(intent.getAction());
-        if (!justRestartLocation && termsAgreed && bleSupported && btEnabled && permissionsGranted) {
+        if (!justRestartLocation && status && bleSupported) {
             startBtlUpdates();
         }
-        if (isLocationRequested() && termsAgreed && permissionsGranted) {
+        if (isLocationRequested() && status) {
             startLocationUpdates();
         }
         return super.onStartCommand(intent, flags, startId);

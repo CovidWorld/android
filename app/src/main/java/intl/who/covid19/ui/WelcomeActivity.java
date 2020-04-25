@@ -83,7 +83,7 @@ public class WelcomeActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_welcome);
 		((TextView) findViewById(R.id.textView_attribution)).setText(Html.fromHtml(getString(R.string.welcome_attribution)));
 		if (areTermsAgreed()) {
-			checkPermissionsAndContinue();
+			checkDeviceId(); // Do not check permissions here, leave it for the status view on home fragment
 		}
 	}
 

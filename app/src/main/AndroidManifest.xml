@@ -18,6 +18,7 @@
 
 	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -51,6 +52,10 @@
 			tools:ignore="LockedOrientationActivity" />
 		<activity
 			android:name=".ui.HomeActivity"
+			android:screenOrientation="portrait"
+			tools:ignore="LockedOrientationActivity" />
+		<activity
+			android:name=".ui.StatusActivity"
 			android:screenOrientation="portrait"
 			tools:ignore="LockedOrientationActivity" />
 		<activity
