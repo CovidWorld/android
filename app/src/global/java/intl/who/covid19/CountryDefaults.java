@@ -44,6 +44,8 @@ public class CountryDefaults implements ICountryDefaults {
     @Override
     public boolean sendQuarantineLeft() { return false; }
     @Override
+    public boolean roundEncounterTimestampToDays() { return false; }
+    @Override
     public String getCountryCode() { return "XX"; }
     @Override
     public double getCenterLat() { return 49; }

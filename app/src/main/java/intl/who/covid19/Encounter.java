@@ -28,6 +28,7 @@ import androidx.annotation.Nullable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class Encounter {
@@ -41,9 +42,16 @@ public class Encounter {
     private Integer accuracy;
 
     public Encounter() { }
-    public Encounter(long seenProfileId) {
+    public Encounter(long seenProfileId, boolean roundTimestampToDays) {
         this.seenProfileId = seenProfileId;
-        timestamp = System.currentTimeMillis() / 1000;
+        Calendar cal = Calendar.getInstance();
+        if (roundTimestampToDays) {
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 1);
+            cal.set(Calendar.MILLISECOND, 0);
+        }
+        timestamp = cal.getTimeInMillis() / 1000;
     }
 
     public long getSeenProfileId() {
@@ -56,21 +64,15 @@ public class Encounter {
         this.duration = String.format(Locale.ROOT, "%02d:%02d:%02d", duration / 3600, (duration % 3600) / 60, duration % 60);
     }
     public void setLocation(@Nullable Location location, int forceAccuracy) {
-        if (location == null) {
+        if (location == null || forceAccuracy < 0) {
             latitude = null;
             longitude = null;
             accuracy = null;
             return;
         }
-        if (forceAccuracy == -1) {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-            accuracy = (int) location.getAccuracy();
-        } else {
-            // round down to specified precision
-            latitude = BigDecimal.valueOf(location.getLatitude()).setScale(forceAccuracy, RoundingMode.HALF_UP).doubleValue();
-            longitude = BigDecimal.valueOf(location.getLongitude()).setScale(forceAccuracy, RoundingMode.HALF_UP).doubleValue();
-            accuracy = null;
-        }
+        // round down to specified precision
+        latitude = BigDecimal.valueOf(location.getLatitude()).setScale(forceAccuracy, RoundingMode.HALF_UP).doubleValue();
+        longitude = BigDecimal.valueOf(location.getLongitude()).setScale(forceAccuracy, RoundingMode.HALF_UP).doubleValue();
+        accuracy = null;
     }
 }

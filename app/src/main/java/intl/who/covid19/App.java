@@ -48,6 +48,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.remoteconfig.internal.DefaultsXmlParser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -169,6 +170,7 @@ public class App extends Application {
         if (prefs.getString(Prefs.DEVICE_UID, null) == null) {
             prefs.edit().putString(Prefs.DEVICE_UID, UUID.randomUUID().toString()).apply();
         }
+        fixGoogleMapsSdkBug();
         // Create notification channels
         if (Build.VERSION.SDK_INT >= 26) {
             NotificationManager nm = getSystemService(NotificationManager.class);
@@ -260,5 +262,18 @@ public class App extends Application {
             listener.onCallback(null);
         }
         fusedLocationClient.getLastLocation().addOnCompleteListener(task -> listener.onCallback(task.isSuccessful() ? task.getResult() : null));
+    }
+
+    private void fixGoogleMapsSdkBug() {
+        try {
+            SharedPreferences googleBug = getSharedPreferences("google_bug_154855417", Context.MODE_PRIVATE);
+            if (!googleBug.contains("fixed")) {
+                new File(getFilesDir(), "ZoomTables.data").delete();
+                new File(getFilesDir(), "SavedClientParameters.data.cs").delete();
+                new File(getFilesDir(), "DATA_ServerControlledParametersManager.data.v1." + getBaseContext().getPackageName()).delete();
+                googleBug.edit().putBoolean("fixed", true).apply();
+            }
+        } catch (Exception e) {
+        }
     }
 }

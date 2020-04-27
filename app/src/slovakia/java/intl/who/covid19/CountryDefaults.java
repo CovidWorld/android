@@ -138,6 +138,8 @@ public class CountryDefaults implements ICountryDefaults {
         return App.get(context).getRemoteConfig().getLong("reportQuarantineExit") != 0;
     }
     @Override
+    public boolean roundEncounterTimestampToDays() { return true; }
+    @Override
     public String getCountryCode() { return "SK"; }
     @Override
     public double getCenterLat() { return 48.82; }

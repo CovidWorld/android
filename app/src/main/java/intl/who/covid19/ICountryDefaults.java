@@ -36,6 +36,11 @@ public interface ICountryDefaults {
     boolean sendQuarantineLeft();
 
     /**
+     * Whether to notify API when user left the quarantine.
+     */
+    boolean roundEncounterTimestampToDays();
+
+    /**
      * Two-letter code of current country (uppercase)
      */
     String getCountryCode();

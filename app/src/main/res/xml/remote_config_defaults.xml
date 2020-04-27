@@ -34,7 +34,7 @@
 	</entry>
 	<entry>
 		<key>ibeaconLocationAccuracy</key>
-		<value>3</value>
+		<value>-1</value>
 	</entry>
 	<entry>
 		<key>faceIDConfidenceThreshold</key>

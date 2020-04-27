@@ -242,9 +242,10 @@ public class BeaconService extends Service {
                     App.log("onFound: " + deviceId);
                     synchronized (liveEncounters) {
                         if (liveEncounters.get(deviceId) == null) {
-                            Encounter enc = new Encounter(deviceId);
+                            App app = App.get(BeaconService.this);
+                            Encounter enc = new Encounter(deviceId, app.getCountryDefaults().roundEncounterTimestampToDays());
                             if (isLocationRequested()) {
-                                enc.setLocation(App.get(BeaconService.this).getLastLocation(), inQuarantine ? -1 : (int) App.get(BeaconService.this).getRemoteConfig().getLong(App.RC_IBEACON_LOCATION_ACCURACY));
+                                enc.setLocation(app.getLastLocation(), (int) app.getRemoteConfig().getLong(App.RC_IBEACON_LOCATION_ACCURACY));
                             }
                             liveEncounters.put(deviceId, enc);
                             updateNotificationSubtext();
@@ -300,7 +301,6 @@ public class BeaconService extends Service {
     private void cutLiveEncounters() {
         App app = App.get(this);
         Location location = app.getLastLocation();
-        boolean inQuarantine = app.isInQuarantine();
         synchronized (liveEncounters) {
             long now = System.currentTimeMillis() / 1000;
             app.getEncounterQueue().setAutoSave(false);
@@ -312,9 +312,9 @@ public class BeaconService extends Service {
                     enc.setDuration(duration);
                     app.getEncounterQueue().add(enc);
                     // continue to track the encounter
-                    Encounter newEnc = new Encounter(enc.getSeenProfileId());
+                    Encounter newEnc = new Encounter(enc.getSeenProfileId(), app.getCountryDefaults().roundEncounterTimestampToDays());
                     if (isLocationRequested()) {
-                        newEnc.setLocation(location, inQuarantine ? -1 : (int) App.get(this).getRemoteConfig().getLong(App.RC_IBEACON_LOCATION_ACCURACY));
+                        newEnc.setLocation(location, (int) App.get(this).getRemoteConfig().getLong(App.RC_IBEACON_LOCATION_ACCURACY));
                     }
                     liveEncounters.setValueAt(i, newEnc);
                 }
